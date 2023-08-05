@@ -18,12 +18,6 @@
                 .WithMany(ty => ty.Tasks)
                 .HasForeignKey(t => t.TypeId)
                 .OnDelete(DeleteBehavior.Restrict);
-/*
-            builder
-                .HasOne(t => t.Worker)
-                .WithMany(w => w.Tasks)
-                .HasForeignKey(t => t.WorkerId)
-                .OnDelete(DeleteBehavior.Restrict);*/
 
             builder
                 .HasOne(t => t.CheckEr)

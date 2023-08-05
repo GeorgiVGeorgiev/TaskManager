@@ -24,7 +24,13 @@
     <ProjectReference Include="..\TaskManager.Common\TaskManager.Common.csproj" />
     <ProjectReference Include="..\TaskManager.Data.Models\TaskManager.Data.Models.csproj" />
     <ProjectReference Include="..\TaskManager.Data\TaskManager.Data.csproj" />
+    <ProjectReference Include="..\TaskManager.Services.Data\TaskManager.Services.Data.csproj" />
+    <ProjectReference Include="..\TaskManager.Web.Infrastructure\TaskManager.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\TaskManager.Web.ViewModels\TaskManager.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Identity\" />
   </ItemGroup>
 
 </Project>
