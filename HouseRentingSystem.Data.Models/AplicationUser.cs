@@ -19,6 +19,5 @@
         [MaxLength(LastNameMaxLength)]
         public string LastName { get; set; } = null!;
 
-        public ICollection<GeoTask> myTask { get; set; } = new HashSet<GeoTask>();
     }
 }
