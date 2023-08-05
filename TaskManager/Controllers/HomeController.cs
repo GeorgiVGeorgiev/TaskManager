@@ -2,7 +2,8 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using System.Diagnostics;
-    using TaskManager.Models;
+    using TaskManager.Web.ViewModels;
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

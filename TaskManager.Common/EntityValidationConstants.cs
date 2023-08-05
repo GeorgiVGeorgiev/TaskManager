@@ -37,5 +37,11 @@
             public const int DescriptionMinLength = 1;
 
         }
+        public static class Document
+        {
+            public const int DescriptionMaxLength = 2500;
+            public const int DescriptionMinLength = 1;
+
+        }
     }
 }

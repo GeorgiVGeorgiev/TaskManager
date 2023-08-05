@@ -16,8 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HouseRentingSystem.Data.Models\TaskManager.Data.Models.csproj" />
-    <ProjectReference Include="..\TaskManager.Common\TaskManager.Common.csproj" />
+    <ProjectReference Include="..\TaskManager.Data.Models\TaskManager.Data.Models.csproj" />
   </ItemGroup>
 
 </Project>
