@@ -13,7 +13,7 @@
         public string Description { get; set; } = null!;
 
         [Required]
-        public Guid WorkerId { get; set; } = Guid.NewGuid();
+        public Guid WorkerId { get; set; }
 
         [Required]
         [ForeignKey(nameof(WorkerId))]
@@ -24,7 +24,7 @@
 
         [Required]
         [ForeignKey(nameof(TaskId))]
-        public Task Task { get; set; } = null!;
+        public GeoTask Task { get; set; } = null!;
 
 
     }
