@@ -1,0 +1,31 @@
+﻿namespace TaskManager.Data.Models
+{
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using static Common.EntityValidationConstants.Comentar;
+    public class Comentar
+    {
+        [Key]
+        public int Id { get; set; }
+
+        [Required]
+        [MaxLength(DescriptionMaxLength)]
+        public string Description { get; set; } = null!;
+
+        [Required]
+        public Guid WorkerId { get; set; } = Guid.NewGuid();
+
+        [Required]
+        [ForeignKey(nameof(WorkerId))]
+        public Worker Worker { get; set; } = null!;
+
+        [Required]
+        public Guid TaskId { get; set; }
+
+        [Required]
+        [ForeignKey(nameof(TaskId))]
+        public Task Task { get; set; } = null!;
+
+
+    }
+}

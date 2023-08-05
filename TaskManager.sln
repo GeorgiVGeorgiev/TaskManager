@@ -3,7 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager", "TaskManager\TaskManager.csproj", "{ECFB082A-62FD-4640-BEB6-AD55755C811A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager", "TaskManager\TaskManager.csproj", "{ECFB082A-62FD-4640-BEB6-AD55755C811A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{FAC802D9-6640-44C4-B9D0-BFF7B21E4FC5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{E63C72D5-69B7-4EC9-B54E-ECFEBBC8F323}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{DA6ED3CE-B2B0-462E-92C9-B08965152CDB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Data.Models", "HouseRentingSystem.Data.Models\TaskManager.Data.Models.csproj", "{79ADE07C-63E6-4434-BD23-E2B6DB4DFD1F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Data", "HouseRentingSystem.Data\TaskManager.Data.csproj", "{C2599234-54D8-4D33-8415-77572D2C1BFB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Common", "TaskManager.Common\TaskManager.Common.csproj", "{3BDA8209-E283-41F1-9FB3-88A4AE44608D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{3453FBFC-2E1E-42E6-9954-AA49E8359FC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Web.ViewModels", "TaskManager.Web.ViewModels\TaskManager.Web.ViewModels.csproj", "{E3146A0F-D734-4F2A-BFEE-A88A2D041481}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +31,32 @@ Global
 		{ECFB082A-62FD-4640-BEB6-AD55755C811A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECFB082A-62FD-4640-BEB6-AD55755C811A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECFB082A-62FD-4640-BEB6-AD55755C811A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79ADE07C-63E6-4434-BD23-E2B6DB4DFD1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79ADE07C-63E6-4434-BD23-E2B6DB4DFD1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79ADE07C-63E6-4434-BD23-E2B6DB4DFD1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79ADE07C-63E6-4434-BD23-E2B6DB4DFD1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2599234-54D8-4D33-8415-77572D2C1BFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2599234-54D8-4D33-8415-77572D2C1BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2599234-54D8-4D33-8415-77572D2C1BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2599234-54D8-4D33-8415-77572D2C1BFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BDA8209-E283-41F1-9FB3-88A4AE44608D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BDA8209-E283-41F1-9FB3-88A4AE44608D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BDA8209-E283-41F1-9FB3-88A4AE44608D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BDA8209-E283-41F1-9FB3-88A4AE44608D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3146A0F-D734-4F2A-BFEE-A88A2D041481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3146A0F-D734-4F2A-BFEE-A88A2D041481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3146A0F-D734-4F2A-BFEE-A88A2D041481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3146A0F-D734-4F2A-BFEE-A88A2D041481}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ECFB082A-62FD-4640-BEB6-AD55755C811A} = {FAC802D9-6640-44C4-B9D0-BFF7B21E4FC5}
+		{79ADE07C-63E6-4434-BD23-E2B6DB4DFD1F} = {E63C72D5-69B7-4EC9-B54E-ECFEBBC8F323}
+		{C2599234-54D8-4D33-8415-77572D2C1BFB} = {E63C72D5-69B7-4EC9-B54E-ECFEBBC8F323}
+		{3453FBFC-2E1E-42E6-9954-AA49E8359FC8} = {E63C72D5-69B7-4EC9-B54E-ECFEBBC8F323}
+		{E3146A0F-D734-4F2A-BFEE-A88A2D041481} = {FAC802D9-6640-44C4-B9D0-BFF7B21E4FC5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DAD5B25C-104F-4FCD-9A08-8412D59F258F}
