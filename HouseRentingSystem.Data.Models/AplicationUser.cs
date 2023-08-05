@@ -1,4 +1,4 @@
-﻿namespace HouseRentingSystem.Data.Models
+﻿namespace TaskManager.Data.Models
 {
     using Microsoft.AspNetCore.Identity;
     using System.ComponentModel.DataAnnotations;

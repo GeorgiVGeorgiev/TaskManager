@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HouseRentingSystem.Data.Models
+namespace TaskManager.Data.Models
 {
     public class Type
     {

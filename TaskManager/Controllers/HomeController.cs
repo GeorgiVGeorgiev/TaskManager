@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using TaskManager.Models;
-
-namespace TaskManager.Controllers
+﻿namespace TaskManager.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using System.Diagnostics;
+    using TaskManager.Models;
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

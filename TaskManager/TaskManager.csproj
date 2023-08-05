@@ -16,13 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\HouseRentingSystem.Data.Models\HouseRentingSystem.Data.Models.csproj" />
-    <ProjectReference Include="..\HouseRentingSystem.Data\HouseRentingSystem.Data.csproj" />
+    <ProjectReference Include="..\HouseRentingSystem.Data.Models\TaskManager.Data.Models.csproj" />
+    <ProjectReference Include="..\HouseRentingSystem.Data\TaskManager.Data.csproj" />
     <ProjectReference Include="..\TaskManager.Common\TaskManager.Common.csproj" />
+    <ProjectReference Include="..\TaskManager.Web.ViewModels\TaskManager.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>
