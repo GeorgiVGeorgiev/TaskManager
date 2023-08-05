@@ -42,6 +42,10 @@ namespace TaskManager
                     options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
                 });
             builder.Services.AddApplicationServices(typeof(IUserService));
+            builder.Services.ConfigureApplicationCookie(cfg =>
+            {
+                cfg.LoginPath = "/User/Login";
+            });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

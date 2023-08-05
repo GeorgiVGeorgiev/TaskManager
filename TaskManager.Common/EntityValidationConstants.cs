@@ -76,7 +76,7 @@
             public const int PhoneNumberMinLength = 7;
 
             public const int DescriptionMaxLength = 2000;
-            public const int DescriptionMinLength = 1;
+            public const int DescriptionMinLength = 15;
         }
         public static class Status
         {
