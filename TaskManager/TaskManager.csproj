@@ -33,4 +33,8 @@
     <Folder Include="Areas\Identity\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Images\FrontImage.jpg" />
+  </ItemGroup>
+
 </Project>

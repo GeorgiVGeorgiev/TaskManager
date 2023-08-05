@@ -1,6 +1,5 @@
 ﻿namespace TaskManager.Controllers
 {
-    using HouseRentingSystem.Web.ViewModels.User;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;

@@ -1,4 +1,4 @@
-﻿namespace HouseRentingSystem.Web.ViewModels.User
+﻿namespace TaskManager.Web.ViewModels.User
 {
     using System.ComponentModel.DataAnnotations;
     using static TaskManager.Common.EntityValidationConstants.User;
