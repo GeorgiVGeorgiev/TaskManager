@@ -1,9 +1,9 @@
 ﻿namespace TaskManager.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
-    using static Common.EntityValidationConstants.Type;
 
-    public class Type
+    using static Common.EntityValidationConstants.Status;
+    public class Status
     {
         [Key]
         public int Id { get; set; }
@@ -12,6 +12,7 @@
         [MaxLength(NameMaxLength)]
         public string Name { get; set; } = null!;
 
-        public ICollection<Task> Houses { get; set; } = new List<Task>();
+        public ICollection<GeoTask> Tasks { get; set; } = new List<GeoTask>();
+
     }
 }

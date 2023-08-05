@@ -19,5 +19,7 @@
         [MaxLength(LastNameMaxLength)]
         public string LastName { get; set; } = null!;
 
+        public ICollection<Request> Requests { get; set; } = new HashSet<Request>();
+
     }
 }
