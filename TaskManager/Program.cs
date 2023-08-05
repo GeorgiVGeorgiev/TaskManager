@@ -1,11 +1,13 @@
-using TaskManager.Data.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using TaskManager.Data;
-
 namespace TaskManager
 {
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using TaskManager.Data;
+    using TaskManager.Data.Models;
+    using TaskManager.Services.Data.Interfaces;
+    using TaskManager.Web.Infrastructure.Extentions;
+
     public class Program
     {
         public static void Main(string[] args)
@@ -39,7 +41,7 @@ namespace TaskManager
                     // with this we protect from "csrf" attack
                     options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
                 });
-
+            builder.Services.AddApplicationServices(typeof(IUserService));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
