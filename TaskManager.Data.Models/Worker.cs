@@ -18,6 +18,6 @@
 
         public ApplicationUser User { get; set; } = null!;
 
-        public ICollection<GeoTask> MyTasks = new HashSet<GeoTask>();
+        public ICollection<GeoTask> Tasks = new HashSet<GeoTask>();
     }
 }

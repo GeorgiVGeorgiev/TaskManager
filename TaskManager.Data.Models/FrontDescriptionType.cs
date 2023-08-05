@@ -20,7 +20,7 @@
         public string ImageUrl { get; set; } = null!;
 
         [Required]
-        public int Term { get; set; }
+        public int TermDays { get; set; }
 
         [Required]
         public decimal Price { get; set; }

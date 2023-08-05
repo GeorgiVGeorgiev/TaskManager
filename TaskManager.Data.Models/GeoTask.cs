@@ -68,16 +68,10 @@
         [ForeignKey(nameof(TypeId))]
         public Type Type { get; set; } = null!;
 
-        
 
 
-
-
-
-
-
-        public ICollection<Comentar> Comentars { get; set; } = new HashSet<Comentar>();
-        public ICollection<Document> Documents { get; set; } = new HashSet<Document>();
+        public ICollection<Comentar>? Comentars { get; set; }
+        public ICollection<Document>? Documents { get; set; }
 
     }
 }
