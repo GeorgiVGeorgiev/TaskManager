@@ -13,6 +13,7 @@
             this.dbContext = dbContext;
         }
 
+       // [ValidateInput(true)]
         public async Task SendRequestAsync(CreateRequestViewModel viewModel, string userId)
         {
             Request request = new Request()

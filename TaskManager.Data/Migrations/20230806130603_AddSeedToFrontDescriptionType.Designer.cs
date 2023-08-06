@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManager.Data;
 
@@ -11,9 +12,10 @@ using TaskManager.Data;
 namespace TaskManager.Data.Migrations
 {
     [DbContext(typeof(TaskManagerDbContext))]
-    partial class TaskManagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230806130603_AddSeedToFrontDescriptionType")]
+    partial class AddSeedToFrontDescriptionType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -231,98 +233,6 @@ namespace TaskManager.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("bcb4f072-ecca-43c9-ab26-c060c6f364e4"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "d6ecf59a-92b2-4ecb-8deb-7cadcf682a5b",
-                            Email = "administrator@admin",
-                            EmailConfirmed = false,
-                            FirstName = "Георги",
-                            LastName = "Георгиев",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "administrator@admin",
-                            NormalizedUserName = "administrator@admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAECLPXXm+Ljvagp05a7dmhCRgv6dBUJ0uGoyEZgrFDXJZeAJ0vW4Vr2qe+Ryk0MQuwQ==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "72F0B4BCCAECC943AB26C060C6F364E4",
-                            TwoFactorEnabled = false,
-                            UserName = "administrator@admin"
-                        },
-                        new
-                        {
-                            Id = new Guid("6e70d07b-eaa7-4384-b233-c5ef9c0bf8de"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "b224dbcd-fe1b-4cd7-a390-3612db0920cc",
-                            Email = "User1@base.bg",
-                            EmailConfirmed = false,
-                            FirstName = "Евелина",
-                            LastName = "Георгиева",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "User1@base.bg",
-                            NormalizedUserName = "User1@base.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIz2hF21cxOerOaUsd8IJ1aP9XVSIJUbWDsL7Oxq/Ol2m6gF1R+gHBiLTAItfS0wUg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "7BD0706EA7EA8443B233C5EF9C0BF8DE",
-                            TwoFactorEnabled = false,
-                            UserName = "User1@base.bg"
-                        },
-                        new
-                        {
-                            Id = new Guid("296193d2-f02c-4410-b8fe-9eab4ffb4801"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "a404651e-242e-4c16-80e6-484914568654",
-                            Email = "User2@base.bg",
-                            EmailConfirmed = false,
-                            FirstName = "Първан",
-                            LastName = "Георгиев",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "User2@base.bg",
-                            NormalizedUserName = "User2@base.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHxYwhCPDCq3uaqa4P6syOTmX06piN3pdrvyI2KanGsa6XvMaKOt/vr/IbYNbPEM4g==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "D29361292CF01044B8FE9EAB4FFB4801",
-                            TwoFactorEnabled = false,
-                            UserName = "User2@base.bg"
-                        },
-                        new
-                        {
-                            Id = new Guid("35679ef5-bb0b-4d6a-bb37-6b0bfb32e801"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "55f2796f-e09f-4814-a6fe-97e541be6cc8",
-                            Email = "Worker1@base.bg",
-                            EmailConfirmed = false,
-                            FirstName = "Първан",
-                            LastName = "Георгиев",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "Worker1@base.bg",
-                            NormalizedUserName = "Worker1@base.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDFJv0ivGYlMf3bYMvgFcvRcrn0EXeKAOV+vQQ+EUJXOhaM1C4epOdnnruWRBSl1cw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "F59E67350BBB6A4DBB376B0BFB32E801",
-                            TwoFactorEnabled = false,
-                            UserName = "Worker1@base.bg"
-                        },
-                        new
-                        {
-                            Id = new Guid("6cef6e21-5151-4e88-be5c-f4f78953bf84"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "da3f64e5-2053-4d3f-a124-d37589aaffa4",
-                            Email = "Worker2@base.bg",
-                            EmailConfirmed = false,
-                            FirstName = "Иван",
-                            LastName = "Иванов",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "Worker2@base.bg",
-                            NormalizedUserName = "Worker2@base.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAl0B4URtIiNIQwA9A+JJH/uWgp8l/DKCgZnIOq8cFdzOjie6kpssxWDVyHQMyKlKw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "216EEF6C5151884EBE5CF4F78953BF84",
-                            TwoFactorEnabled = false,
-                            UserName = "Worker2@base.bg"
-                        });
                 });
 
             modelBuilder.Entity("TaskManager.Data.Models.Client", b =>
@@ -657,29 +567,6 @@ namespace TaskManager.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Workers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("a13c085f-4d96-4244-8ea4-607c4b6989f6"),
-                            PhoneNumber = "0899999999",
-                            Position = "Admin",
-                            UserId = new Guid("bcb4f072-ecca-43c9-ab26-c060c6f364e4")
-                        },
-                        new
-                        {
-                            Id = new Guid("c6d1253b-2695-4a7f-98d5-a2a87eb3b97a"),
-                            PhoneNumber = "0888888888",
-                            Position = "Мерач",
-                            UserId = new Guid("35679ef5-bb0b-4d6a-bb37-6b0bfb32e801")
-                        },
-                        new
-                        {
-                            Id = new Guid("acda7da9-d7a0-4fd0-9aca-f6000da77582"),
-                            PhoneNumber = "0877777777",
-                            Position = "Проектант",
-                            UserId = new Guid("6cef6e21-5151-4e88-be5c-f4f78953bf84")
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

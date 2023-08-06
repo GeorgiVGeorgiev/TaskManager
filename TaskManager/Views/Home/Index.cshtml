@@ -1,84 +1,24 @@
-﻿@{
+﻿@model IEnumerable<FrontDescriptionTypeViewModel>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="col offset-1">
-    <div class="row" style=" border-top:none 50px;">
-        <div class="card offset-1" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Agent Info</h5>
-                <p class="card-text">Email: SomeEmail</p>
-                <p class="card-text">Phone Number: 0892222222</p>
-            </div>
-            <a class="btn btn-warning" asp-controller="Reqest" asp-action="Details" asp-route-id="1">Details</a>
-        </div> 
-        <div class="card offset-1" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Agent Info</h5>
-                <p class="card-text">Email: SomeEmail</p>
-                <p class="card-text">Phone Number: 0892222222</p>
-            </div>
-            <a class="btn btn-warning" asp-controller="Reqest" asp-action="Details" asp-route-id="1">Details</a>
+<body style="background-image: url('https://img.freepik.com/free-photo/image-engineering-objects-workplace-top-view-construction-concept-engineering-tools-vintage-tone-retro-filter-effect-soft-focus-selective-focus_1418-704.jpg?w=1380&t=st=1691337472~exp=1691338072~hmac=eff25fb084633dc85edd106e9ee897249ddc92a58b10f08c909037926dbdf3a9'); background-repeat:no-repeat; background-size:100% 100%">
+
+<div class="row">
+    @foreach (FrontDescriptionTypeViewModel viewModel in Model)
+    {
+        <div class="col" style="border-top:solid 50px transparent">
+            <div class="card" style="width: 25rem;height: 16rem; border:solid 2px; border-color:forestgreen;">
+                <div class="card-body">
+                    <h5 class="card-title text-center justify-content-center">@viewModel.Title</h5>
+                    <hr>
+                            <p class="card-text"><b>Цена: </b>@($"{viewModel.Price:F2}") лв.</p>
+                            <p class="card-text"><b>Срок: </b>@viewModel.TermDays работни дни.</p>
+                </div>
+                <a class="btn btn-success" asp-controller="Home" asp-action="Details" asp-route-id="@viewModel.Id">Повече информация</a>
+            </div> 
         </div>
-        <div class="card offset-1" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Agent Info</h5>
-                <p class="card-text">Email: SomeEmail</p>
-                <p class="card-text">Phone Number: 0892222222</p>
-            </div>
-            <a class="btn btn-warning" asp-controller="Reqest" asp-action="Details" asp-route-id="1">Details</a>
-        </div>
-    </div>
-    <div class="row" style=" border-top:solid 50px transparent;">
-        <div class="card offset-1" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Agent Info</h5>
-                <p class="card-text">Email: SomeEmail</p>
-                <p class="card-text">Phone Number: 0892222222</p>
-            </div>
-            <a class="btn btn-warning" asp-controller="Reqest" asp-action="Details" asp-route-id="1">Details</a>
-        </div> 
-        <div class="card offset-1" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Agent Info</h5>
-                <p class="card-text">Email: SomeEmail</p>
-                <p class="card-text">Phone Number: 0892222222</p>
-            </div>
-            <a class="btn btn-warning" asp-controller="Reqest" asp-action="Details" asp-route-id="1">Details</a>
-        </div>
-        <div class="card offset-1" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Agent Info</h5>
-                <p class="card-text">Email: SomeEmail</p>
-                <p class="card-text">Phone Number: 0892222222</p>
-            </div>
-            <a class="btn btn-warning" asp-controller="Reqest" asp-action="Details" asp-route-id="1">Details</a>
-        </div>
-    </div>
-    <div class="row" style=" border-top:solid 50px;">
-        <div class="card offset-1" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Agent Info</h5>
-                <p class="card-text">Email: SomeEmail</p>
-                <p class="card-text">Phone Number: 0892222222</p>
-            </div>
-            <a class="btn btn-warning" asp-controller="Reqest" asp-action="Details" asp-route-id="1">Details</a>
-        </div> 
-        <div class="card offset-1" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Agent Info</h5>
-                <p class="card-text">Email: SomeEmail</p>
-                <p class="card-text">Phone Number: 0892222222</p>
-            </div>
-            <a class="btn btn-warning" asp-controller="Reqest" asp-action="Details" asp-route-id="1">Details</a>
-        </div>
-        <div class="card offset-1" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Agent Info</h5>
-                <p class="card-text">Email: SomeEmail</p>
-                <p class="card-text">Phone Number: 0892222222</p>
-            </div>
-            <a class="btn btn-warning" asp-controller="Reqest" asp-action="Details" asp-route-id="1">Details</a>
-        </div>
-    </div>
-</div>
+    }
+</div>         +
+</body>

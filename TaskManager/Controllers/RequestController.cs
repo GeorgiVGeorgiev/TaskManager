@@ -2,7 +2,6 @@
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using System.Web.Mvc;
     using TaskManager.Services.Data.Interfaces;
     using TaskManager.Web.Infrastructure.Extentions;
     using TaskManager.Web.ViewModels.Request;
@@ -27,7 +26,7 @@
         }
 
         [HttpPost]
-       // [ValidateInput(true,[1,2,3])]
+        //[vali]
         public async Task<IActionResult> CreateRequest(CreateRequestViewModel forModel)
         {
             if(!ModelState.IsValid)
@@ -46,7 +45,7 @@
                 return this.View(forModel);
             }
             TempData[SuccsessMessage] = "Успешно изпратихте вашата заявка.";
-            return RedirectToAction("Home", "Index");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

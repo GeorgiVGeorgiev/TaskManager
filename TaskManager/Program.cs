@@ -8,6 +8,7 @@ namespace TaskManager
     using TaskManager.Services.Data.Interfaces;
     using TaskManager.Web.Infrastructure.Extentions;
 
+    using static Common.GeneralApplicationConstants;
     public class Program
     {
         public static void Main(string[] args)
@@ -42,6 +43,7 @@ namespace TaskManager
                     options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
                 });
             builder.Services.AddApplicationServices(typeof(IUserService));
+
             builder.Services.ConfigureApplicationCookie(cfg =>
             {
                 cfg.LoginPath = "/User/Login";
@@ -51,7 +53,10 @@ namespace TaskManager
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-                app.UseMigrationsEndPoint();
+                //app.UseMigrationsEndPoint();
+                app.UseExceptionHandler("/Home/Error/500");
+                app.UseStatusCodePagesWithRedirects("/Home/Error?statusCode={0}");
+                //app.UseHsts();
             }
             else
             {
@@ -68,6 +73,7 @@ namespace TaskManager
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.SeedAdministrator(DevelopmentAdminEmail);
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
