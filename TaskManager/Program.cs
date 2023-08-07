@@ -53,9 +53,10 @@ namespace TaskManager
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-                //app.UseMigrationsEndPoint();
-                app.UseExceptionHandler("/Home/Error/500");
-                app.UseStatusCodePagesWithRedirects("/Home/Error?statusCode={0}");
+                app.UseMigrationsEndPoint();
+                app.UseDeveloperExceptionPage();
+                //app.UseExceptionHandler("/Home/Error/500");
+                //app.UseStatusCodePagesWithRedirects("/Home/Error?statusCode={0}");
                 //app.UseHsts();
             }
             else

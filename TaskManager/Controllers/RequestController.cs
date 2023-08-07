@@ -12,21 +12,30 @@
     public class RequestController : Controller
     {
         private readonly IRequestService requestService;
-        public RequestController(IRequestService requestService)
+        private readonly IUserService userService;
+        public RequestController(IRequestService requestService, IUserService userService)
         {
             this.requestService = requestService;
+            this.userService = userService;
         }
 
         [HttpGet]
         public async Task<IActionResult> CreateRequest()
         {
+            bool isUserWorker = await this.userService.IsUserWorkerByIdAsync(User.GetId());
+
+            if (isUserWorker)
+            {
+                TempData[WarningMessage] = "Ти работиш, какви задачи искаш да даваш?";
+                return this.RedirectToAction("MyTasks", "Task");
+            }
+
             CreateRequestViewModel requst = new CreateRequestViewModel();
 
             return View(requst);
         }
 
         [HttpPost]
-        //[vali]
         public async Task<IActionResult> CreateRequest(CreateRequestViewModel forModel)
         {
             if(!ModelState.IsValid)

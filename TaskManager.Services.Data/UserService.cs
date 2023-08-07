@@ -27,5 +27,12 @@
             return $"{user.FirstName} {user.LastName}";
 
         }
+
+        public async Task<bool> IsUserWorkerByIdAsync(string userId)
+        {
+            return await this.dbContext
+                .Workers
+                .AnyAsync(u => u.UserId.ToString() == userId);
+        }
     }
 }
