@@ -1,11 +1,7 @@
 ﻿namespace TaskManager.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Filters;
-    using System.Diagnostics;
-    using System.Net;
     using TaskManager.Services.Data.Interfaces;
-    using TaskManager.Web.ViewModels;
     using TaskManager.Web.ViewModels.FrontDescriptionType;
 
     using static Common.NotificationMessages;
@@ -32,7 +28,7 @@
              if (!isExitByIdAsync(Id))
              {
                
-                return await this.Error(500);
+                return  this.Error(500);
              }
 
              FrontDescriptionTypeViewModel viewModel = await this.frontDescriptionTypeService.GetByIdAsync(Id);
@@ -42,7 +38,7 @@
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public async Task<IActionResult> Error(int statusCode)
+        public IActionResult Error(int statusCode)
         {
             if (statusCode == 400 || statusCode == 404) 
             {

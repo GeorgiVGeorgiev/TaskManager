@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ClientViewModel>;
+
+<h2 class="text-center">Всички клиенти</h2>
+<hr />
+@{
+    if (Model.Any())
+    {
+        <div>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th class="fst-italic fw-bold"><b>Име</b></th>
+                    <th class="fst-italic fw-bold"><b>Представител</b></th>
+                    <th class="fst-italic fw-bold"><b>Телефон</b></th>
+                    <th class="fst-italic fw-bold"><b>Имейл</b></th>
+                    <td><a class="btn btn-secondary" asp-controller="Client" asp-action="Add">Нов клиент</a></td>
+                </tr>
+                </thead>      
+            </table>    
+                <h4 class="text-center">Все още нямаш клиенти</h4>
+        </div>  
+    }
+    else
+    {
+        foreach (ClientViewModel client in Model)
+        {
+            <div>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th class="fst-italic fw-bold"><b>Име</b></th>
+                        <th class="fst-italic fw-bold"><b>Представител</b></th>
+                        <th class="fst-italic fw-bold"><b>Телефон</b></th>
+                        <th class="fst-italic fw-bold"><b>Имейл</b></th>
+                        <td><a class="btn btn-secondary" asp-controller="Client" asp-action="Add">Нов клиент</a></td>
+                    </tr>
+                    </thead>      
+                    <tbody>
+                        <tr class="gridrow">
+                           <td><a style="font-weight:bold; color:#007bff; text-decoration:none;background-color:transparent" asp-controller="Client" asp-action="Edit" asp-route-id="@client.Id">@client.Name</a></td>
+                           <td>@client.Predstavitel</td>
+                           <td>@client.PhoneNumber</td>
+                           <td>@client.Email</td>
+                        </tr> 
+                    </tbody>
+                </table>    
+            </div>      
+        }
+
+    }
+}

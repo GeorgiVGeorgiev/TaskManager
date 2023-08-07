@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using TaskManager.Services.Data.Interfaces;
+@using TaskManager.Web.Infrastructure.Extentions;
+@inject IUserService UserService;
+
+@{
+    bool isUserWorker = await this.UserService.IsUserWorkerByIdAsync(User.GetId());
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,9 +33,23 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Request" asp-action="CreateRequest">Изпрати заявка</a>
-                        </li>
+                        @if (User.Identity?.IsAuthenticated ?? false)
+                        {
+                            @if (!isUserWorker)
+                            {
+                                     <li class="nav-item">
+                                        <a class="navbar-brand" asp-area="" asp-controller="Request" asp-action="CreateRequest" style="color:forestgreen">Изпрати заявка</a>
+                                    </li>                           
+                            }
+                            @if (isUserWorker)
+                            {
+                                    <li class="nav-item">
+                                        <a class="btn btn-success" asp-area="" asp-controller="Task" asp-action="MyTasks">Мойте задачи</a>
+                                        <a class="btn btn-success" asp-area="" asp-controller="Task" asp-action="AllTasks">Всички задачи</a>
+                                        <a class="btn btn-success" asp-area="" asp-controller="Client" asp-action="Clients">Клиенти</a>
+                                    </li>                            
+                            }                            
+                        }                
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -50,3 +72,6 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+
+            

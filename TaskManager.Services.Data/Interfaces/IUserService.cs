@@ -3,5 +3,7 @@
     public interface IUserService
     {
         Task<string> GetFullNameByEmailAsync(string Email);
+
+        Task<bool> IsUserWorkerByIdAsync(string userId);
     }
 }
