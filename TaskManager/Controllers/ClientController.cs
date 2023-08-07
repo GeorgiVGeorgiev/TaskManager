@@ -32,6 +32,12 @@
             return View(clientsViewModel);
         }
 
+        public async Task<IActionResult> Edit(string Id)
+        {
+            ClientFormModel formModel = await this.clientService.GetClientFormByIdAsync(Id);
+            return View(formModel);
+        }
+
         private IActionResult ErrorIfUserIsNotWorker()
         {
 

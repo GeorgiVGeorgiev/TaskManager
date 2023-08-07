@@ -2,8 +2,9 @@
 
 <h2 class="text-center">Всички клиенти</h2>
 <hr />
+<form>
 @{
-    if (Model.Any())
+    if (!Model.Any())
     {
         <div>
             <table class="table table-hover">
@@ -49,3 +50,4 @@
 
     }
 }
+</form>
