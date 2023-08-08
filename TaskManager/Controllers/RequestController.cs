@@ -38,9 +38,17 @@
         [HttpPost]
         public async Task<IActionResult> CreateRequest(CreateRequestViewModel forModel)
         {
-            if(!ModelState.IsValid)
+            bool isUserWorker = await this.userService.IsUserWorkerByIdAsync(User.GetId());
+
+            if (isUserWorker)
             {
-                ModelState.AddModelError(string.Empty, "Нещо не се обърка");
+                TempData[WarningMessage] = "Ти работиш, какви задачи искаш да даваш?";
+                return this.RedirectToAction("MyTasks", "Task");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError(string.Empty, "Нещо се обърка");
                 return this.View(forModel);
             }
             try
