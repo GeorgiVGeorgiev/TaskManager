@@ -46,5 +46,41 @@
                 Predstavitel = formModel.Predstavitel,
             };
         }
+        public async Task AddClientAsync(ClientFormModel model)
+        {
+            Client client = new Client()
+            {
+                Name = model.Name,
+                Email = model.Email,
+                PhoneNumber = model.PhoneNumber,
+                Predstavitel = model.Predstavitel,
+            };
+            await this.dbContext
+                .Clients.AddAsync(client);
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task EditClientAsnyc(ClientViewModel model, string clientId)
+        {
+            Client client = await this.dbContext
+                .Clients
+                .FirstAsync(c => c.Id.ToString() == clientId);
+
+            client.Name = model.Name;
+            client.Email = model.Email;
+            client.PhoneNumber = model.PhoneNumber;
+            client.Predstavitel = model.Predstavitel;
+
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<bool> IsClientExitByIdAsync(string clientId)
+        {
+            return await this.dbContext
+                .Clients
+                .AnyAsync(c => c.Id.ToString() == clientId);
+        }
     }
 }
