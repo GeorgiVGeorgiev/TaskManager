@@ -3,12 +3,14 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using TaskManager.Services.Data.Interfaces;
+    using TaskManager.Web.Infrastructure.CustomAttributs;
     using TaskManager.Web.Infrastructure.Extentions;
     using TaskManager.Web.ViewModels.Request;
 
     using static Common.NotificationMessages;
 
     [Authorize]
+    //[CustomAuthorize]
     public class RequestController : Controller
     {
         private readonly IRequestService requestService;
@@ -30,13 +32,13 @@
                 return this.RedirectToAction("MyTasks", "Task");
             }
 
-            CreateRequestViewModel requst = new CreateRequestViewModel();
+            CreateRequestFormModel requst = new CreateRequestFormModel();
 
             return View(requst);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateRequest(CreateRequestViewModel forModel)
+        public async Task<IActionResult> CreateRequest(CreateRequestFormModel forModel)
         {
             bool isUserWorker = await this.userService.IsUserWorkerByIdAsync(User.GetId());
 
@@ -53,7 +55,7 @@
             }
             try
             {
-                 await this.requestService.SendRequestAsync(forModel, this.User.GetId());
+                await this.requestService.SendRequestAsync(forModel, this.User.GetId());
 
             }
             catch (Exception)
@@ -64,5 +66,87 @@
             TempData[SuccsessMessage] = "Успешно изпратихте вашата заявка.";
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> All()
+        {
+            try
+            {
+                bool isUserWorker = await this.userService.IsUserWorkerByIdAsync(User.GetId());
+                if (!isUserWorker)
+                {
+                    return ErrorIfUserIsNotWorker();
+                }
+            }
+            catch (Exception)
+            {
+                return GeneralError();
+            }
+            try
+            {
+                IEnumerable<RequestViewModel> viewModels = await this.requestService.GetAllRequestAsync();
+
+                return View(viewModels);
+            }
+            catch (Exception)
+            {
+                return GeneralError();
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(string Id)
+        {
+            try
+            {
+                bool isUserWorker = await this.userService.IsUserWorkerByIdAsync(User.GetId());
+                if (!isUserWorker)
+                {
+                    return ErrorIfUserIsNotWorker();
+                }
+
+                bool isRequestExist = await this.requestService.IsRequestExistByIdAsync(Id);
+                if (!isRequestExist)
+                {
+                    return ErrorIfRequestDontExist();
+                }
+            }
+            catch (Exception)
+            {
+                return GeneralError();
+            }
+            try
+            {
+                RequestViewModel requestViewModel = await this.requestService.GetRequestByIdAsync(Id);
+                
+                return View(requestViewModel);
+            }
+            catch (Exception)
+            {
+                return GeneralError();
+            }
+
+
+
+        }
+        private IActionResult GeneralError()
+        {
+            this.TempData[ErrorMessage] = "Стана нещо, опитай пак или се свържи с администратор.";
+
+            return RedirectToAction("Index", "Home");
+        }
+        private IActionResult ErrorIfRequestDontExist()
+        {
+            this.TempData[ErrorMessage] = "Задачата не съществува в базата данни.";
+
+            return RedirectToAction("Index", "Home");
+        }
+        private IActionResult ErrorIfUserIsNotWorker()
+        {
+            this.TempData[ErrorMessage] = "Страницата е предназначена за работници.";
+
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }

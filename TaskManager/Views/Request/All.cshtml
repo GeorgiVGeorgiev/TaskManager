@@ -1,0 +1,49 @@
+﻿@model IEnumerable<RequestViewModel>;
+<h2 class="text-center">Текущи задачи</h2>
+<hr />
+<form>
+    @{
+        if (!Model.Any())
+        {
+                <div>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th class="fst-italic fw-bold"><b>Име</b></th>
+                            <th class="fst-italic fw-bold"><b>Телефон</b></th>  
+                            <th class="fst-italic fw-bold"><b>Описание на задачата</b></th>
+                        </tr>
+                        </thead>      
+                    </table>    
+                        <h4 class="text-center">Нямаш активни поръчки</h4>
+                </div>  
+        }
+        else
+        {
+        <div>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th class="fst-italic fw-bold"><b>Име</b></th>
+                    <th class="fst-italic fw-bold"><b>Телефон</b></th>
+                    <th class="fst-italic fw-bold"><b>Имейл</b></th>
+                    <th class="fst-italic fw-bold"><b>Описание на задачата</b></th>
+                </tr>
+                </thead>  
+                    @foreach (RequestViewModel request in Model)
+                    {
+                        <tbody>
+                            <tr class="gridrow">
+                               <td><a style="font-weight:bold; color:forestgreen; text-decoration:none;background-color:transparent" asp-controller="Request" asp-action="Details" asp-route-id="@request.Id">@request.Name</a></td>
+                               <td>@request.Name</td>
+                               <td>@request.PhoneNumber</td>
+                               <td>@request.Description</td>
+                            </tr> 
+                        </tbody>   
+                    }
+            </table>    
+        </div>   
+
+        }
+    }
+</form>
