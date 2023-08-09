@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
     using static Common.EntityValidationConstants.Request;
     using static Common.ErrorMessageBulgarian;
-    public class CreateRequestViewModel
+    public class CreateRequestFormModel
     {
         [Required]
         [StringLength(NameMaxLength,MinimumLength =NameMinLength,ErrorMessage = NameErrorMessage)]
