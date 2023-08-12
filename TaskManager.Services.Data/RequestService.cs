@@ -34,6 +34,7 @@
         {
             IEnumerable<RequestViewModel> requestViewModels = await this.dbContext
                 .Requests
+                .Where(r => r.IsApproved == false)
                 .Select(r => new RequestViewModel()
                 {
                     Id = r.Id.ToString(),
@@ -70,6 +71,17 @@
             return await this.dbContext
                 .Requests
                 .AnyAsync(r => r.Id.ToString() == requstId);
+        }
+
+        public async Task TaskIsAcceptByIdAsync(string taskId)
+        {
+            Request task = await this.dbContext
+                .Requests
+                .FirstAsync(r => r.Id.ToString() == taskId);
+
+            task.IsApproved= true;
+
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }

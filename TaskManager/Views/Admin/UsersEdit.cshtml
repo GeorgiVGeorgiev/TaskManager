@@ -1,0 +1,55 @@
+﻿@using TaskManager.Services.Data.Interfaces;
+@using TaskManager.Web.Infrastructure.Extentions;
+@using static TaskManager.Common.NotificationMessages;
+
+@model UserViewModel
+@inject IUserService UserService;
+@{
+    bool isUserWorker = await this.UserService.IsUserWorkerByIdAsync(Model.Id);
+    bool isUserAdmin = await this.UserService.IsUserAdminByIdAsync(Model.Id);
+}
+ <div class="row">
+   <div class="col-sm-12 offset-lg-4 col-lg-8 offset-xl-3 col-xl-6">
+      <form method="post">
+         <div class="form-group">
+            <label asp-for="FirstName"></label>
+            <input asp-for="FirstName" class="form-control" id="FirstName"/>
+            <span asp-validation-for="FirstName" class="small text-danger"></span>
+         </div>
+         <div class="form-group">
+            <label asp-for="LastName"></label>
+            <input asp-for="LastName" class="form-control" id="LastName"/>
+            <span asp-validation-for="LastName" class="small text-danger"></span>
+         </div>
+         <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" id="Email"/>
+            <span asp-validation-for="Email" class="small text-danger"></span>
+         </div>
+     
+            @if (!isUserAdmin)
+            {
+                      <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between items-o" style="border-top:solid 15px transparent">
+
+                        <input class="btn btn-primary" type="submit" value="Запиши"> 
+                        <button class="btn btn-primary GenerateDataForUser">Генериране на нови данни</button>
+
+                    @if (!isUserWorker)
+                    {  
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                 <a class="btn btn-warning" asp-area="" asp-controller="Admin" asp-action="MakeWorker" asp-route-id="@Model.Id">Направи работник</a>
+                            </li>
+                        </ul>
+                    }
+             </div>                
+            }
+      </form>
+   </div>
+</div>
+
+@section Scripts
+{
+                <partial name ="_ValidationScriptsPartial">
+}
+

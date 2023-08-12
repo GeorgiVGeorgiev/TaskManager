@@ -34,5 +34,18 @@
                 .Workers
                 .AnyAsync(u => u.UserId.ToString() == userId);
         }
+        public async Task<bool> IsUserAdminByIdAsync(string userId)
+        {
+            return await this.dbContext
+                .UserRoles
+                .AnyAsync(a => a.UserId.ToString() == userId);
+        }
+
+        public async Task<bool> IsUserExistByIdAsync(string userId)
+        {
+            return await this.dbContext
+                 .Users
+                 .AnyAsync(a => a.Id.ToString() == userId);
+        }
     }
 }

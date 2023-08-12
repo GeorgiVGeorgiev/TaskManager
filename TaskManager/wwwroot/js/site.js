@@ -1,4 +1,20 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function generateQuickGuid(br) {
+	return Math.random().toString(36).substring(2, br) +
+		Math.random().toString(36).substring(2, br);
+};
 
-// Write your JavaScript code.
+$(function () {
+	$("button.GenerateDataForUser").click(function (e) {
+		e.preventDefault();
+
+		let FirstNameElement = document.getElementById('FirstName')
+		FirstNameElement.value = generateQuickGuid(8);
+
+		let LastNameElement = document.getElementById('LastName')
+		LastNameElement.value = generateQuickGuid(8);
+
+		let EmailElement = document.getElementById('Email')
+		EmailElement.value = generateQuickGuid(6) + '@' + 'tr.bg';	
+	});
+});
+

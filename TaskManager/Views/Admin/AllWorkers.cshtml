@@ -1,0 +1,38 @@
+﻿@model IEnumerable<AllWorkersViewModel>;
+
+<h2 class="text-center">Всички работници</h2>
+<hr />
+<form>
+    <div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th class="fst-italic fw-bold"><b>Име</b></th>
+                <th class="fst-italic fw-bold"><b>Телефон</b></th>
+                <th class="fst-italic fw-bold"><b>Имейл</b></th>
+                <th class="fst-italic fw-bold"><b>Позиция</b></th>
+                <th class="fst-italic fw-bold"><b>Уволни</b></th>
+            </tr>
+            </thead>  
+            @foreach (AllWorkersViewModel worker in Model)
+            {
+                <tbody>
+                    <tr class="gridrow">
+                       <td><a style="font-weight:bold; 
+                                    color:forestgreen; 
+                                    text-decoration:none;
+                                    background-color:transparent" 
+                                        asp-controller="Admin" 
+                                        asp-action="WorkersEdit"
+                                        asp-route-id="@worker.Id">@($"{worker.FirstName} {worker.LastName}")</a>
+                       </td>
+                       <td>@worker.PhoneNumer</td>
+                       <td>@worker.Email</td>
+                       <td>@worker.Position</td>
+                       <td><a style="font-weight:bold; color:forestgreen; text-decoration:none;background-color:transparent" asp-controller="Admin" asp-action="UsersEdit" asp-route-id="@worker.Id">Уволни</a></td>
+                    </tr> 
+                </tbody>   
+            }
+        </table>    
+    </div>   
+</form>

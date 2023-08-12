@@ -126,8 +126,38 @@
                 return GeneralError();
             }
 
+        }
+        [HttpPost]
+        public async Task<IActionResult> Details(string Id, RequestViewModel viewModel)
+        {
+            try
+            {
+                bool isUserWorker = await this.userService.IsUserWorkerByIdAsync(User.GetId());
+                if (!isUserWorker)
+                {
+                    return ErrorIfUserIsNotWorker();
+                }
 
+                bool isRequestExist = await this.requestService.IsRequestExistByIdAsync(Id);
+                if (!isRequestExist)
+                {
+                    return ErrorIfRequestDontExist();
+                }
+            }
+            catch (Exception)
+            {
+                return GeneralError();
+            }
+            try
+            {
+                await this.requestService.TaskIsAcceptByIdAsync(Id);
 
+                return this.RedirectToAction("All", "Request");
+            }
+            catch (Exception)
+            {
+                return GeneralError();
+            }
         }
         private IActionResult GeneralError()
         {
