@@ -12,5 +12,7 @@ namespace TaskManager.Services.Data.Interfaces
         public Task<RequestViewModel> GetRequestByIdAsync(string rquestId);
 
         public Task<bool> IsRequestExistByIdAsync(string requstId);
+
+        public Task TaskIsAcceptByIdAsync(string taskId);
     }
 }

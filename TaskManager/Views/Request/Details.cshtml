@@ -1,5 +1,5 @@
 ﻿@model RequestViewModel
-
+<form method="post">
 <h2 class="text-center">Задача от @Model.Name</h2>
 <hr />
 <div class="col-sm-25 offset-lg-4 col-lg-8 offset-xl-3 col-xl-6">
@@ -9,9 +9,12 @@
             <p> <b>Описание: </b>@Model.Description)</p>
         </div>
     </div>
-<button class="btn btn-secondary align-items-center myacceptButton" type="submit">Приеми задачата</button>
- </div>
+         <div class="text-center">
+            <input class="btn btn-primary mt-3 myacceptButton" type="submit" value="Задачата е приета" />
+         </div>
 
+ </div>
+</form>
 @section Scripts
 {
     <partial name ="_ValidationScriptsPartial">

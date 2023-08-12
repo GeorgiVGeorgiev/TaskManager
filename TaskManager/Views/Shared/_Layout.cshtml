@@ -4,6 +4,7 @@
 
 @{
     bool isUserWorker = await this.UserService.IsUserWorkerByIdAsync(User.GetId());
+    bool isUserAdmin = this.User.isAdmin();
 }
 
 <!DOCTYPE html>
@@ -34,24 +35,38 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        @if (!isUserWorker)
+                        {
+                                         <li class="nav-item">
+                                            <a class="navbar-brand" asp-area="" asp-controller="Request" asp-action="CreateRequest" style="color:forestgreen">Изпрати заявка</a>
+                                        </li>                           
+                        }
                         @if (User.Identity?.IsAuthenticated ?? false)
                         {
-                            @if (!isUserWorker)
-                            {
-                                     <li class="nav-item">
-                                        <a class="navbar-brand" asp-area="" asp-controller="Request" asp-action="CreateRequest" style="color:forestgreen">Изпрати заявка</a>
-                                    </li>                           
-                            }
                             @if (isUserWorker)
                             {
                                     <li class="nav-item">
                                         <a class="btn btn-success" asp-area="" asp-controller="Task" asp-action="MyTasks">Мойте задачи</a>
                                         <a class="btn btn-success" asp-area="" asp-controller="Task" asp-action="AllTasks">Всички задачи</a>
                                         <a class="btn btn-success" asp-area="" asp-controller="Client" asp-action="Clients">Клиенти</a>
-                                        <a class="btn btn-success" asp-area="" asp-controller="Request" asp-action="All">Поръчки</a>
                                     </li>                            
                             }                            
                         }                
+                    </ul>
+                    <ul class="navbar-nav align-content-end">
+                        @if (User.Identity?.IsAuthenticated ?? false)
+                        {
+                            @if (isUserWorker)
+                            {
+                                <li class="nav-item">
+                                    <a class="btn btn-success" asp-area="" asp-controller="Request" asp-action="All">Поръчки</a>
+                                     @if (isUserAdmin)
+                                        {                              
+                                            <a class="btn btn-success" asp-area="" asp-controller="Admin" asp-action="AdminPanel">Админ</a>
+                                        }
+                                </li>                            
+                            }                            
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
