@@ -1,9 +1,12 @@
 ﻿namespace TaskManager.Services.Data
 {
     using Microsoft.EntityFrameworkCore;
+    using System.Collections.Generic;
     using TaskManager.Data;
     using TaskManager.Data.Models;
     using TaskManager.Services.Data.Interfaces;
+    using TaskManager.Web.ViewModels.Admin;
+
     public class UserService : IUserService
     {
         private readonly TaskManagerDbContext dbContext;
@@ -46,6 +49,26 @@
             return await this.dbContext
                  .Users
                  .AnyAsync(a => a.Id.ToString() == userId);
+        }
+
+        public async Task<IEnumerable<AllWorkersViewModel>> GetAllWorkersAsync()
+        {
+            IEnumerable<AllWorkersViewModel> workers = await this.dbContext
+                .Workers
+                .Include(w => w.User)
+                .Select(u => new AllWorkersViewModel
+                {
+                    Id = u.Id.ToString(),
+                    FirstName = u.User.FirstName,
+                    LastName = u.User.LastName,
+                    Email = u.User.Email,
+                    PhoneNumer = u.PhoneNumber,
+                    Position = u.Position,
+                    UserId = u.UserId.ToString()
+                })
+                .ToArrayAsync();
+
+            return workers;
         }
     }
 }

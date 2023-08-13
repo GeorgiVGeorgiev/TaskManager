@@ -13,6 +13,9 @@
         public string Adrress { get; set; } = null!;
 
         [Required]
+        public int ProjectNumber { get; set; }
+
+        [Required]
         public decimal Price { get; set; }
 
         [Required]

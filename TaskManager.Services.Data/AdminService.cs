@@ -7,6 +7,7 @@
     using TaskManager.Data.Models;
     using TaskManager.Services.Data.Interfaces;
     using TaskManager.Web.ViewModels.Admin;
+    using TaskManager.Web.ViewModels.Worker;
 
     public class AdminService : IAdminService
     {
@@ -47,7 +48,8 @@
                     LastName = u.User.LastName,
                     Email = u.User.Email,
                     PhoneNumer = u.PhoneNumber,
-                    Position= u.Position,
+                    Position = u.Position,
+                    UserId = u.UserId.ToString()
                 })
                 .ToArrayAsync();
 
@@ -98,6 +100,22 @@
 
             await this.dbContext.AddAsync(worker);
             await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<WorkerVIewModel> GetUserWorkerByIdAsync(string userId)
+        {
+            Worker user = await this.dbContext
+                .Workers
+                .Include(w => w.User)
+                .FirstAsync(w => w.UserId.ToString() == userId.ToUpper());
+
+            return new WorkerVIewModel()
+            {
+                Id = user.UserId.ToString(),
+                FirstName = user.User.FirstName,
+                LastName = user.User.LastName,
+                PhoneNumber = user.PhoneNumber,
+            };
         }
     }
 }

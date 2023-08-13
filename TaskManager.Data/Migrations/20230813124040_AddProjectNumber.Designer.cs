@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManager.Data;
 
@@ -11,9 +12,10 @@ using TaskManager.Data;
 namespace TaskManager.Data.Migrations
 {
     [DbContext(typeof(TaskManagerDbContext))]
-    partial class TaskManagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230813124040_AddProjectNumber")]
+    partial class AddProjectNumber
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -237,7 +239,7 @@ namespace TaskManager.Data.Migrations
                         {
                             Id = new Guid("bcb4f072-ecca-43c9-ab26-c060c6f364e4"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b25435a9-9413-4127-aa3c-5bb3e8b69ccf",
+                            ConcurrencyStamp = "26b327b5-cd89-410a-a72b-97bf5f816c0a",
                             Email = "administrator@admin",
                             EmailConfirmed = false,
                             FirstName = "Георги",
@@ -245,7 +247,7 @@ namespace TaskManager.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "administrator@admin",
                             NormalizedUserName = "administrator@admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEC0giUTeKkkflltft+akQQLmPxlU1FfzaTrUId1rHWbVzIQ7Tv/aHkM6o5yjRxLNdw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHm0Vxf37nb3ZmPorY92rDJG6p3/jSH+S9mf8ecroKKtgR6Q6I5hlUgqn8RbDEMooA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "72F0B4BCCAECC943AB26C060C6F364E4",
                             TwoFactorEnabled = false,
@@ -255,7 +257,7 @@ namespace TaskManager.Data.Migrations
                         {
                             Id = new Guid("6e70d07b-eaa7-4384-b233-c5ef9c0bf8de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "46b35ee3-bcf2-47df-89e6-56618e61e8d4",
+                            ConcurrencyStamp = "5faa7eb5-9e77-4a70-9027-d4ac3cced1cf",
                             Email = "User1@base.bg",
                             EmailConfirmed = false,
                             FirstName = "Евелина",
@@ -263,7 +265,7 @@ namespace TaskManager.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "User1@base.bg",
                             NormalizedUserName = "User1@base.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMpCeP02rmPFsRtMc/0I9ESFp3dXRz/ct6KagaO6Hy1rZfSJzkv+nW0lJNhPN6z9/g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAED7AdCOd3EwNqEovbfqz6y5H3KUiwp23lBkXOlIrBgdtAfUe+ACcpP7nPFqvC/1OBA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7BD0706EA7EA8443B233C5EF9C0BF8DE",
                             TwoFactorEnabled = false,
@@ -273,7 +275,7 @@ namespace TaskManager.Data.Migrations
                         {
                             Id = new Guid("296193d2-f02c-4410-b8fe-9eab4ffb4801"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a01a8a1c-0251-4fbc-85c1-7b8ece4c5ef4",
+                            ConcurrencyStamp = "d7dfec82-0820-42a9-9f3a-6dac8c395bc2",
                             Email = "User2@base.bg",
                             EmailConfirmed = false,
                             FirstName = "Първан",
@@ -281,7 +283,7 @@ namespace TaskManager.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "User2@base.bg",
                             NormalizedUserName = "User2@base.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAECKcBHrZGO1V/ZITBB+R5PZB82sNURbXfC3yevpwVk6zZMNOXUs1bI19Famlhiachg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJi6KFUqNMlGWwz64glYPQwq1DNP++jdUaBmWubr4HwO7E/kT8x9hd4iVK4QsJCYJw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "D29361292CF01044B8FE9EAB4FFB4801",
                             TwoFactorEnabled = false,
@@ -291,7 +293,7 @@ namespace TaskManager.Data.Migrations
                         {
                             Id = new Guid("35679ef5-bb0b-4d6a-bb37-6b0bfb32e801"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ac469146-cc87-4030-bff8-0bf8c2b6618b",
+                            ConcurrencyStamp = "53bc0d44-0e72-4723-ad4b-b17b0b9b8201",
                             Email = "Worker1@base.bg",
                             EmailConfirmed = false,
                             FirstName = "Първан",
@@ -299,7 +301,7 @@ namespace TaskManager.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "Worker1@base.bg",
                             NormalizedUserName = "Worker1@base.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFCejRsRoyd8uVlw2JCr70OHY5rfIaL4JaPpywDXkJfmuRlng688GAFf9QbFLX2Oyw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHqea2gRL0NC0HWq9MbI4WhBhhLK+zp511H+JRSkXlsAyQIifc2RdqYJfV1ioEEWjg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "F59E67350BBB6A4DBB376B0BFB32E801",
                             TwoFactorEnabled = false,
@@ -309,7 +311,7 @@ namespace TaskManager.Data.Migrations
                         {
                             Id = new Guid("6cef6e21-5151-4e88-be5c-f4f78953bf84"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3edb7505-fd18-41ee-9dbb-a672326a70dd",
+                            ConcurrencyStamp = "c04c49ae-7e72-4461-993d-42b0990e1122",
                             Email = "Worker2@base.bg",
                             EmailConfirmed = false,
                             FirstName = "Иван",
@@ -317,7 +319,7 @@ namespace TaskManager.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "Worker2@base.bg",
                             NormalizedUserName = "Worker2@base.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGiPMJmzC3BnHlFqpwmF9d1pf4O4hH/V0yuSH0+OlvVRMyWzGw3EAl9hpdhZjk7uEA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEt1/3Cg9ebSDo47YpuWGe9v0RchXG/gI7qNa9N7nwU8o6lzwB/Zxz+B1+fB3k4KWQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "216EEF6C5151884EBE5CF4F78953BF84",
                             TwoFactorEnabled = false,
@@ -563,7 +565,7 @@ namespace TaskManager.Data.Migrations
 
                     b.HasIndex("WorkerId");
 
-                    b.ToTable("GeoTasks");
+                    b.ToTable("GeoTask");
                 });
 
             modelBuilder.Entity("TaskManager.Data.Models.Request", b =>
