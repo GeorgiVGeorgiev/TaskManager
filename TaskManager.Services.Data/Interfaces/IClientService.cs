@@ -5,6 +5,7 @@
     public interface IClientService
     {
         public Task<IEnumerable<ClientViewModel>> GetAllClientsAsync();
+        public Task<ClientViewModel> GetClientByIdAsync(string Id);
 
         public Task<ClientFormModel> GetClientFormByIdAsync(string Id);
 

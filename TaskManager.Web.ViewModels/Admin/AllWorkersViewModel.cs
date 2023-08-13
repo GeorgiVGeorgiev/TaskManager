@@ -29,5 +29,8 @@
 
         [Required]
         public string Position { get; set; } = null!;
+
+        [Required]
+        public string UserId { get; set; } = null!;
     }
 }

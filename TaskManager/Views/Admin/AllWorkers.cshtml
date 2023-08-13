@@ -18,18 +18,11 @@
             {
                 <tbody>
                     <tr class="gridrow">
-                       <td><a style="font-weight:bold; 
-                                    color:forestgreen; 
-                                    text-decoration:none;
-                                    background-color:transparent" 
-                                        asp-controller="Admin" 
-                                        asp-action="WorkersEdit"
-                                        asp-route-id="@worker.Id">@($"{worker.FirstName} {worker.LastName}")</a>
-                       </td>
+                       <td>@($"{worker.FirstName} {worker.LastName}")</td>
                        <td>@worker.PhoneNumer</td>
                        <td>@worker.Email</td>
                        <td>@worker.Position</td>
-                       <td><a style="font-weight:bold; color:forestgreen; text-decoration:none;background-color:transparent" asp-controller="Admin" asp-action="UsersEdit" asp-route-id="@worker.Id">Уволни</a></td>
+                       <td><a style="font-weight:bold; color:forestgreen; text-decoration:none;background-color:transparent" asp-controller="Admin" asp-action="UsersEdit" asp-route-id="@worker.UserId">Уволни</a></td>
                     </tr> 
                 </tbody>   
             }

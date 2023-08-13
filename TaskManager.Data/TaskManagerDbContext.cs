@@ -21,6 +21,7 @@
         public DbSet<Status> Statuses { get; set; } = null!;
         public DbSet<Type> Types { get; set; } = null!;
         public DbSet<Worker> Workers { get; set; } = null!;
+        public DbSet<GeoTask> GeoTasks { get; set; } = null!;
 
 
         protected override void OnModelCreating(ModelBuilder builder)

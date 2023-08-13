@@ -82,5 +82,20 @@
                 .Clients
                 .AnyAsync(c => c.Id.ToString() == clientId);
         }
+
+        public async Task<ClientViewModel> GetClientByIdAsync(string Id)
+        {
+            Client client = await this.dbContext
+                .Clients
+                .FirstAsync(c => c.Id.ToString() == Id);
+            return new ClientViewModel()
+            {
+                Id = client.Id.ToString(),
+                Name = client.Name,
+                Email = client.Email,
+                PhoneNumber = client.PhoneNumber,
+                Predstavitel = client.Predstavitel,
+            };
+        }
     }
 }

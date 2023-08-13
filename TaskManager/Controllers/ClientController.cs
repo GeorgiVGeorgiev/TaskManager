@@ -3,7 +3,6 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using TaskManager.Services.Data.Interfaces;
-    using TaskManager.Web.Infrastructure.CustomAttributs;
     using TaskManager.Web.Infrastructure.Extentions;
     using TaskManager.Web.ViewModels.Client;
 
