@@ -9,11 +9,11 @@
 	int statusTaskId = Model.StatusId;
 	ClientViewModel currentClient = await ClientService.GetClientByIdAsync(Model.ClientId);
 }
-<body style="background-color:grey">
-	<div class="row" style="background-color:wheat">
-		<div class="col-lg-10 content">
+<body style="background-color:grey" class="align-content-center">
+	<div class="row" style="background-color:aliceblue; width:fit-content">
+		<div class="col-lg-12">
 			<div class="">
-				<h4 style="color:grey">Проект №1</h4>
+				<h4 style="color:grey">@($"Проект№{Model.ProjectNumber}")</h4>
 				<b><span style="position: absolute; top: 65px; right: 10px;">Георги Георгиев, @DateTime.UtcNow.ToString("dd-MM-yyyy")</span></b>
 			</div>
  			<form method="post">
@@ -23,10 +23,11 @@
 			</div>
 
 			<hr />
-				<div class="row">
-					<div class="col-6">
+				<div class="row" style="width:1500px">
+					<div class="col-4 align-content-center">
 						<fieldset>
 							<legend class="text-center">Основни данни</legend>
+							<hr />
 							<table class="edit">
 								<tbody>
 									<tr>
@@ -109,9 +110,10 @@
 							</table>
 						</fieldset>
 					</div>
-					<div class="col-6">
+					<div class="col-4 align-content-center">
 						<fieldset>
-							<legend class="text-center">Основни данни</legend>
+							<legend class="text-center">Данни за клиента</legend>
+							<hr />
 							<table class="edit">
 								<tbody>
 									<tr>
@@ -133,7 +135,7 @@
 										</select></td>
 
 										<tablle>
-											<tbody>
+											<tbody style="border:solid 1px">
 												<tr>
 													<td><span>Име:</span></td>
 													<td style="width:300px">@currentClient.Name"</td>	
@@ -145,6 +147,10 @@
 												<tr>
 													<td><span>Телефон:</span></td>
 													<td style="width:300px">@currentClient.PhoneNumber"</td>	
+												</tr>
+												<tr>
+													<td><span>Имейл:</span></td>
+													<td style="width:300px">@currentClient.Email"</td>	
 												</tr>
 											</tbody>
 										</tablle>						
@@ -158,6 +164,45 @@
 							</table>
 						</fieldset>
 					</div>
+						<div class="col-4">
+							<fieldset>
+								<legend>Коментари</legend>
+								<hr />
+								<div style="overflow-y:scroll; height: 500px">
+									<table class="Comentar">
+										<tbody>					
+											@if (Model.Comentars.Any())
+											{
+												@foreach (ComentarViewModel comentar in Model.Comentars)
+												{
+													<tr>
+														<div class="card-comment-section" style="width:300px">
+															<div class="card-comment-symbol"></div>
+															<div class="card-comment-box" style="border:solid 1px">
+																<div class="card-comment-user">
+																	<b>@comentar.WorkerFullName</b>
+																</div>
+																<div class="card shadow-sm">
+																	   @comentar.Description
+																</div>
+																<div class="card-comment-action">
+																	<button class="btn btn-link text-black" type="submit" name="EditCommentar" asp-action="Edit" asp-route-id="@comentar.Id">Редактиране</button>
+																</div>
+															</div>
+															<div style="height:5px"></div>
+														</div>
+													</tr>								
+												}
+											}
+											else
+											{
+												
+											}							
+									</tbody>
+								</table>
+							</div>
+						</fieldset>
+						</div>
 				</div>
 			</form>
 		</div>

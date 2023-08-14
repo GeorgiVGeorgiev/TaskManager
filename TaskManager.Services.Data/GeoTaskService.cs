@@ -33,6 +33,7 @@
                     status = t.Status.Name,
                     TaskType = t.Type.Name                   
               })
+                .OrderBy(t => t.Number)
                 .ToArrayAsync();
 
             return tasks;
@@ -86,7 +87,10 @@
             geoTask.EndDate= editGeoTaskViewModel.EndDate;
             geoTask.TypeId = editGeoTaskViewModel.TypeId;
             geoTask.Note= editGeoTaskViewModel.Note;
+            geoTask.quantity= editGeoTaskViewModel.quantity;
             geoTask.ClientId =Guid.Parse(editGeoTaskViewModel.ClientId);
+            geoTask.Price= editGeoTaskViewModel.Price;
+            
 
             await this.dbContext.SaveChangesAsync();
 		}
