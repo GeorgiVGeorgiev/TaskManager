@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using TaskManager.Services.Data.Interfaces;
     using TaskManager.Web.Infrastructure.Extentions;
+    using TaskManager.Web.ViewModels.Comentar;
     using TaskManager.Web.ViewModels.GeoTask;
     using static Common.NotificationMessages;
 
@@ -89,7 +90,31 @@
                 editGeoTaskViewModel.Workers = await this.userService.GetAllWorkersAsync();
                 editGeoTaskViewModel.Clients = await this.clientService.GetAllClientsAsync();
 
-                return this.View(editGeoTaskViewModel);
+				var tuple = new Tuple<EditGeoTaskViewModel, ComentarViewModel>(new EditGeoTaskViewModel()
+                {
+                    Id = editGeoTaskViewModel.Id,
+                    CreateDate= editGeoTaskViewModel.CreateDate,
+                    EndDate= editGeoTaskViewModel.EndDate,
+                    Adrress= editGeoTaskViewModel.Adrress,
+                    WorkerId= editGeoTaskViewModel.WorkerId,
+                    CheckerId= editGeoTaskViewModel.CheckerId,
+                    ClientId= editGeoTaskViewModel.ClientId,
+                    Comentars=editGeoTaskViewModel.Comentars,
+                    Clients=editGeoTaskViewModel.Clients,
+                    Types=editGeoTaskViewModel.Types,
+                    Statuses=editGeoTaskViewModel.Statuses,
+                    Workers=editGeoTaskViewModel.Workers,
+                    Checkers=editGeoTaskViewModel.Checkers,
+                    IdKKKR=editGeoTaskViewModel.IdKKKR,
+                    Note=editGeoTaskViewModel.Note,
+                    Price=editGeoTaskViewModel.Price,
+                    ProjectNumber=editGeoTaskViewModel.ProjectNumber,
+                    quantity=editGeoTaskViewModel.quantity,
+                    StatusId=editGeoTaskViewModel.StatusId,
+                    TypeId=editGeoTaskViewModel.TypeId,
+                }, new ComentarViewModel());
+               
+				return this.View(tuple);
             }
             catch (Exception)
             {
