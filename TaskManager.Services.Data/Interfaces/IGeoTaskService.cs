@@ -10,5 +10,7 @@
         public Task<bool> IsTaskExistByIdAsync(string Id);
 
         public Task EditGeoTaskByIdAsync(EditGeoTaskViewModel editGeoTaskViewModel);
+
+        public Task<EditGeoTaskViewModel> AddNewTask();
     }
 }

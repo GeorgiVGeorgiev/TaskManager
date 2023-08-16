@@ -18,16 +18,19 @@ $(function () {
 	});
 });
 
-$(function () {
+/*$(function () {
 	$("button.EditCommentarButtonJs").click(function (e) {
 		e.preventDefault();
-
+		
 		let DivEditButton = e.target.parentElement;
 		let ParentDiv = DivEditButton.parentElement;
-		let CardCommentSection = ParentDiv.parentElement;
+		var CardCommentSection = ParentDiv.parentElement;
 		let DivTextArea = ParentDiv.querySelector('.ComenntarTextAreaJs');
-		let actionn = e.target.attributes[3].textContent;
-		const tr = CardCommentSection.innerHTML;
+
+		var tr = CardCommentSection.cloneNode(true);
+
+		let actionn = e.target.attributes[2].textContent;
+
 
 
 		DivEditButton.remove();
@@ -41,22 +44,25 @@ $(function () {
 		let textArea = document.createElement('textarea');
 		textArea.textContent = textValues;
 		textArea.style.width = "300px";
+		textArea.setAttribute("Id","Item2_Description");
+		textArea.classList.add("form-control");
 
 		let okButton = document.createElement('input');
 		let CancelButton = document.createElement('input');
 
 		okButton.formAction = actionn;
-		okButton.classList.add("btn", "btn-secondary", "mt-1");
-		okButton.setAttribute("type","submit")
+		okButton.classList.add("btn", "btn-secondary", "mt-1",);
+		okButton.setAttribute("type", "submit");
 		okButton.value = "Запиши";
 
 		CancelButton.classList.add("btn", "btn-danger", "mt-1", "cancelCommentar");
-		CancelButton.setAttribute("type", "submit")
+		CancelButton.setAttribute("type", "button")
 		CancelButton.value = "Откажи";
 		CancelButton.addEventListener('click', function (e) {
+			e.preventDefault();
 			Array.from(CardCommentSection.children).map(x => x.remove());
 			Array.from(tr.children).map(x => CardCommentSection.appendChild(x));
-
+			location.reload();
 		});
 
 
@@ -69,5 +75,5 @@ $(function () {
 
 	});
 });
-
+*/
 

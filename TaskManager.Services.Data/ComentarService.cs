@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using TaskManager.Data;
+    using TaskManager.Data.Models;
     using TaskManager.Services.Data.Interfaces;
     using TaskManager.Web.ViewModels.Comentar;
 
@@ -15,12 +16,12 @@
         {
             this.dbContext = dbContext;
         }
-        public async Task<IEnumerable<ComentarViewModel>> GetComentarByTaskIdAsync(string Id)
+
+		public async Task<IEnumerable<ComentarViewModel>> GetComentarByTaskIdAsync(string Id)
         {
             IEnumerable<ComentarViewModel> comentarViewModels = await this.dbContext
                 .Comentars
                 .Include(c => c.Worker)
-                //.Include(w => w.)
                 .Where(c => c.TaskId.ToString() == Id)
                 .Select(c => new ComentarViewModel
                 {
@@ -34,6 +35,63 @@
 
             return comentarViewModels;
         }
+		public async Task EditComentarByTaskIdAsync(ComentarViewModel comentarViewModel)
+		{
+            Comentar comentar = await this.dbContext
+                .Comentars
+                .FirstAsync(c => c.Id == comentarViewModel.Id);
 
+            comentar.Description = comentarViewModel.Description;
+
+            await this.dbContext.SaveChangesAsync();
+		}
+
+		public async Task<bool> IsComentarExistById(int comentarId)
+		{
+            return await this.dbContext
+                .Comentars
+                .AnyAsync(c => c.Id == comentarId);
+		}
+
+        public async Task<ComentarViewModel> GetComentarByIdAsync(int Id)
+        {
+            Comentar comentar = await this.dbContext
+                .Comentars
+                .FirstAsync(c => c.Id == Id);
+
+            ComentarViewModel comentarViewModel = new ComentarViewModel()
+            {
+                Id = Id,
+                Description = comentar.Description,
+                TaskId = comentar.TaskId.ToString(),
+            };
+
+            return comentarViewModel;
+        }
+
+        public async Task<string> GetTaskIdByComentarId(int comentarId)
+        {
+            Comentar coment = await this.dbContext
+                .Comentars
+                .FirstAsync(c => c.Id == comentarId);
+
+            return coment.TaskId.ToString();
+        }
+
+        public async Task CreateComentarAsync(ComentarViewModel comentarViewModel, string workerId)
+        {
+            int ComentarCount = await this.dbContext.Comentars.CountAsync();
+
+            Comentar comentar = new Comentar()
+            {
+                Id = ComentarCount+1,
+                Description = comentarViewModel.Description,
+                TaskId = Guid.Parse(comentarViewModel.TaskId),
+                WorkerId = Guid.Parse(comentarViewModel.WorkerId)
+            };
+
+            await this.dbContext.Comentars.AddAsync(comentar);
+            await this.dbContext.SaveChangesAsync();
+        }
     }
 }
