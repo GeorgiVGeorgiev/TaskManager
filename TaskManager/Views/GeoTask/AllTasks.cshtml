@@ -17,7 +17,7 @@
                             <th class="fst-italic fw-bold"><b>Брой</b></th>
                             <th class="fst-italic fw-bold"><b>Цена</b></th>
                             <th class="fst-italic fw-bold"><b>Краен срок</b></th>
-                            <td><input class="btn btn-secondary mt-3" type="submit" value="Нов проект" /></td>
+                            <td><a class="btn btn-secondary mt-3" asp-controller="GeoTask" asp-action="Add">Нов проект</a></td>
                         </tr>
                         </thead>      
                     </table>    
@@ -37,7 +37,8 @@
                     <th class="fst-italic fw-bold"><b>Брой</b></th>
                     <th class="fst-italic fw-bold"><b>Цена</b></th>
                     <th class="fst-italic fw-bold"><b>Краен срок</b></th>
-                    <td><input class="btn btn-secondary mt-3" type="submit" value="Нов проект" /></td>
+                    <td><a class="btn btn-secondary mt-3" asp-controller="GeoTask" asp-action="Add">Нов проект</a></td>
+                                    
                 </tr>
                 </thead>  
                     @foreach (TaskViewModel task in Model)

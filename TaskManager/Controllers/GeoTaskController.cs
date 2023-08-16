@@ -4,7 +4,6 @@
     using Microsoft.AspNetCore.Mvc;
     using TaskManager.Services.Data.Interfaces;
     using TaskManager.Web.Infrastructure.Extentions;
-    using TaskManager.Web.ViewModels.Comentar;
     using TaskManager.Web.ViewModels.GeoTask;
     using static Common.NotificationMessages;
 
@@ -59,6 +58,34 @@
 
         }
         [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+			try
+			{
+				string Id = User.GetId();
+				bool isUserWorker = await this.userService.IsUserWorkerByIdAsync(Id);
+
+				if (!isUserWorker)
+				{
+					return this.ErrorIfUserIsNotWorker();
+				}
+			}
+			catch (Exception)
+			{
+				return this.GeneralError();
+			}
+            try
+            {
+                EditGeoTaskViewModel taskViewModel = await this.geoTaskService.AddNewTask();
+                return this.RedirectToAction("Edit", "GeoTask", new {Id = taskViewModel.Id});
+            }
+            catch (Exception)
+            {
+                return this.GeneralError();
+            }
+		}
+
+        [HttpGet]
         public async Task<IActionResult> Edit(string Id)
         {
             try
@@ -89,32 +116,8 @@
                 editGeoTaskViewModel.Checkers = await this.userService.GetAllWorkersAsync();
                 editGeoTaskViewModel.Workers = await this.userService.GetAllWorkersAsync();
                 editGeoTaskViewModel.Clients = await this.clientService.GetAllClientsAsync();
-
-				var tuple = new Tuple<EditGeoTaskViewModel, ComentarViewModel>(new EditGeoTaskViewModel()
-                {
-                    Id = editGeoTaskViewModel.Id,
-                    CreateDate= editGeoTaskViewModel.CreateDate,
-                    EndDate= editGeoTaskViewModel.EndDate,
-                    Adrress= editGeoTaskViewModel.Adrress,
-                    WorkerId= editGeoTaskViewModel.WorkerId,
-                    CheckerId= editGeoTaskViewModel.CheckerId,
-                    ClientId= editGeoTaskViewModel.ClientId,
-                    Comentars=editGeoTaskViewModel.Comentars,
-                    Clients=editGeoTaskViewModel.Clients,
-                    Types=editGeoTaskViewModel.Types,
-                    Statuses=editGeoTaskViewModel.Statuses,
-                    Workers=editGeoTaskViewModel.Workers,
-                    Checkers=editGeoTaskViewModel.Checkers,
-                    IdKKKR=editGeoTaskViewModel.IdKKKR,
-                    Note=editGeoTaskViewModel.Note,
-                    Price=editGeoTaskViewModel.Price,
-                    ProjectNumber=editGeoTaskViewModel.ProjectNumber,
-                    quantity=editGeoTaskViewModel.quantity,
-                    StatusId=editGeoTaskViewModel.StatusId,
-                    TypeId=editGeoTaskViewModel.TypeId,
-                }, new ComentarViewModel());
                
-				return this.View(tuple);
+				return this.View(editGeoTaskViewModel);
             }
             catch (Exception)
             {
