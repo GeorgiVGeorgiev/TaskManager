@@ -1,0 +1,61 @@
+﻿@model IEnumerable<TaskViewModel>;
+
+<h2 class="text-center">Моите задачи</h2>
+<hr />
+<form>
+    @{
+        if (!Model.Any())
+        {
+                        <div>
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th class="fst-italic fw-bold"><b>Статус</b></th>
+                                    <th class="fst-italic fw-bold"><b>Номер</b></th>
+                                    <th class="fst-italic fw-bold"><b>Клиент</b></th>
+                                    <th class="fst-italic fw-bold"><b>Услуга</b></th>
+                                    <th class="fst-italic fw-bold"><b>Брой</b></th>
+                                    <th class="fst-italic fw-bold"><b>Цена</b></th>
+                                    <th class="fst-italic fw-bold"><b>Краен срок</b></th>
+                                </tr>
+                                </thead>      
+                            </table>    
+                                <h4 class="text-center">Все още нямаш задачи</h4>
+                        </div>  
+        }
+        else
+        {
+                <div>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th class="fst-italic fw-bold"><b>Статус</b></th>
+                            <th class="fst-italic fw-bold"><b>Номер</b></th>
+                            <th class="fst-italic fw-bold"><b>Клиент</b></th>
+                            <th class="fst-italic fw-bold"><b>Услуга</b></th>
+                            <th class="fst-italic fw-bold"><b>Брой</b></th>
+                            <th class="fst-italic fw-bold"><b>Цена</b></th>
+                            <th class="fst-italic fw-bold"><b>Краен срок</b></th>
+                        </tr>
+                        </thead>  
+                    @foreach (TaskViewModel task in Model)
+                    {
+                                    <tbody>
+                                        <tr class="gridrow">
+                                            <td>@task.status</td>
+                                           <td><a style="font-weight:bold; color:forestgreen; text-decoration:none;background-color:transparent" asp-controller="GeoTask" asp-action="Edit" asp-route-id="@task.Id">@($"Проект №{task.Number}")</a></td>
+                                           <td>@task.ClientName</td>
+                                           <td>@task.TaskType</td>
+                                           <td>@($"{task.quantity} бр.")</td>
+                                           <td>@($"{task.price:F2} лв.")</td>
+                                           <td>@(task.EndDate.ToString("dd/MM/yyyy"))</td>
+                                        </tr> 
+                                    </tbody>   
+                    }
+                    </table>    
+                </div>   
+
+        }
+    }
+</form>
+

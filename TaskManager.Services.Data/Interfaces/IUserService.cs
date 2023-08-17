@@ -10,5 +10,6 @@ namespace TaskManager.Services.Data.Interfaces
         Task<bool> IsUserAdminByIdAsync(string userId);
         Task<bool> IsUserExistByIdAsync(string userId);
         public Task<IEnumerable<AllWorkersViewModel>> GetAllWorkersAsync();
+        public Task<string> GetWorkerIdByUserIdAsync(string userId);
     }
 }

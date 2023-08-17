@@ -1,5 +1,11 @@
-﻿@model FrontDescriptionTypeViewModel
+﻿@using TaskManager.Services.Data.Interfaces;
+@using TaskManager.Web.Infrastructure.Extentions;
+@model FrontDescriptionTypeViewModel
+@inject IUserService UserService;
 
+@{
+    bool isUserAdmin = this.User.isAdmin();
+}
 <h2 class="text-center">@Model.Title</h2>
 <hr />
 
@@ -12,6 +18,12 @@
             <p> <b>Описание:</b> @Model.Description</p>
             <p> <b>Цена за обиквовенна услуга: </b>@($"{Model.Price:F2} лв.")</p>
             <p> <b>Срок за изпълнение</b> @Model.TermDays работни дни.</p>
+            @if (isUserAdmin)
+            {
+                 <div class="text">
+                    <a class="btn btn-primary" asp-controller="FrontDescription" asp-action="Edit" asp-route-id="@Model.Id">Промени</a>
+                 </div>               
+            }
         </div>
     </div>
 </div>

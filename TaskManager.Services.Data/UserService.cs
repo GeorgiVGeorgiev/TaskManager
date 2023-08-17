@@ -70,5 +70,14 @@
 
             return workers;
         }
+
+        public async Task<string> GetWorkerIdByUserIdAsync(string userId)
+        {
+            Worker worker = await this.dbContext.Workers.FirstAsync(w => w.UserId.ToString() == userId);
+
+            return worker.Id.ToString();
+
+
+        }
     }
 }

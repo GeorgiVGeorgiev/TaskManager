@@ -33,6 +33,9 @@
             bool isUserWorker = await this.userService.IsUserWorkerByIdAsync(UserId);
             bool isComentarExist = await this.comentarService.IsComentarExistById(Id);
 
+            string workerId = await this.userService.GetWorkerIdByUserIdAsync(UserId);
+            bool isWokerOwnerOfTheCommentar = await this.comentarService.IsUserOwnerOfTheCommentarByWorkerIdAsync(Id,workerId);
+
             try
             {
                 if (!isUserWorker)
@@ -42,6 +45,13 @@
                 if (!isComentarExist)
                 {
                     return this.ErrorIfComentarDosNotExist();
+                }
+                if (!isWokerOwnerOfTheCommentar)
+                {
+                    string TaskId = await this.comentarService.GetTaskIdByComentarId(Id);
+
+                    this.TempData[WarningMessage] = "Ти не си писал този коментар защо искаш да го коригираш ?";
+                    return RedirectToAction("Edit", "GeoTask", new { Id = TaskId });
                 }
             }
             catch (Exception)
@@ -67,8 +77,10 @@
 			bool isUserWorker = await this.userService.IsUserWorkerByIdAsync(UserId);
 			bool isComentarExist = await this.comentarService.IsComentarExistById(comentarViewModel.Id);
 
-			try
-			{
+
+
+            try
+            {
 				if(!isUserWorker)
 				{
 					return this.ErrorIfUserIsNotWorker();
@@ -77,7 +89,8 @@
 				{
 					return this.ErrorIfComentarDosNotExist();
 				}
-			}
+
+            }
 			catch (Exception)
 			{
 				return this.GeneralError();
@@ -130,26 +143,7 @@
             }
 			try
 			{
-				/*                bool isButtonAdd = Request.HttpContext.Request.Form.Keys.ToArray()[1].ToString() == "Add";
-								bool isButtonClose = Request.HttpContext.Request.Form.Keys.ToArray()[1].ToString() == "Close";
-
-								if (isButtonAdd)
-								{
-									await this.comentarService.CreateComentarAsync(comentarViewModel, UserId);
-									string Id = await this.comentarService.GetTaskIdByComentarId(comentarViewModel.Id);
-									return RedirectToAction("Edit", "GeoTask", new { Id = Id });
-								}
-								else if (isButtonClose)
-								{
-									string Id = await this.comentarService.GetTaskIdByComentarId(comentarViewModel.Id);
-									return RedirectToAction("Edit", "GeoTask", new { Id = Id });
-								}
-								else
-								{
-									return this.GeneralError();
-								}*/
 				return this.View();
-
             }
 			catch (Exception)
 			{
@@ -160,6 +154,7 @@
 		public async Task<IActionResult> Add(ComentarViewModel comentarViewModel, string Id)
 		{
             string UserId = User.GetId();
+			string workerId = await this.userService.GetWorkerIdByUserIdAsync(UserId);
             bool isUserWorker = await this.userService.IsUserWorkerByIdAsync(UserId);
 
             try
@@ -176,13 +171,13 @@
             try
             {
 				comentarViewModel.TaskId= Id;
-				comentarViewModel.WorkerId= UserId;
+				comentarViewModel.WorkerId= workerId;
 				bool isButtonAdd = Request.HttpContext.Request.Form.Keys.ToArray()[1].ToString() == "Add";
 				bool isButtonClose = Request.HttpContext.Request.Form.Keys.ToArray()[1].ToString() == "Close";
 
 				if (isButtonAdd)
 				{
-					await this.comentarService.CreateComentarAsync(comentarViewModel, UserId);
+					await this.comentarService.CreateComentarAsync(comentarViewModel);
 					return RedirectToAction("Edit", "GeoTask", new { Id = Id });
 				}
 				else if (isButtonClose)

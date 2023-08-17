@@ -31,6 +31,11 @@
 							<table class="edit">
 								<tbody>
 									<tr>
+										<td><span>Адрес</span><span class="requried" style="color:red">*</span></td>
+										<td><input asp-for="Adrress" class="form-control" style="width:300px" placeholder="68134..."/></td>
+										<td><span asp-validation-for="Adrress" class="text-danger"></span></td>
+									</tr>
+									<tr>
 										<td><span>Статус</span> <span class="requried" style="color:red">*</span></td>
 										<td><select asp-for=StatusId class="form-control" style="width:300px"> 
 												@foreach (StatusViewModel status in Model.Statuses)
@@ -58,6 +63,22 @@
 											else
 											{
 												<option value="@worker.Id">@($"{worker.FirstName} {worker.LastName}")</option>
+											}
+										}			
+										</select></td>
+									</tr>
+									<tr>
+										<td><span>Проверяващ</span> <span class="requried" style="color:red">*</span></td>
+										<td><select asp-for=CheckerId class="form-control" style="width:300px"> 
+										@foreach (AllWorkersViewModel checker in Model.Checkers)
+										{
+											@if(checker.Id == currentWorker.Id.ToUpper())
+											{
+												<option selected="selected" value="@checker.Id">@($"{checker.FirstName} {checker.LastName}")</option>				
+											}
+											else
+											{
+												<option value="@checker.Id">@($"{checker.FirstName} {checker.LastName}")</option>
 											}
 										}			
 										</select></td>
@@ -166,7 +187,7 @@
 						</fieldset>
 					</div>
 						<div class="col-4">
-							<fieldset>
+							<fieldset class="overflow-scroll" style="height:600px; scrollbar-arrow-color">
 								<legend>Коментари</legend>
 								<hr />
 									  <table>										 
