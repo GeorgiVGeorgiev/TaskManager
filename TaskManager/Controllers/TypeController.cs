@@ -4,22 +4,31 @@
     using Microsoft.AspNetCore.Mvc;
     using TaskManager.Services.Data.Interfaces;
     using TaskManager.Web.Infrastructure.Extentions;
-    using TaskManager.Web.ViewModels.FrontDescriptionType;
+    using TaskManager.Web.ViewModels.GeoTask;
+    using TaskManager.Web.ViewModels.Type;
     using static Common.NotificationMessages;
 
     [Authorize(Roles ="Administrator")]
-    public class FrontDescriptionController : Controller
+    public class TypeController : Controller
     {
         private readonly IAdminService adminService;
         private readonly IUserService userService;
-        private readonly IFrontDescriptionTypeService frontDescriptionTypeService;
-        public FrontDescriptionController(IAdminService adminService, IUserService userService, IFrontDescriptionTypeService frontDescriptionTypeService)
+        private readonly ITypeService typeService;
+
+        public TypeController(IAdminService adminService, IUserService userService, ITypeService typeService)
         {
             this.adminService = adminService;
             this.userService = userService;
-            this.frontDescriptionTypeService = frontDescriptionTypeService;
+            this.typeService = typeService;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> All()
+        {
+            IEnumerable<TypeViewModel> typeViewModel = await this.typeService.GetAllTypesAsync();
+
+            return View(typeViewModel);
+        }
         [HttpGet]
         public async Task<IActionResult> Add()
         {
@@ -47,7 +56,7 @@
             }
         }
         [HttpPost]
-        public async Task<IActionResult> Add(FrontDescriptionTypeViewModel frontDescriptionTypeViewModel)
+        public async Task<IActionResult> Add(TypeViewModel typeViewModel)
         {
             try
             {
@@ -57,6 +66,10 @@
                 {
                     return this.ErrorIfUserIsNotAdmin();
                 }
+                if (!ModelState.IsValid)
+                {
+                    return this.View(typeViewModel);
+                }
 
             }
             catch (Exception)
@@ -65,13 +78,14 @@
             }
             try
             {
-                await this.frontDescriptionTypeService.AddFrondDescriptionTypeAsync(frontDescriptionTypeViewModel);
-                return this.RedirectToAction("Index","Home");
+                await this.typeService.AddTypeAsync(typeViewModel);
+                return this.RedirectToAction("All", "Type");
             }
             catch (Exception)
             {
                 return this.GeneralError();
             }
+
         }
 
         [HttpGet]
@@ -80,17 +94,16 @@
             try
             {
                 bool isUserAdmin = this.User.isAdmin();
-                bool isFrontDescriptionTypeExist = await this.frontDescriptionTypeService.isExistByIdAsync(Id);
+                bool isTypeExist = await this.typeService.IsExistByIdAsync(Id);
 
                 if (!isUserAdmin)
                 {
                     return this.ErrorIfUserIsNotAdmin();
                 }
-                if (!isFrontDescriptionTypeExist)
+                if(!isTypeExist)
                 {
                     return this.ErrorIfTaskDontExist();
                 }
-
             }
             catch (Exception)
             {
@@ -98,9 +111,9 @@
             }
             try
             {
-                FrontDescriptionTypeViewModel frontDescriptionTypeViewModel = await this.frontDescriptionTypeService.GetByIdAsync(Id);
-                return this.View(frontDescriptionTypeViewModel);
+                TypeViewModel typeViewModel = await this.typeService.GetByIdAsync(Id);
 
+                return this.View(typeViewModel);
             }
             catch (Exception)
             {
@@ -108,26 +121,25 @@
             }
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(FrontDescriptionTypeViewModel frontDescriptionTypeViewModel)
+        public async Task<IActionResult> Edit(TypeViewModel typeViewModel)
         {
             try
             {
                 bool isUserAdmin = this.User.isAdmin();
-                bool isFrontDescriptionTypeExist = await this.frontDescriptionTypeService.isExistByIdAsync(frontDescriptionTypeViewModel.Id);
+                bool isTypeExist = await this.typeService.IsExistByIdAsync(typeViewModel.Id);
 
                 if (!isUserAdmin)
                 {
                     return this.ErrorIfUserIsNotAdmin();
                 }
-                if (!isFrontDescriptionTypeExist)
+                if (!isTypeExist)
                 {
                     return this.ErrorIfTaskDontExist();
                 }
                 if(!ModelState.IsValid)
                 {
-                    return this.View(frontDescriptionTypeViewModel);
+                    return this.View(typeViewModel);
                 }
-
             }
             catch (Exception)
             {
@@ -135,15 +147,14 @@
             }
             try
             {
-                await this.frontDescriptionTypeService.EditFrontDescriptionTypeAsync(frontDescriptionTypeViewModel);
-                return this.RedirectToAction("Index", "Home");
+                await this.typeService.EditTypeAsync(typeViewModel);
+                return this.RedirectToAction("All", "Type");
             }
             catch (Exception)
             {
                 return this.GeneralError();
             }
         }
-
         private IActionResult ErrorIfUserIsNotAdmin()
         {
             this.TempData[ErrorMessage] = "Страницата е предназначена за работници.";
@@ -152,7 +163,7 @@
         }
         private IActionResult ErrorIfTaskDontExist()
         {
-            this.TempData[ErrorMessage] = "Задачата която се опитваш да коригираш не съществува.";
+            this.TempData[ErrorMessage] = "Типът който се опитваш да коригираш не съществува.";
 
             return RedirectToAction("Index", "Home");
         }

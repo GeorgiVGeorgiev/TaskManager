@@ -14,6 +14,36 @@
             this.dbContext = dbContext;
         }
 
+        public async Task AddFrondDescriptionTypeAsync(FrontDescriptionTypeViewModel model)
+        {
+            FrontDescriptionType frontDescriptionType = new FrontDescriptionType()
+            {
+                ImageUrl= model.ImageUrl,
+                Description= model.Description,
+                TermDays= model.TermDays,
+                Price= model.Price,
+                Title= model.Title,
+            };
+
+             await this.dbContext.FrontDescriptionTypes.AddAsync(frontDescriptionType);
+             await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task EditFrontDescriptionTypeAsync(FrontDescriptionTypeViewModel model)
+        {
+            FrontDescriptionType frontDescriptionType = await this.dbContext
+                .FrontDescriptionTypes
+                .FirstAsync(f => f.Id == model.Id);
+
+            frontDescriptionType.ImageUrl = model.ImageUrl;
+            frontDescriptionType.Description = model.Description;
+            frontDescriptionType.TermDays = model.TermDays;
+            frontDescriptionType.Price = model.Price;
+            frontDescriptionType.Title = model.Title;
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<FrontDescriptionTypeViewModel>> GetAllAsync()
         {
             IEnumerable<FrontDescriptionTypeViewModel> FrontTypes = await this.dbContext

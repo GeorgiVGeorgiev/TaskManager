@@ -1,4 +1,6 @@
-﻿namespace TaskManager.Services.Data
+﻿using TaskManager.Web.ViewModels.GeoTask;
+
+namespace TaskManager.Services.Data
 {
     using Microsoft.EntityFrameworkCore;
     using System.Threading.Tasks;
@@ -139,5 +141,30 @@
 
             return editGeoTaskViewModel;
 		}
-	}
+
+        public async Task<IEnumerable<TaskViewModel>> GetMyTaskByWorkerIdAsync(string workerId)
+        {
+            IEnumerable<TaskViewModel> taskViewModels = await this.dbContext
+                .GeoTasks
+                .Include(t => t.Client)
+                .Include(t => t.Status)
+                .Include(t => t.Type)
+                .Where(gt => gt.WorkerId.ToString() == workerId)
+                .Select(t => new TaskViewModel
+                {
+                    Id = t.Id.ToString(),
+                    Number = t.ProjectNumber,
+                    EndDate = t.EndDate,
+                    ClientName = t.Client.Name,
+                    price = t.Price,
+                    quantity = t.quantity,
+                    status = t.Status.Name,
+                    TaskType = t.Type.Name
+                })
+                .OrderBy(t => t.Number)
+                .ToArrayAsync();
+
+            return taskViewModels;
+        }
+    }
 }

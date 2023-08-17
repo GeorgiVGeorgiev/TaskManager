@@ -80,11 +80,9 @@
 
         public async Task CreateComentarAsync(ComentarViewModel comentarViewModel)
         {
-            int ComentarCount = await this.dbContext.Comentars.CountAsync();
 
             Comentar comentar = new Comentar()
             {
-            //    Id = ComentarCount+1,
                 Description = comentarViewModel.Description,
                 TaskId = Guid.Parse(comentarViewModel.TaskId),
                 WorkerId = Guid.Parse(comentarViewModel.WorkerId)
@@ -92,6 +90,12 @@
 
             await this.dbContext.Comentars.AddAsync(comentar);
             await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<bool> IsUserOwnerOfTheCommentarByWorkerIdAsync(int comentarId, string workerId)
+        {
+            
+            return await this.dbContext.Comentars.AnyAsync(c => c.WorkerId.ToString() == workerId && c.Id == comentarId);
         }
     }
 }

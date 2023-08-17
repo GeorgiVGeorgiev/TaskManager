@@ -6,6 +6,7 @@
     using TaskManager.Web.Infrastructure.Extentions;
     using TaskManager.Web.ViewModels.GeoTask;
     using static Common.NotificationMessages;
+    using static TaskManager.Common.EntityValidationConstants;
 
     [Authorize]
     public class GeoTaskController : Controller
@@ -56,6 +57,36 @@
                 return this.GeneralError();
             }
 
+        }
+        [HttpGet]
+        public async Task<IActionResult> MyTasks()
+        {
+            string workerId = "";
+            try
+            {
+                string UserId = User.GetId();
+                bool isUserWorker = await this.userService.IsUserWorkerByIdAsync(UserId);
+                workerId = await this.userService.GetWorkerIdByUserIdAsync(UserId);
+
+                if (!isUserWorker)
+                {
+                    return this.ErrorIfUserIsNotWorker();
+                }
+            }
+            catch (Exception)
+            {
+                return this.GeneralError();
+            }
+            try
+            {
+
+                IEnumerable<TaskViewModel> taskViewModels = await this.geoTaskService.GetMyTaskByWorkerIdAsync(workerId);
+                return this.View(taskViewModels);
+            }
+            catch (Exception)
+            {
+                return this.GeneralError();
+            }
         }
         [HttpGet]
         public async Task<IActionResult> Add()
@@ -142,7 +173,11 @@
 				{
 					return this.ErrorIfTaskDontExist();
 				}
-			}
+                if (!ModelState.IsValid)
+                {
+                    return this.View(editGeoTaskViewModel);
+                }
+            }
 			catch (Exception)
 			{
 				return this.GeneralError();

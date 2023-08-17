@@ -7,5 +7,7 @@
         Task<IEnumerable<FrontDescriptionTypeViewModel>> GetAllAsync();
         Task<FrontDescriptionTypeViewModel> GetByIdAsync(int id);
         Task<bool> isExistByIdAsync (int id);
+        Task AddFrondDescriptionTypeAsync (FrontDescriptionTypeViewModel model);
+        Task EditFrontDescriptionTypeAsync(FrontDescriptionTypeViewModel model);
     }
 }

@@ -12,5 +12,7 @@
         public Task EditGeoTaskByIdAsync(EditGeoTaskViewModel editGeoTaskViewModel);
 
         public Task<EditGeoTaskViewModel> AddNewTask();
+
+        public Task<IEnumerable<TaskViewModel>> GetMyTaskByWorkerIdAsync(string workerId);
     }
 }

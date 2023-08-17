@@ -16,5 +16,7 @@ namespace TaskManager.Services.Data.Interfaces
 
         public Task CreateComentarAsync(ComentarViewModel comentarViewModel);
 
+        public Task<bool> IsUserOwnerOfTheCommentarByWorkerIdAsync(int comentarId, string workerId);
+
     }
 }

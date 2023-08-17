@@ -26,10 +26,12 @@
 
         [Required]
         [Display(Name = "Работни дни")]
+        [Range(0,365)]
         public int TermDays { get; set; }
 
         [Required]
         [Display(Name = "Цена")]
+        [Range(0, int.MaxValue)]
         public decimal Price { get; set; }
     }
 }
