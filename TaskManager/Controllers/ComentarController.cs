@@ -160,7 +160,9 @@
 		public async Task<IActionResult> Add(ComentarViewModel comentarViewModel, string Id)
 		{
             string UserId = User.GetId();
+			string workerId = await this.userService.GetWorkerIdByUserIdAsync(UserId);
             bool isUserWorker = await this.userService.IsUserWorkerByIdAsync(UserId);
+			
 
             try
             {
@@ -176,13 +178,13 @@
             try
             {
 				comentarViewModel.TaskId= Id;
-				comentarViewModel.WorkerId= UserId;
+				comentarViewModel.WorkerId= workerId;
 				bool isButtonAdd = Request.HttpContext.Request.Form.Keys.ToArray()[1].ToString() == "Add";
 				bool isButtonClose = Request.HttpContext.Request.Form.Keys.ToArray()[1].ToString() == "Close";
 
 				if (isButtonAdd)
 				{
-					await this.comentarService.CreateComentarAsync(comentarViewModel, UserId);
+					await this.comentarService.CreateComentarAsync(comentarViewModel);
 					return RedirectToAction("Edit", "GeoTask", new { Id = Id });
 				}
 				else if (isButtonClose)

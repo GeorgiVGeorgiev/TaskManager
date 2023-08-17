@@ -14,7 +14,7 @@ namespace TaskManager.Services.Data.Interfaces
 
         public Task<string> GetTaskIdByComentarId(int comentarId);
 
-        public Task CreateComentarAsync(ComentarViewModel comentarViewModel, string workerId);
+        public Task CreateComentarAsync(ComentarViewModel comentarViewModel);
 
     }
 }

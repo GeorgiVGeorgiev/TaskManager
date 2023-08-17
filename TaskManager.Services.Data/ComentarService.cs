@@ -78,13 +78,13 @@
             return coment.TaskId.ToString();
         }
 
-        public async Task CreateComentarAsync(ComentarViewModel comentarViewModel, string workerId)
+        public async Task CreateComentarAsync(ComentarViewModel comentarViewModel)
         {
             int ComentarCount = await this.dbContext.Comentars.CountAsync();
 
             Comentar comentar = new Comentar()
             {
-                Id = ComentarCount+1,
+            //    Id = ComentarCount+1,
                 Description = comentarViewModel.Description,
                 TaskId = Guid.Parse(comentarViewModel.TaskId),
                 WorkerId = Guid.Parse(comentarViewModel.WorkerId)
