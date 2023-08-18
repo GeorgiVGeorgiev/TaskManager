@@ -8,6 +8,7 @@
     using TaskManager.Web.ViewModels.Type;
     using TaskManager.Web.ViewModels.Worker;
     using static Common.EntityValidationConstants.GeoTask;
+    using static Common.ErrorMessageBulgarian;
 
     public class EditGeoTaskViewModel
     {
@@ -15,13 +16,16 @@
         public string Id { get; set; } = null!;
 
         [Required]
-        [MaxLength(AddressMaxLength)]
+        [StringLength(AddressMaxLength,MinimumLength =AddressMinLength,ErrorMessage =NameErrorMessage)]
+        [Display(Name ="Адрес")]
         public string Adrress { get; set; } = null!;
 
         [Required]
         public int ProjectNumber { get; set; }
 
         [Required]
+        [Range(0,int.MaxValue,ErrorMessage =PriceErrorMessage)]
+        [Display(Name ="Цена")]
         public decimal Price { get; set; }
 
         [Required]
@@ -31,14 +35,15 @@
         public DateTime EndDate { get; set; } = DateTime.UtcNow;
 
         [Required]
-        [MaxLength(IdKKKRMaxLength)]
+        [StringLength(IdKKKRMaxLength,MinimumLength =IdKKKRMinLength,ErrorMessage =NameErrorMessage)]
         public string IdKKKR { get; set; } = null!;
 
         [Required]
+        [Range(0,int.MaxValue)]
         public int quantity { get; set; } = 1;
 
         [Required]
-        [MaxLength(NoteMaxLength)]
+        [StringLength(NoteMaxLength,MinimumLength =NoteMinLength,ErrorMessage =NameErrorMessage)]
         public string Note { get; set; } = "";
 
 

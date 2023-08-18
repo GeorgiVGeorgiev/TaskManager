@@ -12,8 +12,8 @@
         public string Name { get; set; } = null!;
 
         [Required]
-        [MaxLength(PredstavitelNameMaxLength)]
-        public string Predstavitel { get; set; } = "Няма";
+        [MaxLength(CustomerRepresentativeNameMaxLength)]
+        public string CustomerRepresentative { get; set; } = CustomerRepresentativeDefautValue;
 
         [Required]
         [MaxLength(PhoneNumberMaxLength)]

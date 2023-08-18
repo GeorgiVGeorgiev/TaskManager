@@ -4,9 +4,9 @@
     using Microsoft.AspNetCore.Mvc;
     using TaskManager.Services.Data.Interfaces;
     using TaskManager.Web.Infrastructure.Extentions;
-    using TaskManager.Web.ViewModels.GeoTask;
     using TaskManager.Web.ViewModels.Type;
     using static Common.NotificationMessages;
+    using static Common.ErrorMessageBulgarian;
 
     [Authorize(Roles ="Administrator")]
     public class TypeController : Controller
@@ -157,20 +157,20 @@
         }
         private IActionResult ErrorIfUserIsNotAdmin()
         {
-            this.TempData[ErrorMessage] = "Страницата е предназначена за работници.";
+            this.TempData[ErrorMessage] = ErrorIfUserIsNotAdminMessage;
 
             return RedirectToAction("Index", "Home");
         }
         private IActionResult ErrorIfTaskDontExist()
         {
-            this.TempData[ErrorMessage] = "Типът който се опитваш да коригираш не съществува.";
+            this.TempData[ErrorMessage] = ErrorIfTypeDontExistMessage;
 
             return RedirectToAction("Index", "Home");
         }
 
         private IActionResult GeneralError()
         {
-            this.TempData[ErrorMessage] = "Стана нещо, опитай пак или се свържи с администратор.";
+            this.TempData[ErrorMessage] = GeneralErrorMessage;
 
             return RedirectToAction("Index", "Home");
         }

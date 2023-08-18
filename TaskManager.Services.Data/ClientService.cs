@@ -1,4 +1,6 @@
-﻿namespace TaskManager.Services.Data
+﻿using TaskManager.Web.ViewModels.GeoTask;
+
+namespace TaskManager.Services.Data
 {
     using Microsoft.EntityFrameworkCore;
     using TaskManager.Data;
@@ -24,7 +26,7 @@
                     Name = c.Name,
                     Email = c.Email,
                     PhoneNumber = c.PhoneNumber,
-                    Predstavitel = c.Predstavitel,
+                    CustomerRepresentative = c.CustomerRepresentative,
                 })
                 .OrderBy(c => c.Name)
                 .ToArrayAsync();
@@ -43,7 +45,7 @@
                 Name = formModel.Name,
                 Email = formModel.Email,
                 PhoneNumber = formModel.PhoneNumber,
-                Predstavitel = formModel.Predstavitel,
+                CustomerRepresentative = formModel.CustomerRepresentative,
             };
         }
         public async Task AddClientAsync(ClientFormModel model)
@@ -53,7 +55,7 @@
                 Name = model.Name,
                 Email = model.Email,
                 PhoneNumber = model.PhoneNumber,
-                Predstavitel = model.Predstavitel,
+                CustomerRepresentative = model.CustomerRepresentative,
             };
             await this.dbContext
                 .Clients.AddAsync(client);
@@ -70,7 +72,7 @@
             client.Name = model.Name;
             client.Email = model.Email;
             client.PhoneNumber = model.PhoneNumber;
-            client.Predstavitel = model.Predstavitel;
+            client.CustomerRepresentative = model.CustomerRepresentative;
 
 
             await this.dbContext.SaveChangesAsync();
@@ -94,7 +96,41 @@
                 Name = client.Name,
                 Email = client.Email,
                 PhoneNumber = client.PhoneNumber,
-                Predstavitel = client.Predstavitel,
+                CustomerRepresentative = client.CustomerRepresentative,
+            };
+        }
+
+        public async Task<AllClientsFilteredANdPageServiceModel> GetAllClientFilteredAsync(AllClientQueryModel allClientQueryModel)
+        {
+            IQueryable<Client> clientQuery = this.dbContext
+                .Clients
+                .OrderBy(c => c.Name);
+
+            if(!string.IsNullOrWhiteSpace(allClientQueryModel.SearchString))
+            {
+                clientQuery = clientQuery
+                    .Where(c => c.Name.Contains(allClientQueryModel.SearchString)
+                    || c.PhoneNumber.Contains(allClientQueryModel.SearchString)
+                    || c.CustomerRepresentative.Contains(allClientQueryModel.SearchString));
+            }
+            IEnumerable<ClientViewModel> clientViewModels = await clientQuery
+                .Skip((allClientQueryModel.CurrentPage - 1) * allClientQueryModel.ClientPerPage)
+                .Take(allClientQueryModel.ClientPerPage)
+                .Select(c => new ClientViewModel()
+                {
+                    Id = c.Id.ToString(),
+                    Name = c.Name,
+                    Email = c.Email,
+                    PhoneNumber = c.PhoneNumber,
+                    CustomerRepresentative = c.CustomerRepresentative,
+                })
+                .ToArrayAsync();
+            int totalClients = clientQuery.Count();
+
+            return new AllClientsFilteredANdPageServiceModel()
+            {
+                Clients = clientViewModels,
+                TotalClients = totalClients,
             };
         }
     }

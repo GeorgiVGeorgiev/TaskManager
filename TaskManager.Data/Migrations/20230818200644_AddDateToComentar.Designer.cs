@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManager.Data;
 
@@ -11,9 +12,10 @@ using TaskManager.Data;
 namespace TaskManager.Data.Migrations
 {
     [DbContext(typeof(TaskManagerDbContext))]
-    partial class TaskManagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230818200644_AddDateToComentar")]
+    partial class AddDateToComentar
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -237,7 +239,7 @@ namespace TaskManager.Data.Migrations
                         {
                             Id = new Guid("bcb4f072-ecca-43c9-ab26-c060c6f364e4"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3bcdb314-fe6a-420c-a4b8-e0e163964397",
+                            ConcurrencyStamp = "51822ed6-851a-4014-ae65-c6b2b7dbd650",
                             Email = "administrator@admin",
                             EmailConfirmed = false,
                             FirstName = "Георги",
@@ -245,7 +247,7 @@ namespace TaskManager.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "administrator@admin",
                             NormalizedUserName = "administrator@admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOV1QhfxR8xacMDD3JHMym3xqqQ7qbMgJlbm5Czmb2q8Eau/RqK9Mf33T82cTogiKQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJhxMUB6O+HeLDbGy6HPPRnWz1Ba6ILt2pyUJx9E88JdTtXSgno8TKerDWvUVQsmJw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "72F0B4BCCAECC943AB26C060C6F364E4",
                             TwoFactorEnabled = false,
@@ -255,7 +257,7 @@ namespace TaskManager.Data.Migrations
                         {
                             Id = new Guid("6e70d07b-eaa7-4384-b233-c5ef9c0bf8de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e7d6c9f4-3a3c-4edd-8d26-4017dd8f59c3",
+                            ConcurrencyStamp = "857830ca-099f-4831-9677-9c55850d86a4",
                             Email = "User1@base.bg",
                             EmailConfirmed = false,
                             FirstName = "Евелина",
@@ -263,7 +265,7 @@ namespace TaskManager.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "User1@base.bg",
                             NormalizedUserName = "User1@base.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAEE1BuCiQ/b71szbAOuEesB0Tr3WKf9sKDy+Ggcjp8WsNkuE4aX078HJKpIvgEcKSVQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDRSvxKpmhjXGCNy0gEoXR6bsAKRBxxsmRgg2yQ2tiukpiW86kKxhLWllmVOE/osfQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7BD0706EA7EA8443B233C5EF9C0BF8DE",
                             TwoFactorEnabled = false,
@@ -273,7 +275,7 @@ namespace TaskManager.Data.Migrations
                         {
                             Id = new Guid("296193d2-f02c-4410-b8fe-9eab4ffb4801"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9f14cc1e-b7f9-4594-89ff-30e1b288f738",
+                            ConcurrencyStamp = "b7c503cc-7eca-4268-a77d-a77196d0d603",
                             Email = "User2@base.bg",
                             EmailConfirmed = false,
                             FirstName = "Първан",
@@ -281,7 +283,7 @@ namespace TaskManager.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "User2@base.bg",
                             NormalizedUserName = "User2@base.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAELf1RWJhjR4FZpJy2y8CKTvrdT8LKF4co2+MwAqW5yOEToZpXCzqqWFi1zLV0bMUhQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHmeRAKYfci1mdvpm+/TERCXl/EFXzhRIW7Z3K8Oo8XWfB4Ve3HIEhBP72NNPjV09Q==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "D29361292CF01044B8FE9EAB4FFB4801",
                             TwoFactorEnabled = false,
@@ -291,7 +293,7 @@ namespace TaskManager.Data.Migrations
                         {
                             Id = new Guid("35679ef5-bb0b-4d6a-bb37-6b0bfb32e801"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "27ed572a-791b-4042-9dbf-706823d6443e",
+                            ConcurrencyStamp = "88ab34f7-9bf2-4e84-a12f-e32b09ee0461",
                             Email = "Worker1@base.bg",
                             EmailConfirmed = false,
                             FirstName = "Първан",
@@ -299,7 +301,7 @@ namespace TaskManager.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "Worker1@base.bg",
                             NormalizedUserName = "Worker1@base.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJxpFqHBkqQO4XziRX2vzl3tocPshBLqnJJkcKyzstyCg39ehY8+7oXFzxO3SQKYHg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFBToKVMcz7FLmCFzJ2T4b38AIWX4mq0SjPVUyPdSuopaWylP9cY//4Pj75LhDB1aw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "F59E67350BBB6A4DBB376B0BFB32E801",
                             TwoFactorEnabled = false,
@@ -309,7 +311,7 @@ namespace TaskManager.Data.Migrations
                         {
                             Id = new Guid("6cef6e21-5151-4e88-be5c-f4f78953bf84"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d8dce39b-0f84-4670-b0c1-a3efe08f93c1",
+                            ConcurrencyStamp = "d8a5d831-ec3a-478e-aaf7-893a5c9ffd86",
                             Email = "Worker2@base.bg",
                             EmailConfirmed = false,
                             FirstName = "Иван",
@@ -317,7 +319,7 @@ namespace TaskManager.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "Worker2@base.bg",
                             NormalizedUserName = "Worker2@base.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMS5V9Y2Rci8S9NJAxKjV4aV5nEmDo6RZsXH3ymNw+gy/EZdjW/78Yn1Opd9zkCEaQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENIu4ePx3hZmZj4WTLkRBSVJtK7A8B+WvcrY39FlH6IVxj6yEpWoA8ssvC16no7VVQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "216EEF6C5151884EBE5CF4F78953BF84",
                             TwoFactorEnabled = false,
@@ -330,11 +332,6 @@ namespace TaskManager.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CustomerRepresentative")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -350,9 +347,14 @@ namespace TaskManager.Data.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
+                    b.Property<string>("Predstavitel")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Clients", (string)null);
+                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("TaskManager.Data.Models.Comentar", b =>
@@ -383,13 +385,13 @@ namespace TaskManager.Data.Migrations
 
                     b.HasIndex("WorkerId");
 
-                    b.ToTable("Comentars", (string)null);
+                    b.ToTable("Comentars");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 8, 18, 21, 20, 59, 91, DateTimeKind.Utc).AddTicks(4607),
+                            CreateDate = new DateTime(2023, 8, 18, 20, 6, 44, 540, DateTimeKind.Utc).AddTicks(4961),
                             Description = "Това е тестов коментар за първата задача. От проектант 1.",
                             TaskId = new Guid("88439927-1864-4962-9c31-d32e86f6ec0c"),
                             WorkerId = new Guid("acda7da9-d7a0-4fd0-9aca-f6000da77582")
@@ -397,7 +399,7 @@ namespace TaskManager.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2023, 8, 18, 21, 20, 59, 91, DateTimeKind.Utc).AddTicks(4614),
+                            CreateDate = new DateTime(2023, 8, 18, 20, 6, 44, 540, DateTimeKind.Utc).AddTicks(4967),
                             Description = "Това е втори тестов коментар за първата задача. От проектант 2.",
                             TaskId = new Guid("88439927-1864-4962-9c31-d32e86f6ec0c"),
                             WorkerId = new Guid("1702e507-b3fc-48a0-808d-d989bd8a4697")
@@ -405,7 +407,7 @@ namespace TaskManager.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2023, 8, 18, 21, 20, 59, 91, DateTimeKind.Utc).AddTicks(4656),
+                            CreateDate = new DateTime(2023, 8, 18, 20, 6, 44, 540, DateTimeKind.Utc).AddTicks(4969),
                             Description = "Това е трети тестов коментар за първата задача. От Админ.",
                             TaskId = new Guid("88439927-1864-4962-9c31-d32e86f6ec0c"),
                             WorkerId = new Guid("a13c085f-4d96-4244-8ea4-607c4b6989f6")
@@ -413,7 +415,7 @@ namespace TaskManager.Data.Migrations
                         new
                         {
                             Id = 4,
-                            CreateDate = new DateTime(2023, 8, 18, 21, 20, 59, 91, DateTimeKind.Utc).AddTicks(4660),
+                            CreateDate = new DateTime(2023, 8, 18, 20, 6, 44, 540, DateTimeKind.Utc).AddTicks(4971),
                             Description = "Това е четвърти тестов коментар за първата задача. От Мерач.",
                             TaskId = new Guid("88439927-1864-4962-9c31-d32e86f6ec0c"),
                             WorkerId = new Guid("c6d1253b-2695-4a7f-98d5-a2a87eb3b97a")
@@ -441,7 +443,7 @@ namespace TaskManager.Data.Migrations
 
                     b.HasIndex("TaskId");
 
-                    b.ToTable("Documents", (string)null);
+                    b.ToTable("Documents");
                 });
 
             modelBuilder.Entity("TaskManager.Data.Models.FrontDescriptionType", b =>
@@ -476,7 +478,7 @@ namespace TaskManager.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FrontDescriptionTypes", (string)null);
+                    b.ToTable("FrontDescriptionTypes");
 
                     b.HasData(
                         new
@@ -600,7 +602,7 @@ namespace TaskManager.Data.Migrations
 
                     b.HasIndex("WorkerId");
 
-                    b.ToTable("GeoTasks", (string)null);
+                    b.ToTable("GeoTasks");
 
                     b.HasData(
                         new
@@ -609,8 +611,8 @@ namespace TaskManager.Data.Migrations
                             Adrress = "Надежда 1",
                             CheckerId = new Guid("a13c085f-4d96-4244-8ea4-607c4b6989f6"),
                             ClientId = new Guid("890c29d4-841a-490c-8b85-07af2ba826fd"),
-                            CreateDate = new DateTime(2023, 8, 19, 0, 20, 59, 91, DateTimeKind.Local).AddTicks(7485),
-                            EndDate = new DateTime(2023, 8, 19, 0, 20, 59, 91, DateTimeKind.Local).AddTicks(7513),
+                            CreateDate = new DateTime(2023, 8, 18, 23, 6, 44, 540, DateTimeKind.Local).AddTicks(7972),
+                            EndDate = new DateTime(2023, 8, 18, 23, 6, 44, 540, DateTimeKind.Local).AddTicks(8000),
                             IdKKKR = "68134.905.11",
                             Note = "Няма",
                             Price = 500m,
@@ -626,8 +628,8 @@ namespace TaskManager.Data.Migrations
                             Adrress = "Надежда 1",
                             CheckerId = new Guid("a13c085f-4d96-4244-8ea4-607c4b6989f6"),
                             ClientId = new Guid("2016aa91-7b89-4524-92e1-3606cbda65c8"),
-                            CreateDate = new DateTime(2023, 8, 19, 0, 20, 59, 91, DateTimeKind.Local).AddTicks(7533),
-                            EndDate = new DateTime(2023, 8, 19, 0, 20, 59, 91, DateTimeKind.Local).AddTicks(7535),
+                            CreateDate = new DateTime(2023, 8, 18, 23, 6, 44, 540, DateTimeKind.Local).AddTicks(8019),
+                            EndDate = new DateTime(2023, 8, 18, 23, 6, 44, 540, DateTimeKind.Local).AddTicks(8020),
                             IdKKKR = "68134.905.11",
                             Note = "Няма",
                             Price = 250m,
@@ -670,7 +672,7 @@ namespace TaskManager.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Requests", (string)null);
+                    b.ToTable("Requests");
                 });
 
             modelBuilder.Entity("TaskManager.Data.Models.Status", b =>
@@ -688,7 +690,7 @@ namespace TaskManager.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Statuses", (string)null);
+                    b.ToTable("Statuses");
 
                     b.HasData(
                         new
@@ -723,7 +725,7 @@ namespace TaskManager.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Types", (string)null);
+                    b.ToTable("Types");
 
                     b.HasData(
                         new
@@ -786,7 +788,7 @@ namespace TaskManager.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Workers", (string)null);
+                    b.ToTable("Workers");
 
                     b.HasData(
                         new

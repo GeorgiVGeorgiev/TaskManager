@@ -30,7 +30,10 @@
                     TaskId = c.TaskId.ToString(),
                     WorkerId = c.WorkerId.ToString(),
                     WorkerFullName = $"{c.Worker.User.FirstName} {c.Worker.User.LastName}",
+                    CreateDate = c.CreateDate.ToString("dd-MM-yyyy H:mm"),
+                    
                 })
+                .OrderByDescending(c => c.Id)
                 .ToArrayAsync();
 
             return comentarViewModels;

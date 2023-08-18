@@ -16,11 +16,12 @@
             public const int ClientNameMaxLength = 50;
             public const int ClientNameMinLength = 3;
 
-            public const int PredstavitelNameMaxLength = 30;
-            public const int PredstavitelNameMinLength = 3;
+            public const int CustomerRepresentativeNameMaxLength = 30;
+            public const int CustomerRepresentativeNameMinLength = 3;
 
             public const int PhoneNumberMaxLength = 15;
             public const int PhoneNumberMinLength = 7;
+            public const string CustomerRepresentativeDefautValue = "Няма";
         }
 
         public static class Worker
@@ -46,10 +47,10 @@
         public static class FrontDescriptionType
         {
             public const int TitleMaxLength = 100;
-            public const int TitleMinLength = 1;
+            public const int TitleMinLength = 3;
 
             public const int DescriptionMaxLength = 5000;
-            public const int DescriptionMinLength = 1;
+            public const int DescriptionMinLength = 10;
 
             public const int ImageUrlMaxLength = 2048;
 
@@ -69,14 +70,18 @@
 
         public static class Request
         {
+            #region 
             public const int NameMaxLength = 25;
             public const int NameMinLength = 3;
-
+            #endregion
+            #region
             public const int PhoneNumberMaxLength = 15;
             public const int PhoneNumberMinLength = 7;
-
+            #endregion
+            #region
             public const int DescriptionMaxLength = 2000;
             public const int DescriptionMinLength = 15;
+            #endregion
         }
         public static class Status
         {

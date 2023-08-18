@@ -6,7 +6,7 @@
     using TaskManager.Web.Infrastructure.Extentions;
     using TaskManager.Web.ViewModels.GeoTask;
     using static Common.NotificationMessages;
-    using static TaskManager.Common.EntityValidationConstants;
+    using static Common.ErrorMessageBulgarian;
 
     [Authorize]
     public class GeoTaskController : Controller
@@ -30,7 +30,7 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> AllTasks()
+        public async Task<IActionResult> AllTasks([FromQuery]AllTaskQueryModel queryModel)
         {
             try
             {
@@ -41,16 +41,13 @@
                 {
                     return this.ErrorIfUserIsNotWorker();
                 }
-            }
-            catch (Exception)
-            {
-                return this.GeneralError();
-            }
-            try
-            {
-                IEnumerable<TaskViewModel> taskViewModels = await this.geoTaskService.GetAllGeoTaskAsync();
 
-                return this.View(taskViewModels);
+                AllGeoTaskFilteredAndPageServiceModel serviceModel = await this.geoTaskService.GetAllGeoTaskFilteredAsync(queryModel);
+                queryModel.TotalTaskss = serviceModel.TotalTasks;
+                queryModel.Tasks = serviceModel.Tasks;
+                queryModel.Types = await this.typeService.GetAllTypeNamesAsync();
+
+                return this.View(queryModel);
             }
             catch (Exception)
             {
@@ -225,19 +222,19 @@
 		}
         private IActionResult GeneralError()
         {
-            this.TempData[ErrorMessage] = "Стана нещо, опитай пак или се свържи с администратор.";
+            this.TempData[ErrorMessage] = GeneralErrorMessage;
 
             return RedirectToAction("Index", "Home");
         }
         private IActionResult ErrorIfTaskDontExist()
         {
-            this.TempData[ErrorMessage] = "Задачата не съществува в базата данни.";
+            this.TempData[ErrorMessage] = ErrorIfTaskDontExistMessage;
 
             return RedirectToAction("Index", "Home");
         }
         private IActionResult ErrorIfUserIsNotWorker()
         {
-            this.TempData[ErrorMessage] = "Страницата е предназначена за работници.";
+            this.TempData[ErrorMessage] = ErrorIfUserIsNotWorkerMessage;
 
             return RedirectToAction("Index", "Home");
         }

@@ -1,6 +1,6 @@
 ﻿@model RegisterFormModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Регистрация";
 }
 
 <h1 class="text-center">@ViewData["Title"]</h1>
@@ -8,7 +8,7 @@
 <div class="row text-center">
     <div class="col-md-4 offset-md-4">
         <form id="registerForm" method="post" class="justify-content-center">
-            <h2>Create a new account.</h2>
+            <h2>Създаване на нов профил</h2>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-floating">
@@ -37,7 +37,7 @@
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
 
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Регистрация</button>
         </form>
     </div>
 </div>

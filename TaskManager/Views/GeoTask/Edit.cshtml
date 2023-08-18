@@ -163,7 +163,7 @@
 												</tr>
 												<tr>
 													<td><span>Представител:</span></td>
-													<td style="width:300px">@currentClient.Predstavitel"</td>	
+													<td style="width:300px">@currentClient.CustomerRepresentative"</td>	
 												</tr>
 												<tr>
 													<td><span>Телефон:</span></td>
@@ -187,7 +187,7 @@
 						</fieldset>
 					</div>
 						<div class="col-4">
-							<fieldset class="overflow-scroll" style="height:600px; scrollbar-arrow-color">
+							<fieldset class="overflow-scroll" style="height:600px;">
 								<legend>Коментари</legend>
 								<hr />
 									  <table>										 
@@ -199,7 +199,7 @@
 												@foreach (ComentarViewModel comentar in Model.Comentars)
 												{
 													<tr>
-														<div class="card-comment-section" style="width:300px">
+														<div class="card-comment-section" style="width:350px">
 															<div class="card-comment-symbol"></div>
 															<div class="card-comment-box" id="EditCommentarJs" style="border:solid 1px">
 																<div class="card-comment-user">
@@ -208,8 +208,9 @@
 																<div class="card shadow-sm ComenntarTextAreaJs" id="ComenntarTextAreaJs">
 																	   @comentar.Description
 																</div>
-																<div class="card-comment-action" id="CommentarEditButtonId" >
-																	<button class="btn" style="font-weight:bold; color:forestgreen; text-decoration:none;background-color:transparent" asp-controller="Comentar" asp-action="Edit" asp-route-id="@comentar.Id" type="submit" formmethod="get">Редактиране</button>												
+																<div class="card-comment-action row" id="CommentarEditButtonId" >
+																	<button class="btn" style="width:150px;font-weight:bold; color:forestgreen; text-decoration:none;background-color:transparent" asp-controller="Comentar" asp-action="Edit" asp-route-id="@comentar.Id" type="submit" formmethod="get">Редактиране</button>	
+																	<div class="text-black fst-italic" style="font-size:1.5vh; margin:auto; width:150px;"><b>@comentar.CreateDate</b></div>
 																</div>
 															</div>
 															<div style="height:5px"></div>

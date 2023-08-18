@@ -1,4 +1,6 @@
-﻿using TaskManager.Web.ViewModels.GeoTask;
+﻿using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore;
+using TaskManager.Web.ViewModels.GeoTask;
 
 namespace TaskManager.Services.Data
 {
@@ -149,7 +151,7 @@ namespace TaskManager.Services.Data
                 .Include(t => t.Client)
                 .Include(t => t.Status)
                 .Include(t => t.Type)
-                .Where(gt => gt.WorkerId.ToString() == workerId)
+                .Where(gt => gt.WorkerId.ToString() == workerId && gt.Status.Name != "Приключена")
                 .Select(t => new TaskViewModel
                 {
                     Id = t.Id.ToString(),
@@ -161,10 +163,61 @@ namespace TaskManager.Services.Data
                     status = t.Status.Name,
                     TaskType = t.Type.Name
                 })
-                .OrderBy(t => t.Number)
+                .OrderByDescending(t => t.Number)
                 .ToArrayAsync();
 
             return taskViewModels;
         }
+
+        public async Task<AllGeoTaskFilteredAndPageServiceModel> GetAllGeoTaskFilteredAsync(AllTaskQueryModel allTaskQueryModel)
+        {
+            IQueryable<GeoTask> geoTasksQuery = this.dbContext
+                .GeoTasks
+                .Include(t => t.Client)
+                .Include(t => t.Status)
+                .Include(t => t.Type)
+                .OrderByDescending(t => t.ProjectNumber)
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(allTaskQueryModel.Type))
+            {
+                geoTasksQuery = geoTasksQuery
+                    .Where(h => h.Type.Name == allTaskQueryModel.Type);
+            }
+            if(!string.IsNullOrWhiteSpace(allTaskQueryModel.SearchString))
+            {
+                geoTasksQuery = geoTasksQuery
+                    .Where(t => t.Client.Name.ToLower().Contains(allTaskQueryModel.SearchString.ToLower())
+                    || t.Adrress.ToLower().Contains(allTaskQueryModel.SearchString.ToLower())
+                    || t.Note.ToLower().Contains(allTaskQueryModel.SearchString.ToLower())
+                    || t.ProjectNumber.ToString().ToLower().Contains(allTaskQueryModel.SearchString.ToLower())
+                    );
+            }
+
+            IEnumerable<TaskViewModel> allGeoTasksModel = await geoTasksQuery
+                .Skip((allTaskQueryModel.CurrentPage - 1) * allTaskQueryModel.TaskPerPage)
+                .Take(allTaskQueryModel.TaskPerPage)
+                .Select(t => new TaskViewModel
+                {
+                    Id = t.Id.ToString(),
+                    Number = t.ProjectNumber,
+                    EndDate = t.EndDate,
+                    ClientName = t.Client.Name,
+                    price = t.Price,
+                    quantity = t.quantity,
+                    status = t.Status.Name,
+                    TaskType = t.Type.Name
+                })
+                .ToArrayAsync();
+
+            int totalTasks = geoTasksQuery.Count();
+
+            return new AllGeoTaskFilteredAndPageServiceModel()
+            {
+                Tasks = allGeoTasksModel,
+                TotalTasks = totalTasks,
+            };
+        }
     }
 }
+

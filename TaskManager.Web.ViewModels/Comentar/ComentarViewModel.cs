@@ -1,10 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace TaskManager.Web.ViewModels.Comentar
+﻿namespace TaskManager.Web.ViewModels.Comentar
 {
     using System.ComponentModel.DataAnnotations;
-
+    using static Common.EntityValidationConstants.Comentar;
+    using static Common.ErrorMessageBulgarian;
 
     public class ComentarViewModel
     {
@@ -18,9 +16,13 @@ namespace TaskManager.Web.ViewModels.Comentar
         public string TaskId { get; set; } = null!;
 
 		[Required]
+        [StringLength(DescriptionMaxLength,MinimumLength =DescriptionMinLength,ErrorMessage = DescriptionErrorMessage)]
         public string Description { get; set; } = null!;
 
         [Required]
         public string WorkerFullName { get; set; } = null!;
+
+        [Required]
+        public string CreateDate { get; set; } = null!;
     }
 }

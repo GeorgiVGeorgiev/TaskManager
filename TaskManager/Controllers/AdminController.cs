@@ -6,6 +6,7 @@
     using TaskManager.Web.Infrastructure.Extentions;
     using TaskManager.Web.ViewModels.Admin;
     using static Common.NotificationMessages;
+    using static Common.ErrorMessageBulgarian;
 
     [Authorize(Roles = "Administrator")]
     public class AdminController : Controller
@@ -185,20 +186,20 @@
         }
         private IActionResult ErrorIfUserIsNotAdmin()
         {
-            this.TempData[ErrorMessage] = "Страницата е предназначена за работници.";
+            this.TempData[ErrorMessage] = ErrorIfUserIsNotAdminMessage;
 
             return RedirectToAction("Index", "Home");
         }
         private IActionResult ErrorIfUserDontExist()
         {
-            this.TempData[ErrorMessage] = "Страницата е предназначена за работници.";
+            this.TempData[ErrorMessage] = ErrorIfUserDontExistMessage;
 
             return RedirectToAction("Index", "Home");
         }
 
         private IActionResult GeneralError()
         {
-            this.TempData[ErrorMessage] = "Стана нещо, опитай пак или се свържи с администратор.";
+            this.TempData[ErrorMessage] = GeneralErrorMessage;
 
             return RedirectToAction("Index", "Home");
         }

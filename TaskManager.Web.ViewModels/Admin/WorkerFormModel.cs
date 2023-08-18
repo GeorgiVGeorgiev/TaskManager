@@ -1,9 +1,8 @@
 ﻿namespace TaskManager.Web.ViewModels.Admin
 {
     using System.ComponentModel.DataAnnotations;
-    using System.Security.Permissions;
     using static Common.EntityValidationConstants.Worker;
-
+    using static Common.ErrorMessageBulgarian;
     public class WorkerFormModel
     {
         [Required]
@@ -11,12 +10,12 @@
 
         [Required]
         [Phone]
-        [StringLength(PhoneNumberMaxLength, MinimumLength = PhoneNumberMinLength)]
+        [StringLength(PhoneNumberMaxLength, MinimumLength = PhoneNumberMinLength,ErrorMessage =PhoneErrorMessage)]
         [Display(Name = "Телефонен номер")]
         public string PhoneNumber { get; set; } = null!;
 
         [Required]
-        [StringLength(PositionMaxLength, MinimumLength = PositionMinLength)]
+        [StringLength(PositionMaxLength, MinimumLength = PositionMinLength, ErrorMessage =NameErrorMessage)]
         [Display(Name = "Позиция")]
         public string Position { get; set; } = null!;
     }

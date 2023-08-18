@@ -4,8 +4,9 @@
 	using TaskManager.Services.Data.Interfaces;
 	using TaskManager.Web.Infrastructure.Extentions;
 	using TaskManager.Web.ViewModels.Comentar;
-	using TaskManager.Web.ViewModels.GeoTask;
+
 	using static Common.NotificationMessages;
+	using static Common.ErrorMessageBulgarian;
 
 	public class ComentarController : Controller
 	{
@@ -50,7 +51,7 @@
                 {
                     string TaskId = await this.comentarService.GetTaskIdByComentarId(Id);
 
-                    this.TempData[WarningMessage] = "Ти не си писал този коментар защо искаш да го коригираш ?";
+                    this.TempData[WarningMessage] = ErrorIfYouAreNotCommentarOwnerMessage;
                     return RedirectToAction("Edit", "GeoTask", new { Id = TaskId });
                 }
             }
@@ -198,19 +199,19 @@
 
 		private IActionResult ErrorIfUserIsNotWorker()
 		{
-			this.TempData[ErrorMessage] = "Страницата е предназначена за работници.";
+			this.TempData[ErrorMessage] = ErrorIfUserIsNotWorkerMessage;
 
 			return RedirectToAction("Index", "Home");
 		}
 		private IActionResult ErrorIfComentarDosNotExist()
 		{
-			this.TempData[ErrorMessage] = "Коментарът не съществува!";
+			this.TempData[ErrorMessage] = ErrorIfClientDontExistMessage;
 
 			return RedirectToAction("Index", "Home");
 		}
 		private IActionResult GeneralError()
 		{
-			this.TempData[ErrorMessage] = "Стана нещо, опитай пак или се свържи с администратор.";
+			this.TempData[ErrorMessage] = GeneralErrorMessage;
 
 			return RedirectToAction("Index", "Home");
 		}

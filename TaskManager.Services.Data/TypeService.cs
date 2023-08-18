@@ -39,6 +39,14 @@
             await this.dbContext.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<string>> GetAllTypeNamesAsync()
+        {
+            return await this.dbContext
+                .Types
+                .Select(t => t.Name)
+                .ToArrayAsync();
+        }
+
         public async Task<IEnumerable<TypeViewModel>> GetAllTypesAsync()
         {
             IEnumerable<TypeViewModel> types = await this.dbContext

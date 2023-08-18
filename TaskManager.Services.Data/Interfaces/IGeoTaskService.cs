@@ -5,6 +5,7 @@
     public interface IGeoTaskService
     {
         public Task<IEnumerable<TaskViewModel>> GetAllGeoTaskAsync();
+        public Task<AllGeoTaskFilteredAndPageServiceModel> GetAllGeoTaskFilteredAsync(AllTaskQueryModel allTaskQueryModel);
         public Task<EditGeoTaskViewModel> GetGeoTaskByIdAsync(string Id);
 
         public Task<bool> IsTaskExistByIdAsync(string Id);

@@ -7,6 +7,7 @@
     using TaskManager.Web.ViewModels.Client;
 
     using static Common.NotificationMessages;
+    using static Common.ErrorMessageBulgarian;
 
     [Authorize]
     public class ClientController : Controller
@@ -20,7 +21,7 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> Clients()
+        public async Task<IActionResult> Clients([FromQuery]AllClientQueryModel queryModel)
         {
             try
             {
@@ -29,16 +30,11 @@
                 {
                     return ErrorIfUserIsNotWorker();
                 }
-            }
-            catch (Exception)
-            {
-                return GeneralError();
-            }
-            try
-            {
-                IEnumerable<ClientViewModel> clientsViewModel = await this.clientService.GetAllClientsAsync()!;
+                AllClientsFilteredANdPageServiceModel serviceModel= await this.clientService.GetAllClientFilteredAsync(queryModel);
+                queryModel.TotalTaskss = serviceModel.TotalClients;
+                queryModel.Client = serviceModel.Clients;
 
-                return View(clientsViewModel);
+                return View(queryModel);
             }
             catch (Exception)
             {
@@ -46,7 +42,7 @@
             }
         }
 
-        [HttpGet]
+                [HttpGet]
         public async Task<IActionResult> Edit(string Id)
         {
             try
@@ -149,13 +145,13 @@
 
         private IActionResult ErrorIfUserIsNotWorker()
         {
-            this.TempData[ErrorMessage] = "Страницата е предназначена за работници.";
+            this.TempData[ErrorMessage] = ErrorIfUserIsNotWorkerMessage;
 
             return RedirectToAction("Index", "Home");
         }
         private IActionResult ErrorIfClientDosNotExist()
         {
-            this.TempData[ErrorMessage] = "Клиентът не съществува!";
+            this.TempData[ErrorMessage] = ErrorIfClientDontExistMessage;
 
             return RedirectToAction("Index", "Home");
         }
@@ -171,7 +167,7 @@
         }
         private IActionResult GeneralError()
         {
-            this.TempData[ErrorMessage] = "Стана нещо, опитай пак или се свържи с администратор.";
+            this.TempData[ErrorMessage] = GeneralErrorMessage;
 
             return RedirectToAction("Index", "Home");
         }

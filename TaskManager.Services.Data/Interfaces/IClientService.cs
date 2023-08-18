@@ -1,6 +1,7 @@
 ﻿namespace TaskManager.Services.Data.Interfaces
 {
     using TaskManager.Web.ViewModels.Client;
+    using TaskManager.Web.ViewModels.GeoTask;
 
     public interface IClientService
     {
@@ -14,5 +15,8 @@
         public Task EditClientAsnyc(ClientViewModel model, string clientId);
 
         public Task<bool> IsClientExitByIdAsync(string clientId);
+
+        public Task<AllClientsFilteredANdPageServiceModel> GetAllClientFilteredAsync(AllClientQueryModel allClientQueryModel);
+
     }
 }
