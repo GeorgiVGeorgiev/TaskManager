@@ -69,14 +69,18 @@
 
         public static class Request
         {
+            #region 
             public const int NameMaxLength = 25;
             public const int NameMinLength = 3;
-
+            #endregion
+            #region
             public const int PhoneNumberMaxLength = 15;
             public const int PhoneNumberMinLength = 7;
-
+            #endregion
+            #region
             public const int DescriptionMaxLength = 2000;
             public const int DescriptionMinLength = 15;
+            #endregion
         }
         public static class Status
         {
