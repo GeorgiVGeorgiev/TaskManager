@@ -20,7 +20,7 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> Clients()
+        public async Task<IActionResult> Clients([FromQuery]AllClientQueryModel queryModel)
         {
             try
             {
@@ -29,16 +29,11 @@
                 {
                     return ErrorIfUserIsNotWorker();
                 }
-            }
-            catch (Exception)
-            {
-                return GeneralError();
-            }
-            try
-            {
-                IEnumerable<ClientViewModel> clientsViewModel = await this.clientService.GetAllClientsAsync()!;
+                AllClientsFilteredANdPageServiceModel serviceModel= await this.clientService.GetAllClientFilteredAsync(queryModel);
+                queryModel.TotalTaskss = serviceModel.TotalClients;
+                queryModel.Client = serviceModel.Clients;
 
-                return View(clientsViewModel);
+                return View(queryModel);
             }
             catch (Exception)
             {
@@ -46,7 +41,7 @@
             }
         }
 
-        [HttpGet]
+                [HttpGet]
         public async Task<IActionResult> Edit(string Id)
         {
             try

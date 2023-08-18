@@ -1,4 +1,6 @@
-﻿namespace TaskManager.Services.Data
+﻿using TaskManager.Web.ViewModels.GeoTask;
+
+namespace TaskManager.Services.Data
 {
     using Microsoft.EntityFrameworkCore;
     using TaskManager.Data;
@@ -95,6 +97,40 @@
                 Email = client.Email,
                 PhoneNumber = client.PhoneNumber,
                 Predstavitel = client.Predstavitel,
+            };
+        }
+
+        public async Task<AllClientsFilteredANdPageServiceModel> GetAllClientFilteredAsync(AllClientQueryModel allClientQueryModel)
+        {
+            IQueryable<Client> clientQuery = this.dbContext
+                .Clients
+                .OrderBy(c => c.Name);
+
+            if(!string.IsNullOrWhiteSpace(allClientQueryModel.SearchString))
+            {
+                clientQuery = clientQuery
+                    .Where(c => c.Name == allClientQueryModel.SearchString
+                    || c.PhoneNumber == allClientQueryModel.SearchString
+                    || c.Predstavitel == allClientQueryModel.SearchString);
+            }
+            IEnumerable<ClientViewModel> clientViewModels = await clientQuery
+                .Skip((allClientQueryModel.CurrentPage - 1) * allClientQueryModel.ClientPerPage)
+                .Take(allClientQueryModel.ClientPerPage)
+                .Select(c => new ClientViewModel()
+                {
+                    Id = c.Id.ToString(),
+                    Name = c.Name,
+                    Email = c.Email,
+                    PhoneNumber = c.PhoneNumber,
+                    Predstavitel = c.Predstavitel,
+                })
+                .ToArrayAsync();
+            int totalClients = clientQuery.Count();
+
+            return new AllClientsFilteredANdPageServiceModel()
+            {
+                Clients = clientViewModels,
+                TotalClients = totalClients,
             };
         }
     }

@@ -31,6 +31,7 @@
                     WorkerId = c.WorkerId.ToString(),
                     WorkerFullName = $"{c.Worker.User.FirstName} {c.Worker.User.LastName}",
                 })
+                .OrderByDescending(c => c.Id)
                 .ToArrayAsync();
 
             return comentarViewModels;

@@ -30,7 +30,7 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> AllTasks()
+        public async Task<IActionResult> AllTasks([FromQuery]AllTaskQueryModel queryModel)
         {
             try
             {
@@ -41,16 +41,13 @@
                 {
                     return this.ErrorIfUserIsNotWorker();
                 }
-            }
-            catch (Exception)
-            {
-                return this.GeneralError();
-            }
-            try
-            {
-                IEnumerable<TaskViewModel> taskViewModels = await this.geoTaskService.GetAllGeoTaskAsync();
 
-                return this.View(taskViewModels);
+                AllGeoTaskFilteredAndPageServiceModel serviceModel = await this.geoTaskService.GetAllGeoTaskFilteredAsync(queryModel);
+                queryModel.TotalTaskss = serviceModel.TotalTasks;
+                queryModel.Tasks = serviceModel.Tasks;
+                queryModel.Types = await this.typeService.GetAllTypeNamesAsync();
+
+                return this.View(queryModel);
             }
             catch (Exception)
             {

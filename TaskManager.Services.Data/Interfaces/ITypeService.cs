@@ -11,7 +11,7 @@ namespace TaskManager.Services.Data.Interfaces
         Task<bool> IsExistByIdAsync(int id);
         Task AddTypeAsync(TypeViewModel typeViewModel);
         Task EditTypeAsync(TypeViewModel typeViewModel);
-
+        Task<IEnumerable<string>> GetAllTypeNamesAsync();
         Task<TypeViewModel> GetByIdAsync(int id);
 
     }
