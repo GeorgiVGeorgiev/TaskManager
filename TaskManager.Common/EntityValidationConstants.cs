@@ -47,10 +47,10 @@
         public static class FrontDescriptionType
         {
             public const int TitleMaxLength = 100;
-            public const int TitleMinLength = 1;
+            public const int TitleMinLength = 3;
 
             public const int DescriptionMaxLength = 5000;
-            public const int DescriptionMinLength = 1;
+            public const int DescriptionMinLength = 10;
 
             public const int ImageUrlMaxLength = 2048;
 

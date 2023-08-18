@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManager.Data;
 
@@ -11,9 +12,10 @@ using TaskManager.Data;
 namespace TaskManager.Data.Migrations
 {
     [DbContext(typeof(TaskManagerDbContext))]
-    partial class TaskManagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230818212059_UpdateClientsColumName")]
+    partial class UpdateClientsColumName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -352,7 +354,7 @@ namespace TaskManager.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clients", (string)null);
+                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("TaskManager.Data.Models.Comentar", b =>
@@ -383,7 +385,7 @@ namespace TaskManager.Data.Migrations
 
                     b.HasIndex("WorkerId");
 
-                    b.ToTable("Comentars", (string)null);
+                    b.ToTable("Comentars");
 
                     b.HasData(
                         new
@@ -441,7 +443,7 @@ namespace TaskManager.Data.Migrations
 
                     b.HasIndex("TaskId");
 
-                    b.ToTable("Documents", (string)null);
+                    b.ToTable("Documents");
                 });
 
             modelBuilder.Entity("TaskManager.Data.Models.FrontDescriptionType", b =>
@@ -476,7 +478,7 @@ namespace TaskManager.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FrontDescriptionTypes", (string)null);
+                    b.ToTable("FrontDescriptionTypes");
 
                     b.HasData(
                         new
@@ -600,7 +602,7 @@ namespace TaskManager.Data.Migrations
 
                     b.HasIndex("WorkerId");
 
-                    b.ToTable("GeoTasks", (string)null);
+                    b.ToTable("GeoTasks");
 
                     b.HasData(
                         new
@@ -670,7 +672,7 @@ namespace TaskManager.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Requests", (string)null);
+                    b.ToTable("Requests");
                 });
 
             modelBuilder.Entity("TaskManager.Data.Models.Status", b =>
@@ -688,7 +690,7 @@ namespace TaskManager.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Statuses", (string)null);
+                    b.ToTable("Statuses");
 
                     b.HasData(
                         new
@@ -723,7 +725,7 @@ namespace TaskManager.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Types", (string)null);
+                    b.ToTable("Types");
 
                     b.HasData(
                         new
@@ -786,7 +788,7 @@ namespace TaskManager.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Workers", (string)null);
+                    b.ToTable("Workers");
 
                     b.HasData(
                         new

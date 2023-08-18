@@ -3,6 +3,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using static Common.EntityValidationConstants.FrontDescriptionType;
+    using static Common.ErrorMessageBulgarian;
 
     public class FrontDescriptionTypeViewModel
     {
@@ -10,12 +11,12 @@
         public int Id { get; set; }
 
         [Required]
-        [StringLength(TitleMaxLength,MinimumLength =TitleMinLength)]
+        [StringLength(TitleMaxLength,MinimumLength =TitleMinLength,ErrorMessage =NameErrorMessage)]
         [Display(Name ="Заглавие")]
         public string Title { get; set; } = null!;
 
         [Required]
-        [StringLength(DescriptionMaxLength,MinimumLength =DescriptionMinLength)]
+        [StringLength(DescriptionMaxLength,MinimumLength =DescriptionMinLength,ErrorMessage =DescriptionErrorMessage)]
         [Display(Name = "Описание")]
         public string Description { get; set; } = null!;
 
@@ -26,12 +27,12 @@
 
         [Required]
         [Display(Name = "Работни дни")]
-        [Range(0,365)]
+        [Range(0,365,ErrorMessage = TermDaysErrorMessage)]
         public int TermDays { get; set; }
 
         [Required]
         [Display(Name = "Цена")]
-        [Range(0, int.MaxValue)]
+        [Range(0, int.MaxValue,ErrorMessage = PriceErrorMessage)]
         public decimal Price { get; set; }
     }
 }
