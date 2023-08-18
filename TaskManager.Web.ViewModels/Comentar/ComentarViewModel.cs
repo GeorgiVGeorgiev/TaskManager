@@ -15,7 +15,7 @@
         [Required]
         public string TaskId { get; set; } = null!;
 
-		[Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         [StringLength(DescriptionMaxLength,MinimumLength =DescriptionMinLength,ErrorMessage = DescriptionErrorMessage)]
         public string Description { get; set; } = null!;
 

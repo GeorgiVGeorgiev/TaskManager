@@ -15,34 +15,34 @@
         [Required]
         public string Id { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         [StringLength(AddressMaxLength,MinimumLength =AddressMinLength,ErrorMessage =NameErrorMessage)]
         [Display(Name ="Адрес")]
         public string Adrress { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         public int ProjectNumber { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         [Range(0,int.MaxValue,ErrorMessage =PriceErrorMessage)]
         [Display(Name ="Цена")]
         public decimal Price { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         public DateTime CreateDate { get; set; } = DateTime.UtcNow;
 
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         public DateTime EndDate { get; set; } = DateTime.UtcNow;
 
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         [StringLength(IdKKKRMaxLength,MinimumLength =IdKKKRMinLength,ErrorMessage =NameErrorMessage)]
         public string IdKKKR { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         [Range(0,int.MaxValue)]
         public int quantity { get; set; } = 1;
 
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         [StringLength(NoteMaxLength,MinimumLength =NoteMinLength,ErrorMessage =NameErrorMessage)]
         public string Note { get; set; } = "";
 

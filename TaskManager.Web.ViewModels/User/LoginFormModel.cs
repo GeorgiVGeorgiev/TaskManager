@@ -1,15 +1,16 @@
 ﻿namespace TaskManager.Web.ViewModels.User
 {
     using System.ComponentModel.DataAnnotations;
+    using static Common.ErrorMessageBulgarian;
 
     public class LoginFormModel
     {
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         [EmailAddress]
         [Display(Name ="Имейл")]
         public string Email { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         [DataType(DataType.Password)]
         [Display(Name ="Парола")]
         public string Password { get; set; } = null!;
