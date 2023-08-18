@@ -151,7 +151,7 @@ namespace TaskManager.Services.Data
                 .Include(t => t.Client)
                 .Include(t => t.Status)
                 .Include(t => t.Type)
-                .Where(gt => gt.WorkerId.ToString() == workerId)
+                .Where(gt => gt.WorkerId.ToString() == workerId && gt.Status.Name != "Приключена")
                 .Select(t => new TaskViewModel
                 {
                     Id = t.Id.ToString(),

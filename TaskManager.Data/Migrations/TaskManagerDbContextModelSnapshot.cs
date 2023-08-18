@@ -345,7 +345,7 @@ namespace TaskManager.Data.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
-                    b.Property<string>("Predstavitel")
+                    b.Property<string>("CustomerRepresentative")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");

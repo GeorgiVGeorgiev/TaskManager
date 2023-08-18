@@ -6,6 +6,7 @@
     using TaskManager.Data.Models;
     using TaskManager.Web.ViewModels.User;
     using static Common.NotificationMessages;
+    using static Common.ErrorMessageBulgarian;
     public class UserController : Controller
     {
         private readonly SignInManager<ApplicationUser> signInManager;
@@ -81,7 +82,7 @@
 
             if (!result.Succeeded)
             {
-                TempData[ErrorMessage] = "There was a error while you try to login!!!";
+                TempData[ErrorMessage] = GeneralErrorMessage;
                 return View(model);
             }
 

@@ -12,7 +12,7 @@
         [MaxLength(NameMaxLength)]
         public string Name { get; set; } = null!;
 
-        public ICollection<GeoTask> Tasks { get; set; } = new List<GeoTask>();
+        public IEnumerable<GeoTask> Tasks { get; set; } = new List<GeoTask>();
 
     }
 }

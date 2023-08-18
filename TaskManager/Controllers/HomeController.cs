@@ -1,11 +1,11 @@
 ﻿namespace TaskManager.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using TaskManager.Services.Data.Interfaces;
     using TaskManager.Web.ViewModels.FrontDescriptionType;
 
-    using static Common.NotificationMessages;
-
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly IFrontDescriptionTypeService frontDescriptionTypeService;
@@ -25,7 +25,7 @@
         [HttpGet]
         public async Task<IActionResult> Details(int Id)
         {
-             if (!isExitByIdAsync(Id))
+             if (!await this.isExitByIdAsync(Id))
              {
                
                 return  this.Error(500);
@@ -51,29 +51,14 @@
             return View("Error/Error");
         }
 
-        private bool isExitByIdAsync(int Id)
+        private async Task<bool> isExitByIdAsync(int Id)
         {
-            bool isExist = false;
-
-            Task.Run(async () =>
-            {
-                isExist = await this.frontDescriptionTypeService.isExistByIdAsync(Id);
-            })
-            .GetAwaiter()
-            .GetResult();
-
+             bool isExist = await this.frontDescriptionTypeService.isExistByIdAsync(Id);
              if (!isExist)
              {
                  return false;
              }
              return true;
         }
-        private IActionResult GeneralError()
-        {
-            this.TempData[ErrorMessage] = "Нещо се обърка опитай пак.";
-
-            return RedirectToAction("Index", "Home");
-        }
-
     }
 }

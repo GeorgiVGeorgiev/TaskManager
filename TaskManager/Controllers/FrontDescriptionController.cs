@@ -6,6 +6,7 @@
     using TaskManager.Web.Infrastructure.Extentions;
     using TaskManager.Web.ViewModels.FrontDescriptionType;
     using static Common.NotificationMessages;
+    using static Common.ErrorMessageBulgarian;
 
     [Authorize(Roles ="Administrator")]
     public class FrontDescriptionController : Controller
@@ -146,20 +147,20 @@
 
         private IActionResult ErrorIfUserIsNotAdmin()
         {
-            this.TempData[ErrorMessage] = "Страницата е предназначена за работници.";
+            this.TempData[ErrorMessage] = ErrorIfUserIsNotAdminMessage;
 
             return RedirectToAction("Index", "Home");
         }
         private IActionResult ErrorIfTaskDontExist()
         {
-            this.TempData[ErrorMessage] = "Задачата която се опитваш да коригираш не съществува.";
+            this.TempData[ErrorMessage] = ErrorIfFrontTaskDontExistMessage;
 
             return RedirectToAction("Index", "Home");
         }
 
         private IActionResult GeneralError()
         {
-            this.TempData[ErrorMessage] = "Стана нещо, опитай пак или се свържи с администратор.";
+            this.TempData[ErrorMessage] = GeneralErrorMessage;
 
             return RedirectToAction("Index", "Home");
         }

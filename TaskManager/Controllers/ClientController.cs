@@ -7,6 +7,7 @@
     using TaskManager.Web.ViewModels.Client;
 
     using static Common.NotificationMessages;
+    using static Common.ErrorMessageBulgarian;
 
     [Authorize]
     public class ClientController : Controller
@@ -144,13 +145,13 @@
 
         private IActionResult ErrorIfUserIsNotWorker()
         {
-            this.TempData[ErrorMessage] = "Страницата е предназначена за работници.";
+            this.TempData[ErrorMessage] = ErrorIfUserIsNotWorkerMessage;
 
             return RedirectToAction("Index", "Home");
         }
         private IActionResult ErrorIfClientDosNotExist()
         {
-            this.TempData[ErrorMessage] = "Клиентът не съществува!";
+            this.TempData[ErrorMessage] = ErrorIfClientDontExistMessage;
 
             return RedirectToAction("Index", "Home");
         }
@@ -166,7 +167,7 @@
         }
         private IActionResult GeneralError()
         {
-            this.TempData[ErrorMessage] = "Стана нещо, опитай пак или се свържи с администратор.";
+            this.TempData[ErrorMessage] = GeneralErrorMessage;
 
             return RedirectToAction("Index", "Home");
         }

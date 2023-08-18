@@ -12,9 +12,9 @@
         public string Name { get; set; } = null!;
 
         [Required]
-        [StringLength(PredstavitelNameMaxLength,MinimumLength =PredstavitelNameMinLength)]
+        [StringLength(CustomerRepresentativeNameMaxLength,MinimumLength =CustomerRepresentativeNameMinLength)]
         [Display(Name = "Име на представител")]
-        public string Predstavitel { get; set; } = "Няма";
+        public string CustomerRepresentative { get; set; } = "Няма";
 
         [Required]
         [StringLength(PhoneNumberMaxLength,MinimumLength =PhoneNumberMinLength)]

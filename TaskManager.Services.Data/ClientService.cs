@@ -26,7 +26,7 @@ namespace TaskManager.Services.Data
                     Name = c.Name,
                     Email = c.Email,
                     PhoneNumber = c.PhoneNumber,
-                    Predstavitel = c.Predstavitel,
+                    CustomerRepresentative = c.CustomerRepresentative,
                 })
                 .OrderBy(c => c.Name)
                 .ToArrayAsync();
@@ -45,7 +45,7 @@ namespace TaskManager.Services.Data
                 Name = formModel.Name,
                 Email = formModel.Email,
                 PhoneNumber = formModel.PhoneNumber,
-                Predstavitel = formModel.Predstavitel,
+                CustomerRepresentative = formModel.CustomerRepresentative,
             };
         }
         public async Task AddClientAsync(ClientFormModel model)
@@ -55,7 +55,7 @@ namespace TaskManager.Services.Data
                 Name = model.Name,
                 Email = model.Email,
                 PhoneNumber = model.PhoneNumber,
-                Predstavitel = model.Predstavitel,
+                CustomerRepresentative = model.CustomerRepresentative,
             };
             await this.dbContext
                 .Clients.AddAsync(client);
@@ -72,7 +72,7 @@ namespace TaskManager.Services.Data
             client.Name = model.Name;
             client.Email = model.Email;
             client.PhoneNumber = model.PhoneNumber;
-            client.Predstavitel = model.Predstavitel;
+            client.CustomerRepresentative = model.CustomerRepresentative;
 
 
             await this.dbContext.SaveChangesAsync();
@@ -96,7 +96,7 @@ namespace TaskManager.Services.Data
                 Name = client.Name,
                 Email = client.Email,
                 PhoneNumber = client.PhoneNumber,
-                Predstavitel = client.Predstavitel,
+                CustomerRepresentative = client.CustomerRepresentative,
             };
         }
 
@@ -111,7 +111,7 @@ namespace TaskManager.Services.Data
                 clientQuery = clientQuery
                     .Where(c => c.Name.Contains(allClientQueryModel.SearchString)
                     || c.PhoneNumber.Contains(allClientQueryModel.SearchString)
-                    || c.Predstavitel.Contains(allClientQueryModel.SearchString));
+                    || c.CustomerRepresentative.Contains(allClientQueryModel.SearchString));
             }
             IEnumerable<ClientViewModel> clientViewModels = await clientQuery
                 .Skip((allClientQueryModel.CurrentPage - 1) * allClientQueryModel.ClientPerPage)
@@ -122,7 +122,7 @@ namespace TaskManager.Services.Data
                     Name = c.Name,
                     Email = c.Email,
                     PhoneNumber = c.PhoneNumber,
-                    Predstavitel = c.Predstavitel,
+                    CustomerRepresentative = c.CustomerRepresentative,
                 })
                 .ToArrayAsync();
             int totalClients = clientQuery.Count();

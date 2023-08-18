@@ -3,14 +3,13 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using TaskManager.Services.Data.Interfaces;
-    using TaskManager.Web.Infrastructure.CustomAttributs;
     using TaskManager.Web.Infrastructure.Extentions;
     using TaskManager.Web.ViewModels.Request;
 
     using static Common.NotificationMessages;
+    using static Common.ErrorMessageBulgarian;
 
     [Authorize]
-    //[CustomAuthorize]
     public class RequestController : Controller
     {
         private readonly IRequestService requestService;
@@ -28,7 +27,7 @@
 
             if (isUserWorker)
             {
-                TempData[WarningMessage] = "Ти работиш, какви задачи искаш да даваш?";
+                TempData[WarningMessage] = ErrorIfWorkerTryToSendRequest;
                 return this.RedirectToAction("MyTasks", "Task");
             }
 
@@ -44,13 +43,13 @@
 
             if (isUserWorker)
             {
-                TempData[WarningMessage] = "Ти работиш, какви задачи искаш да даваш?";
+                TempData[WarningMessage] = ErrorIfWorkerTryToSendRequest;
                 return this.RedirectToAction("MyTasks", "Task");
             }
 
             if (!ModelState.IsValid)
             {
-                ModelState.AddModelError(string.Empty, "Нещо се обърка");
+                ModelState.AddModelError(string.Empty, GeneralErrorMessage);
                 return this.View(forModel);
             }
             try
@@ -60,10 +59,10 @@
             }
             catch (Exception)
             {
-                ModelState.AddModelError(string.Empty, "Нещо не се получи с изпращането опитай пак");
+                ModelState.AddModelError(string.Empty, GeneralErrorMessage);
                 return this.View(forModel);
             }
-            TempData[SuccsessMessage] = "Успешно изпратихте вашата заявка.";
+            TempData[SuccsessMessage] = SuccessfullySendRequest;
             return RedirectToAction("Index", "Home");
         }
 
@@ -161,19 +160,19 @@
         }
         private IActionResult GeneralError()
         {
-            this.TempData[ErrorMessage] = "Стана нещо, опитай пак или се свържи с администратор.";
+            this.TempData[ErrorMessage] = GeneralErrorMessage;
 
             return RedirectToAction("Index", "Home");
         }
         private IActionResult ErrorIfRequestDontExist()
         {
-            this.TempData[ErrorMessage] = "Задачата не съществува в базата данни.";
+            this.TempData[ErrorMessage] = ErrorIfRequestDontExistMessage;
 
             return RedirectToAction("Index", "Home");
         }
         private IActionResult ErrorIfUserIsNotWorker()
         {
-            this.TempData[ErrorMessage] = "Страницата е предназначена за работници.";
+            this.TempData[ErrorMessage] = ErrorIfUserIsNotWorkerMessage;
 
             return RedirectToAction("Index", "Home");
         }

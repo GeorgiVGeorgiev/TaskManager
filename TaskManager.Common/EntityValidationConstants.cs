@@ -16,11 +16,12 @@
             public const int ClientNameMaxLength = 50;
             public const int ClientNameMinLength = 3;
 
-            public const int PredstavitelNameMaxLength = 30;
-            public const int PredstavitelNameMinLength = 3;
+            public const int CustomerRepresentativeNameMaxLength = 30;
+            public const int CustomerRepresentativeNameMinLength = 3;
 
             public const int PhoneNumberMaxLength = 15;
             public const int PhoneNumberMinLength = 7;
+            public const string CustomerRepresentativeDefautValue = "Няма";
         }
 
         public static class Worker
