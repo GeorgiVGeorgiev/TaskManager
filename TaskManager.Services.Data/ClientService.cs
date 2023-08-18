@@ -109,9 +109,9 @@ namespace TaskManager.Services.Data
             if(!string.IsNullOrWhiteSpace(allClientQueryModel.SearchString))
             {
                 clientQuery = clientQuery
-                    .Where(c => c.Name == allClientQueryModel.SearchString
-                    || c.PhoneNumber == allClientQueryModel.SearchString
-                    || c.Predstavitel == allClientQueryModel.SearchString);
+                    .Where(c => c.Name.Contains(allClientQueryModel.SearchString)
+                    || c.PhoneNumber.Contains(allClientQueryModel.SearchString)
+                    || c.Predstavitel.Contains(allClientQueryModel.SearchString));
             }
             IEnumerable<ClientViewModel> clientViewModels = await clientQuery
                 .Skip((allClientQueryModel.CurrentPage - 1) * allClientQueryModel.ClientPerPage)

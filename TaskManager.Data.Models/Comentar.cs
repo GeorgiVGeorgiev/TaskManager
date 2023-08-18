@@ -26,6 +26,9 @@
         [ForeignKey(nameof(TaskId))]
         public GeoTask Task { get; set; } = null!;
 
+        [Required]
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
+
 
     }
 }
