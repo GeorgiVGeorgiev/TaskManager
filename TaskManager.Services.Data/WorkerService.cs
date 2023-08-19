@@ -15,9 +15,8 @@
 			this.dbContext = dbContext;
 		}
 
-		public async Task<AllWorkersViewModel> GetWorkerFromTask(string Id)
+		public async Task<AllWorkersViewModel> GetWorkerFromTaskWorkerId(string Id)
 		{
-			string idd = Id;
 			Worker worker = await this.dbContext
 				.Workers
 				.Include(w => w.User)

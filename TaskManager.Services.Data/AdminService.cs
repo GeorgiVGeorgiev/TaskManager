@@ -101,21 +101,5 @@
             await this.dbContext.AddAsync(worker);
             await this.dbContext.SaveChangesAsync();
         }
-
-        public async Task<WorkerVIewModel> GetUserWorkerByIdAsync(string userId)
-        {
-            Worker user = await this.dbContext
-                .Workers
-                .Include(w => w.User)
-                .FirstAsync(w => w.UserId.ToString() == userId.ToUpper());
-
-            return new WorkerVIewModel()
-            {
-                Id = user.UserId.ToString(),
-                FirstName = user.User.FirstName,
-                LastName = user.User.LastName,
-                PhoneNumber = user.PhoneNumber,
-            };
-        }
     }
 }

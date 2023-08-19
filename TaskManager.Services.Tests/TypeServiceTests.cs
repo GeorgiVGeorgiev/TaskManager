@@ -2,10 +2,8 @@
 {
     using Microsoft.EntityFrameworkCore;
     using TaskManager.Data;
-    using TaskManager.Data.Models;
     using TaskManager.Services.Data;
     using TaskManager.Services.Data.Interfaces;
-    using TaskManager.Web.ViewModels.Request;
     using TaskManager.Web.ViewModels.Type;
     using Type = TaskManager.Data.Models.Type;
     public class TypeServiceTests
@@ -71,6 +69,7 @@
             CollectionAssert.AllItemsAreNotNull(typeViewModels);
             CollectionAssert.AllItemsAreUnique(typeViewModels);
         }
+        [Test]
         public async Task GetByIdAsyncAsyncShoudReturnTypeViewModel()
         {
             Type type = await this.dbContext.Types.FirstAsync();

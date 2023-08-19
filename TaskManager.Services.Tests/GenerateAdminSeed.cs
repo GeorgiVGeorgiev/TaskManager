@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using TaskManager.Data;
-using TaskManager.Data.Models;
-
-namespace TaskManager.Services.Tests
+﻿namespace TaskManager.Services.Tests
 {
+    using Microsoft.AspNetCore.Identity;
+    using TaskManager.Data;
+
     using static Common.GeneralApplicationConstants;
     public static class GenerateAdminSeed
     {
