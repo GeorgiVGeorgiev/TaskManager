@@ -5,7 +5,7 @@
 @inject IStatusService StatusService;
 @inject IClientService ClientService;
 @{
-	AllWorkersViewModel currentWorker = await WorkerService.GetWorkerFromTask(Model.WorkerId);
+	AllWorkersViewModel currentWorker = await WorkerService.GetWorkerFromTaskWorkerId(Model.WorkerId);
 	string currentCheckEr = Model.CheckerId;
 	int statusTaskId = Model.StatusId;
 	ClientViewModel currentClient = await ClientService.GetClientByIdAsync(Model.ClientId);
