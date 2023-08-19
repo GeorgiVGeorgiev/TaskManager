@@ -101,7 +101,7 @@
                                <td>@task.ClientName</td>
                                <td>@task.TaskType</td>
                                <td>@($"{task.quantity} бр.")</td>
-                               <td>@($"{task.price:F2} лв.")</td>
+                               <td>@($"{(task.price*task.quantity):F2} лв.")</td>
                                 @if (task.EndDate <= DateTime.UtcNow)
                                 {
                                     <td style="color:red"><b>@(task.EndDate.ToString("dd/MM/yyyy"))</b></td>
@@ -109,7 +109,7 @@
                                 }
                                 else if (task.EndDate.AddDays(-2) <= DateTime.UtcNow)
                                 {
-                                    <td style="color:orangered"><b>@(task.EndDate.ToString("dd/MM/yyyy"))</b></td>              
+                                    <td style="color:orange"><b>@(task.EndDate.ToString("dd/MM/yyyy"))</b></td>              
                                 }
                                 else
                                 {
@@ -136,7 +136,7 @@
 }
 <div class="row mb-5">
    <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-start">
-      <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" :
+      <a class="btn btn-success @(Model.CurrentPage == 1 ? "disabled" :
       string.Empty)"
       asp-controller="GeoTask"
       asp-action="AllTasks"
@@ -151,7 +151,7 @@
         !Model.Tasks.Any();
     }
    <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-end">
-      <a class="btn btn-primary
+      <a class="btn btn-success
       @(shouldNextPageBeDisabled ? "disabled" : string.Empty)"
       asp-controller="GeoTask"
       asp-action="AllTasks"

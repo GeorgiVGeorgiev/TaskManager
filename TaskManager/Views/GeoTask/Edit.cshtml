@@ -5,7 +5,8 @@
 @inject IStatusService StatusService;
 @inject IClientService ClientService;
 @{
-	AllWorkersViewModel currentWorker = await WorkerService.GetWorkerFromTaskWorkerId(Model.WorkerId);
+	AllWorkersViewModel currentWorker = await WorkerService.GetWorkerFromTask(Model.WorkerId);
+	string currentCheckEr = Model.CheckerId;
 	int statusTaskId = Model.StatusId;
 	ClientViewModel currentClient = await ClientService.GetClientByIdAsync(Model.ClientId);
 }
@@ -72,7 +73,7 @@
 										<td><select asp-for=CheckerId class="form-control" style="width:300px"> 
 										@foreach (AllWorkersViewModel checker in Model.Checkers)
 										{
-											@if(checker.Id == currentWorker.Id.ToUpper())
+											@if(checker.Id == currentCheckEr)
 											{
 												<option selected="selected" value="@checker.Id">@($"{checker.FirstName} {checker.LastName}")</option>				
 											}

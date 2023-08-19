@@ -86,6 +86,36 @@
             }
         }
         [HttpGet]
+        public async Task<IActionResult> Checked()
+        {
+            string UserId = User.GetId();
+            string workerId = "";
+
+            try
+            {
+                bool isUserWorker = await this.userService.IsUserWorkerByIdAsync(UserId);
+                workerId = await this.userService.GetWorkerIdByUserIdAsync(UserId);
+                if (!isUserWorker)
+                {
+                    return this.ErrorIfUserIsNotWorker();
+                }
+            }
+            catch (Exception)
+            {
+                return this.GeneralError();
+            }
+            try
+            {
+
+                IEnumerable<TaskViewModel> taskViewModels = await this.geoTaskService.GeoTaskForCheckByWorkerIdAsync(workerId);
+                return this.View(taskViewModels);
+            }
+            catch (Exception)
+            {
+                return this.GeneralError();
+            }
+        }
+        [HttpGet]
         public async Task<IActionResult> Add()
         {
 			try

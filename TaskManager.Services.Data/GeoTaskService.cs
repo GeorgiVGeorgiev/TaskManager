@@ -84,6 +84,7 @@
             geoTask.IdKKKR = editGeoTaskViewModel.IdKKKR;
             geoTask.StatusId = editGeoTaskViewModel.StatusId;
             geoTask.WorkerId = Guid.Parse(editGeoTaskViewModel.WorkerId);
+            geoTask.CheckerId= Guid.Parse(editGeoTaskViewModel.CheckerId);
             geoTask.CreateDate= editGeoTaskViewModel.CreateDate;
             geoTask.EndDate= editGeoTaskViewModel.EndDate;
             geoTask.TypeId = editGeoTaskViewModel.TypeId;
@@ -213,6 +214,31 @@
                 Tasks = allGeoTasksModel,
                 TotalTasks = totalTasks,
             };
+        }
+
+        public async Task<IEnumerable<TaskViewModel>> GeoTaskForCheckByWorkerIdAsync(string workerId)
+        {
+            IEnumerable<TaskViewModel> taskViewModels = await this.dbContext
+                .GeoTasks
+                .Include(t => t.Client)
+                .Include(t => t.Status)
+                .Include(t => t.Type)
+                .Where(gt => gt.CheckerId.ToString() == workerId && gt.Status.Name != "Приключена")
+                .Select(t => new TaskViewModel
+                {
+                    Id = t.Id.ToString(),
+                    Number = t.ProjectNumber,
+                    EndDate = t.EndDate,
+                    ClientName = t.Client.Name,
+                    price = t.Price,
+                    quantity = t.quantity,
+                    status = t.Status.Name,
+                    TaskType = t.Type.Name
+                })
+                .OrderByDescending(t => t.Number)
+                .ToArrayAsync();
+
+            return taskViewModels;
         }
     }
 }
