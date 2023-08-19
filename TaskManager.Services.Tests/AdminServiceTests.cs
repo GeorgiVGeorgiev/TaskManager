@@ -1,14 +1,12 @@
-﻿using TaskManager.Web.ViewModels.Admin;
-using TaskManager.Web.ViewModels.Worker;
-
-namespace TaskManager.Services.Tests
+﻿namespace TaskManager.Services.Tests
 {
     using Microsoft.EntityFrameworkCore;
     using TaskManager.Data;
     using TaskManager.Data.Models;
     using TaskManager.Services.Data;
     using TaskManager.Services.Data.Interfaces;
-    using TaskManager.Web.ViewModels.Type;
+    using TaskManager.Web.ViewModels.Admin;
+
     using static GenerateAdminSeed;
 
     public class AdminServiceTests
@@ -39,9 +37,10 @@ namespace TaskManager.Services.Tests
         [Test]
         public async Task GetAllUsersAsyncShoudReturnIEnumOfUserViewModel()
         {
-
+            //
             IEnumerable<UserViewModel> typeViewModels = await this.adminService.GetAllUsersAsync();
 
+            //Assert
             CollectionAssert.AllItemsAreInstancesOfType(typeViewModels, typeof(UserViewModel));
             CollectionAssert.AllItemsAreNotNull(typeViewModels);
             CollectionAssert.AllItemsAreUnique(typeViewModels);

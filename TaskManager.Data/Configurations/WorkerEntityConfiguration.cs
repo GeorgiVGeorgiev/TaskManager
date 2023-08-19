@@ -1,14 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaskManager.Data.Models;
-
-namespace TaskManager.Data.Configurations
+﻿namespace TaskManager.Data.Configurations
 {
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using TaskManager.Data.Models;
+
     public class WorkerEntityConfiguration : IEntityTypeConfiguration<Worker>
     {
         public void Configure(EntityTypeBuilder<Worker> builder)
