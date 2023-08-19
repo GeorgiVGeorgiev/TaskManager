@@ -9,7 +9,6 @@
         public Task<IEnumerable<AllWorkersViewModel>> GetAllWorkersAsync();
 
         public Task<UserViewModel> GetUserByIdAsync(string UserId);
-        public Task<WorkerVIewModel> GetUserWorkerByIdAsync(string userId);
 
         public Task EditUserDataAsync(UserViewModel UserViewModel,string userId);
 

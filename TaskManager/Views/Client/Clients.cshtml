@@ -87,18 +87,18 @@
     {
         previousPage = 1;
     }
-    int taskperPage = Model.ClientPerPage;
-    int totaltask = Model.TotalTaskss;
+    int clientPerPage = Model.ClientPerPage;
+    //int totaltask = Model.TotalTaskss;
     int maxPage = (int)Math.Ceiling((double)Model.TotalTaskss / Model.ClientPerPage);
 }
 <div class="row mb-5">
    <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-start">
-      <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" :
+      <a class="btn btn-success @(Model.CurrentPage == 1 ? "disabled" :
       string.Empty)"
-      asp-controller="GeoTask"
-      asp-action="AllTasks"
+      asp-controller="Client"
+      asp-action="Clients"
       asp-route-currentPage="@previousPage"
-      asp-route-TaskPerPage="@taskperPage"
+      asp-route-clientPerPage="@clientPerPage"
       asp-route-searchTerm="@Model.SearchString">
       <<</a>
    </div>
@@ -107,12 +107,12 @@
         !Model.Client.Any();
     }
    <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-end">
-      <a class="btn btn-primary
+      <a class="btn btn-success
       @(shouldNextPageBeDisabled ? "disabled" : string.Empty)"
-      asp-controller="GeoTask"
-      asp-action="AllTasks"
+      asp-controller="Client"
+      asp-action="Clients"
       asp-route-currentPage="@(Model.CurrentPage + 1)"
-      asp-route-TaskPerPage="@taskperPage"
+      asp-route-clientPerPage="@clientPerPage"
       asp-route-searchTerm="@Model.SearchString">
         >></a>
    </div>

@@ -4,6 +4,6 @@ namespace TaskManager.Services.Data.Interfaces
 {
 	public interface IWorkerService
 	{
-		public Task<AllWorkersViewModel> GetWorkerFromTask(string Id);
+		public Task<AllWorkersViewModel> GetWorkerFromTaskWorkerId(string Id);
 	}
 }

@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Routing;
-using Microsoft.EntityFrameworkCore;
-using TaskManager.Web.ViewModels.GeoTask;
-
-namespace TaskManager.Services.Data
+﻿namespace TaskManager.Services.Data
 {
     using Microsoft.EntityFrameworkCore;
     using System.Threading.Tasks;
@@ -10,7 +6,7 @@ namespace TaskManager.Services.Data
     using TaskManager.Data.Models;
     using TaskManager.Services.Data.Interfaces;
     using TaskManager.Web.ViewModels.GeoTask;
-
+    using static Common.EntityValidationConstants.GeoTask;
     public class GeoTaskService : IGeoTaskService
     {
         private readonly TaskManagerDbContext dbContext;
@@ -107,19 +103,19 @@ namespace TaskManager.Services.Data
             GeoTask geoTask = new GeoTask()
             {
                 Id = Guid.NewGuid(),
-                IdKKKR = "68134....",
+                IdKKKR = IkkrDefautValue,
                 StatusId = 1,
                 WorkerId = Guid.Parse("A13C085F-4D96-4244-8EA4-607C4B6989F6"),
                 CheckerId= Guid.Parse("A13C085F-4D96-4244-8EA4-607C4B6989F6"),
                 CreateDate = DateTime.UtcNow,
                 EndDate = DateTime.UtcNow,
                 TypeId = 1,
-                Note = "Няма",
+                Note = NoteDefautValue,
                 quantity = 1,
-                ClientId = Guid.Parse("E0171D6D-8977-4D59-8D50-5A5C85C4DEF5"),
+                ClientId = Guid.Parse("3E05C605-D947-4C9E-AC82-E4746822BA7D"),
                 Price = 100,
                 ProjectNumber = projectNumberr + 1,
-                Adrress="Няма"
+                Adrress=AdresDefautValue
         };
             await this.dbContext.GeoTasks.AddAsync(geoTask);
             await this.dbContext.SaveChangesAsync();

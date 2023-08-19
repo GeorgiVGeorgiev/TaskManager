@@ -3,7 +3,7 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
     using TaskManager.Data.Models;
-
+    using Type = TaskManager.Data.Models.Type;
     public class TypeEntityConfigurations : IEntityTypeConfiguration<Type>
     {
         public void Configure(EntityTypeBuilder<Models.Type> builder)

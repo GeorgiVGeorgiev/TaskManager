@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManager.Data;
 
@@ -11,9 +12,10 @@ using TaskManager.Data;
 namespace TaskManager.Data.Migrations
 {
     [DbContext(typeof(TaskManagerDbContext))]
-    partial class TaskManagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230819120441_AddSeedToClients")]
+    partial class AddSeedToClients
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -237,7 +239,7 @@ namespace TaskManager.Data.Migrations
                         {
                             Id = new Guid("bcb4f072-ecca-43c9-ab26-c060c6f364e4"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "87dfe06c-8e71-4afe-89f4-7be02a5040f2",
+                            ConcurrencyStamp = "14aaca9b-04be-4e79-8457-fd98bb66b0e8",
                             Email = "administrator@admin",
                             EmailConfirmed = false,
                             FirstName = "Георги",
@@ -245,7 +247,7 @@ namespace TaskManager.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "administrator@admin",
                             NormalizedUserName = "administrator@admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMq2GqE7N9ee1cChu2w7F60upQiVfMtJdx0xe2gk/d1q7c546MM0cQtmKrXjKR+F4Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOkbDjbIi+MiHXHT0aZQjkZzNBokDJ6Ux06lzOGpGgZaFj0wCurt/mNMBMzPxaaGJQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "72F0B4BCCAECC943AB26C060C6F364E4",
                             TwoFactorEnabled = false,
@@ -255,7 +257,7 @@ namespace TaskManager.Data.Migrations
                         {
                             Id = new Guid("6e70d07b-eaa7-4384-b233-c5ef9c0bf8de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1d3b38a3-8665-4dc7-bde1-232538009dec",
+                            ConcurrencyStamp = "062cd531-9cdb-4bb5-972c-30aa9e063b79",
                             Email = "User1@base.bg",
                             EmailConfirmed = false,
                             FirstName = "Евелина",
@@ -263,7 +265,7 @@ namespace TaskManager.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "User1@base.bg",
                             NormalizedUserName = "User1@base.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAEN7spmvZEQDJxEJVTV2m8pJwjADiFIoendf6MdaJAiuPhPO1jGlkVFg1y6C79uTjSw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHSVUpqtjVIksfu7AwXhk537O1FA5JmsbWcmXMni+aaVOf1IfJCsSMtmwG+EFKkM1A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7BD0706EA7EA8443B233C5EF9C0BF8DE",
                             TwoFactorEnabled = false,
@@ -273,7 +275,7 @@ namespace TaskManager.Data.Migrations
                         {
                             Id = new Guid("296193d2-f02c-4410-b8fe-9eab4ffb4801"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "df540f75-edcb-49ae-b780-429db6f2e2d7",
+                            ConcurrencyStamp = "bab0b676-4368-4e3a-8b31-df0c68fbcb37",
                             Email = "User2@base.bg",
                             EmailConfirmed = false,
                             FirstName = "Първан",
@@ -281,7 +283,7 @@ namespace TaskManager.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "User2@base.bg",
                             NormalizedUserName = "User2@base.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJhKa/DY5RfbBwi4cxtDO945p9eioTS2+Z9yH8tCUXo1I/SHAQMYXcrrElnOJ6m5sw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEL6u6I1RFxhKnqmIR1c+YoDTIRCp2XJBqh2jmIFhyE87OctiyI1CdCehDkRkWD+0OQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "D29361292CF01044B8FE9EAB4FFB4801",
                             TwoFactorEnabled = false,
@@ -291,7 +293,7 @@ namespace TaskManager.Data.Migrations
                         {
                             Id = new Guid("35679ef5-bb0b-4d6a-bb37-6b0bfb32e801"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "da975352-ae47-47e5-9c54-1d02f8b6abd8",
+                            ConcurrencyStamp = "30a6d183-0d5b-4e99-9de0-d256a97331d1",
                             Email = "Worker1@base.bg",
                             EmailConfirmed = false,
                             FirstName = "Първан",
@@ -299,7 +301,7 @@ namespace TaskManager.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "Worker1@base.bg",
                             NormalizedUserName = "Worker1@base.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGJtBw2y8DfTvgw9aXgyq5WZXp+LNEXsh95YbdPw8ostctVPoFcC21pMpQn+CsFvKw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEp2MJt44esOq6RtBkvrIasVjntxvKuQmYL/P0ZaapmlklWY6HNJlkwR8YDJr3bHXA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "F59E67350BBB6A4DBB376B0BFB32E801",
                             TwoFactorEnabled = false,
@@ -309,7 +311,7 @@ namespace TaskManager.Data.Migrations
                         {
                             Id = new Guid("6cef6e21-5151-4e88-be5c-f4f78953bf84"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f798978c-0a68-4500-b58c-274afc35b3d8",
+                            ConcurrencyStamp = "f4277487-260a-48c9-ba00-9dabc255ccd6",
                             Email = "Worker2@base.bg",
                             EmailConfirmed = false,
                             FirstName = "Иван",
@@ -317,7 +319,7 @@ namespace TaskManager.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "Worker2@base.bg",
                             NormalizedUserName = "Worker2@base.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBlGwXo0cwBcaYM7cTocicOp+eIIO5aWTzbqtz7BNTreb+1bH83mKGJ9elHdmwlzUw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC82LbmgWI5EzrIV5gU0fXY8+j/eZ6Wv2t70GVEqnsCKN2DPL3eniOsj+p7s1sCpLg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "216EEF6C5151884EBE5CF4F78953BF84",
                             TwoFactorEnabled = false,
@@ -386,14 +388,6 @@ namespace TaskManager.Data.Migrations
                             Email = "GerganaPetrova@work.bg",
                             Name = "Няма",
                             PhoneNumber = "0892222222"
-                        },
-                        new
-                        {
-                            Id = new Guid("3e05c605-d947-4c9e-ac82-e4746822ba7d"),
-                            CustomerRepresentative = "---------",
-                            Email = "nqma@nqma.bg",
-                            Name = "---------",
-                            PhoneNumber = "0000000000"
                         });
                 });
 
@@ -431,7 +425,7 @@ namespace TaskManager.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 8, 19, 14, 24, 59, 507, DateTimeKind.Utc).AddTicks(8905),
+                            CreateDate = new DateTime(2023, 8, 19, 12, 4, 40, 786, DateTimeKind.Utc).AddTicks(4406),
                             Description = "Това е тестов коментар за първата задача. От проектант 1.",
                             TaskId = new Guid("88439927-1864-4962-9c31-d32e86f6ec0c"),
                             WorkerId = new Guid("acda7da9-d7a0-4fd0-9aca-f6000da77582")
@@ -439,7 +433,7 @@ namespace TaskManager.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2023, 8, 19, 14, 24, 59, 507, DateTimeKind.Utc).AddTicks(8915),
+                            CreateDate = new DateTime(2023, 8, 19, 12, 4, 40, 786, DateTimeKind.Utc).AddTicks(4412),
                             Description = "Това е втори тестов коментар за първата задача. От проектант 2.",
                             TaskId = new Guid("88439927-1864-4962-9c31-d32e86f6ec0c"),
                             WorkerId = new Guid("1702e507-b3fc-48a0-808d-d989bd8a4697")
@@ -447,7 +441,7 @@ namespace TaskManager.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2023, 8, 19, 14, 24, 59, 507, DateTimeKind.Utc).AddTicks(8918),
+                            CreateDate = new DateTime(2023, 8, 19, 12, 4, 40, 786, DateTimeKind.Utc).AddTicks(4414),
                             Description = "Това е трети тестов коментар за първата задача. От Админ.",
                             TaskId = new Guid("88439927-1864-4962-9c31-d32e86f6ec0c"),
                             WorkerId = new Guid("a13c085f-4d96-4244-8ea4-607c4b6989f6")
@@ -455,7 +449,7 @@ namespace TaskManager.Data.Migrations
                         new
                         {
                             Id = 4,
-                            CreateDate = new DateTime(2023, 8, 19, 14, 24, 59, 507, DateTimeKind.Utc).AddTicks(8921),
+                            CreateDate = new DateTime(2023, 8, 19, 12, 4, 40, 786, DateTimeKind.Utc).AddTicks(4416),
                             Description = "Това е четвърти тестов коментар за първата задача. От Мерач.",
                             TaskId = new Guid("88439927-1864-4962-9c31-d32e86f6ec0c"),
                             WorkerId = new Guid("c6d1253b-2695-4a7f-98d5-a2a87eb3b97a")
@@ -650,9 +644,9 @@ namespace TaskManager.Data.Migrations
                             Id = new Guid("88439927-1864-4962-9c31-d32e86f6ec0c"),
                             Adrress = "Надежда 1",
                             CheckerId = new Guid("a13c085f-4d96-4244-8ea4-607c4b6989f6"),
-                            ClientId = new Guid("9153e1a7-1565-48ff-8edf-9edf26f5d26b"),
-                            CreateDate = new DateTime(2023, 8, 19, 17, 24, 59, 508, DateTimeKind.Local).AddTicks(2166),
-                            EndDate = new DateTime(2023, 8, 19, 17, 24, 59, 508, DateTimeKind.Local).AddTicks(2204),
+                            ClientId = new Guid("890c29d4-841a-490c-8b85-07af2ba826fd"),
+                            CreateDate = new DateTime(2023, 8, 19, 15, 4, 40, 786, DateTimeKind.Local).AddTicks(7855),
+                            EndDate = new DateTime(2023, 8, 19, 15, 4, 40, 786, DateTimeKind.Local).AddTicks(7886),
                             IdKKKR = "68134.905.11",
                             Note = "Няма",
                             Price = 500m,
@@ -667,11 +661,11 @@ namespace TaskManager.Data.Migrations
                             Id = new Guid("6e6de662-426f-4ff2-9886-984fa1c46a81"),
                             Adrress = "Надежда 1",
                             CheckerId = new Guid("a13c085f-4d96-4244-8ea4-607c4b6989f6"),
-                            ClientId = new Guid("4add1981-c1eb-4666-bbc4-9c954e6925f5"),
-                            CreateDate = new DateTime(2023, 8, 19, 17, 24, 59, 508, DateTimeKind.Local).AddTicks(2216),
-                            EndDate = new DateTime(2023, 8, 19, 17, 24, 59, 508, DateTimeKind.Local).AddTicks(2217),
+                            ClientId = new Guid("2016aa91-7b89-4524-92e1-3606cbda65c8"),
+                            CreateDate = new DateTime(2023, 8, 19, 15, 4, 40, 786, DateTimeKind.Local).AddTicks(7924),
+                            EndDate = new DateTime(2023, 8, 19, 15, 4, 40, 786, DateTimeKind.Local).AddTicks(7925),
                             IdKKKR = "68134.905.11",
-                            Note = "Някаква забележка.",
+                            Note = "Няма",
                             Price = 250m,
                             ProjectNumber = 2,
                             StatusId = 1,
@@ -713,44 +707,6 @@ namespace TaskManager.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Requests");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("6bdfe00a-5aa3-4dd4-b8a5-c75569188ea7"),
-                            Description = "Искам да бъде извършено геодезическо заснемане за дървестна растителност.",
-                            IsApproved = false,
-                            Name = "Пенка Пенкова",
-                            PhoneNumber = "0896666666",
-                            UserId = new Guid("6e70d07b-eaa7-4384-b233-c5ef9c0bf8de")
-                        },
-                        new
-                        {
-                            Id = new Guid("3a9acc4a-688c-46bb-9a02-054953bfc726"),
-                            Description = "Искам да бъде извършено геодезическо заснемане на площ на Мазе и Таван.",
-                            IsApproved = false,
-                            Name = "Ивка Иванова",
-                            PhoneNumber = "0896666666",
-                            UserId = new Guid("296193d2-f02c-4410-b8fe-9eab4ffb4801")
-                        },
-                        new
-                        {
-                            Id = new Guid("e9eef419-f1c8-4880-841d-318d6c09cbf7"),
-                            Description = "Искам да бъде извършено геодезическо заснемане на площ на Апартамент.",
-                            IsApproved = false,
-                            Name = "Ивка Иванова",
-                            PhoneNumber = "0896666666",
-                            UserId = new Guid("296193d2-f02c-4410-b8fe-9eab4ffb4801")
-                        },
-                        new
-                        {
-                            Id = new Guid("9be32474-42d4-40a3-a1ee-54fc07aaebab"),
-                            Description = "Искам да бъде извършено геодезическо заснемане по чл.19 от ЗУЗСО.",
-                            IsApproved = false,
-                            Name = "Пенка Пенкова",
-                            PhoneNumber = "0896666666",
-                            UserId = new Guid("6e70d07b-eaa7-4384-b233-c5ef9c0bf8de")
-                        });
                 });
 
             modelBuilder.Entity("TaskManager.Data.Models.Status", b =>
