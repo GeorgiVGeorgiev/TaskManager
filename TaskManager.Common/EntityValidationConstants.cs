@@ -103,6 +103,10 @@
             public const int NoteMaxLength = 300;
             public const int NoteMinLength = 0;
 
+            public const string AdresDefautValue = "Няма";
+            public const string IkkrDefautValue = "68134...";
+            public const string NoteDefautValue = "Няма";
+
         }
     }
 }

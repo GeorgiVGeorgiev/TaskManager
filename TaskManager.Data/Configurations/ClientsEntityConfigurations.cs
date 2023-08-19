@@ -53,6 +53,15 @@ namespace TaskManager.Data.Configurations
                 Email = "GerganaPetrova@work.bg"
             };
             clients.Add(client);
+            client = new Client()
+            {
+                Id = Guid.Parse("3E05C605-D947-4C9E-AC82-E4746822BA7D"),
+                CustomerRepresentative = "---------",
+                Name = "---------",
+                PhoneNumber = "0000000000",
+                Email = "nqma@nqma.bg"
+            };
+            clients.Add(client);
 
             return clients.ToArray();
         }

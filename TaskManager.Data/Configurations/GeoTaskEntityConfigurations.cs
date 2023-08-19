@@ -3,6 +3,7 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
     using TaskManager.Data.Models;
+    using static Common.EntityValidationConstants.GeoTask;
     public class GeoTaskEntityConfigurations : IEntityTypeConfiguration<GeoTask>
     {
         public void Configure(EntityTypeBuilder<GeoTask> builder)
@@ -47,12 +48,12 @@
                 EndDate = DateTime.Now,
                 IdKKKR = "68134.905.11",
                 Adrress = "Надежда 1",
-                ClientId = Guid.Parse("890C29D4-841A-490C-8B85-07AF2BA826FD"),
+                ClientId = Guid.Parse("9153E1A7-1565-48FF-8EDF-9EDF26F5D26B"),
                 WorkerId = Guid.Parse("ACDA7DA9-D7A0-4FD0-9ACA-F6000DA77582"),
                 CheckerId = Guid.Parse("A13C085F-4D96-4244-8EA4-607C4B6989F6"),
                 Price = 500,
                 quantity = 2,
-                Note = "Няма",
+                Note = NoteDefautValue,
                 StatusId=1,
                 TypeId=3,
                 ProjectNumber=1,
@@ -66,12 +67,12 @@
 				EndDate = DateTime.Now,
 				IdKKKR = "68134.905.11",
 				Adrress = "Надежда 1",
-				ClientId = Guid.Parse("2016AA91-7B89-4524-92E1-3606CBDA65C8"),
+				ClientId = Guid.Parse("4ADD1981-C1EB-4666-BBC4-9C954E6925F5"),
 				WorkerId = Guid.Parse("C6D1253B-2695-4A7F-98D5-A2A87EB3B97A"),
 				CheckerId = Guid.Parse("A13C085F-4D96-4244-8EA4-607C4B6989F6"),
 				Price = 250,
 				quantity = 1,
-				Note = "Няма",
+				Note = "Някаква забележка.",
 				StatusId = 1,
 				TypeId = 5,
 				ProjectNumber = 2,

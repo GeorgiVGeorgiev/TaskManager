@@ -12,9 +12,7 @@ namespace TaskManager.Services.Tests
         private DbContextOptions<TaskManagerDbContext> dbContextOptions;
         private TaskManagerDbContext dbContext;
 
-        private IWorkerService workerService;
         private IComentarService comentarService;
-        private IGeoTaskService geoTaskService;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -24,9 +22,7 @@ namespace TaskManager.Services.Tests
             this.dbContext = new TaskManagerDbContext(this.dbContextOptions);
             this.dbContext.Database.EnsureCreated();
 
-            this.workerService = new WorkerService(this.dbContext);
             this.comentarService = new ComentarService(this.dbContext);
-            this.geoTaskService = new GeoTaskService(this.dbContext);
         }
 
         [SetUp]

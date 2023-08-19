@@ -1,13 +1,13 @@
-﻿using TaskManager.Web.ViewModels.Client;
-
+﻿
 namespace TaskManager.Services.Tests
 {
     using Microsoft.EntityFrameworkCore;
     using TaskManager.Data;
-    using TaskManager.Services.Data.Interfaces;
-    using TaskManager.Services.Data;
-    using TaskManager.Web.ViewModels.Comentar;
     using TaskManager.Data.Models;
+    using TaskManager.Services.Data;
+    using TaskManager.Services.Data.Interfaces;
+    using TaskManager.Web.ViewModels.Client;
+
 
     public class ClientServiceTests
     {

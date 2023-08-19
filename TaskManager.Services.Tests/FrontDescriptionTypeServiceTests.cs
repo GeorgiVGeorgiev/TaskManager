@@ -1,13 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TaskManager.Data;
-using TaskManager.Services.Data.Interfaces;
-using TaskManager.Services.Data;
-using TaskManager.Web.ViewModels.FrontDescriptionType;
-using TaskManager.Web.ViewModels.Client;
-using TaskManager.Data.Models;
-
-namespace TaskManager.Services.Tests
+﻿namespace TaskManager.Services.Tests
 {
+    using Microsoft.EntityFrameworkCore;
+    using TaskManager.Data;
+    using TaskManager.Data.Models;
+    using TaskManager.Services.Data;
+    using TaskManager.Services.Data.Interfaces;
+    using TaskManager.Web.ViewModels.FrontDescriptionType;
+
     public class FrontDescriptionTypeServiceTests
     {
         private DbContextOptions<TaskManagerDbContext> dbContextOptions;
