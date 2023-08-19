@@ -1,8 +1,7 @@
-﻿using TaskManager.Web.ViewModels.Client;
-using TaskManager.Web.ViewModels.Request;
-
-namespace TaskManager.Services.Data.Interfaces
+﻿namespace TaskManager.Services.Data.Interfaces
 {
+    using TaskManager.Web.ViewModels.Request;
+
     public interface IRequestService
     {
         public  Task SendRequestAsync(CreateRequestFormModel request, string userId);

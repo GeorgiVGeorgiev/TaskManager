@@ -1,12 +1,13 @@
-﻿using TaskManager.Web.ViewModels.Client;
-
+﻿
 namespace TaskManager.Services.Tests
 {
     using Microsoft.EntityFrameworkCore;
     using TaskManager.Data;
-    using TaskManager.Services.Data.Interfaces;
+    using TaskManager.Data.Models;
     using TaskManager.Services.Data;
-    using TaskManager.Web.ViewModels.Comentar;
+    using TaskManager.Services.Data.Interfaces;
+    using TaskManager.Web.ViewModels.Client;
+
 
     public class ClientServiceTests
     {
@@ -42,20 +43,66 @@ namespace TaskManager.Services.Tests
             CollectionAssert.AllItemsAreUnique(result);
         }
         [Test]
-        public async Task GetClientByIdAsyncShoudReturnIEnumOfClientViewModel()
+        public async Task GetClientByIdAsyncShoudReturnClientViewModel()
         {
-            string clientId = dbContext.Clients.FirstAsync().Id.ToString();
+            Client client = await dbContext.Clients
+                .FirstAsync(a => a.Name != "client");
+            string clientId = client.Id.ToString();
 
             ClientViewModel result = await this.clientService.GetClientByIdAsync(clientId);
 
             Assert.That(result.GetType(), Is.EqualTo(typeof(ClientViewModel)));
         }
+        [Test]
+        public async Task GetClientFormByIdAsyncShoudReturnClientFormModel()
+        {
+            Client client = await dbContext.Clients
+                .FirstAsync(a => a.Name != "client");
+            string clientId = client.Id.ToString();
+
+            ClientFormModel result = await this.clientService.GetClientFormByIdAsync(clientId);
+
+            Assert.That(result.GetType(), Is.EqualTo(typeof(ClientFormModel)));
+        }
+        [Test]
+        public async Task IsClientExitByIdAsyncShoudReturnTrue()
+        {
+            Client client = await dbContext.Clients
+                .FirstAsync(a => a.Name != "client");
+            string clientId = client.Id.ToString();
+
+            bool result = await this.clientService.IsClientExitByIdAsync(clientId);
+
+            Assert.IsTrue(result);
+        }
+        [Test]
+        public async Task IsClientExitByIdAsyncShoudReturnFalse()
+        {
+            Client client = await dbContext.Clients
+                .FirstAsync(a => a.Name != "client");
+            string clientId = client.Id.ToString() + "tr";
+
+            bool result = await this.clientService.IsClientExitByIdAsync(clientId);
+
+            Assert.IsFalse(result);
+        }
+        [Test]
+        public async Task GetAllClientFilteredAsyncShoudReturnAllClientsFilteredANdPageServiceModel()
+        {
+            IEnumerable<ClientViewModel> clients = await this.clientService.GetAllClientsAsync();
+
+            AllClientQueryModel queryModel = new AllClientQueryModel()
+            {
+                Client = clients,
+                ClientPerPage= 5,
+                CurrentPage= 1,
+                SearchString = "string",
+                TotalTaskss= 15,
+            };
+
+            AllClientsFilteredANdPageServiceModel result = await this.clientService.GetAllClientFilteredAsync(queryModel);
+
+            Assert.That(result.GetType(), Is.EqualTo(typeof(AllClientsFilteredANdPageServiceModel)));
+        }
     }
 }
-/*
-public Task<ClientViewModel> GetClientByIdAsync(string Id);
-public Task<ClientFormModel> GetClientFormByIdAsync(string Id);
-public Task AddClientAsync(ClientFormModel model);
-public Task EditClientAsnyc(ClientViewModel model, string clientId);
-public Task<bool> IsClientExitByIdAsync(string clientId);
-public Task<AllClientsFilteredANdPageServiceModel> GetAllClientFilteredAsync(AllClientQueryModel allClientQueryModel);*/

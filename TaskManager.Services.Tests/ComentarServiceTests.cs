@@ -12,9 +12,7 @@ namespace TaskManager.Services.Tests
         private DbContextOptions<TaskManagerDbContext> dbContextOptions;
         private TaskManagerDbContext dbContext;
 
-        private IWorkerService workerService;
         private IComentarService comentarService;
-        private IGeoTaskService geoTaskService;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -24,9 +22,7 @@ namespace TaskManager.Services.Tests
             this.dbContext = new TaskManagerDbContext(this.dbContextOptions);
             this.dbContext.Database.EnsureCreated();
 
-            this.workerService = new WorkerService(this.dbContext);
             this.comentarService = new ComentarService(this.dbContext);
-            this.geoTaskService = new GeoTaskService(this.dbContext);
         }
 
         [SetUp]
@@ -38,7 +34,8 @@ namespace TaskManager.Services.Tests
         [Test]
         public async Task ComentarExistByUserIdShoudReturnTrue()
         {
-            int existComentarId = dbContext.Comentars.FirstAsync().Id;
+            Comentar comentar = await this.dbContext.Comentars.FirstAsync();
+            int existComentarId = comentar.Id;
 
             bool result = await this.comentarService.IsComentarExistById(existComentarId);
 
@@ -57,7 +54,8 @@ namespace TaskManager.Services.Tests
         [Test]
         public async Task GetComentarByIdAsyncShoudReturnComentarViewModel()
         {
-            int existComentarId = dbContext.Comentars.FirstAsync().Id;
+            Comentar comentar = await this.dbContext.Comentars.FirstAsync();
+            int existComentarId = comentar.Id;
 
             ComentarViewModel result = await this.comentarService.GetComentarByIdAsync(existComentarId);
 
@@ -68,7 +66,8 @@ namespace TaskManager.Services.Tests
         [Test]
         public async Task GetComentarByTaskIdAsyncShoudReturnIEnumOfComentarViewModel()
         {
-            string existGeoTaskId = dbContext.GeoTasks.FirstAsync().Id.ToString();
+            GeoTask geoTask = await this.dbContext.GeoTasks.FirstAsync();
+            string existGeoTaskId = geoTask.Id.ToString();
 
             IEnumerable<ComentarViewModel> result = await this.comentarService.GetComentarByTaskIdAsync(existGeoTaskId);
 
@@ -79,9 +78,10 @@ namespace TaskManager.Services.Tests
         [Test]
         public async Task GetTaskIdByComentarIdShoudReturnGeoTaskStringId()
         {
-            int comentarId = dbContext.Comentars.FirstAsync().Id;
+            Comentar comentar = await this.dbContext.Comentars.FirstAsync();
+            int existComentarId = comentar.Id;
 
-            string TaskId = await this.comentarService.GetTaskIdByComentarId(comentarId);
+            string TaskId = await this.comentarService.GetTaskIdByComentarId(existComentarId);
             bool isGuild = Guid.TryParse(TaskId,out Guid guildId);
 
             Assert.That(TaskId.GetType(), Is.EqualTo(typeof(string)));
