@@ -6,6 +6,7 @@
     using TaskManager.Data.Models;
     using TaskManager.Services.Data.Interfaces;
     using TaskManager.Web.ViewModels.Admin;
+    using TaskManager.Web.ViewModels.Worker;
 
     public class UserService : IUserService
     {
@@ -78,6 +79,22 @@
             return worker.Id.ToString();
 
 
+        }
+
+        public async Task<IEnumerable<AllCheckerViewModel>> GetAllCheckersAsync()
+        {
+            IEnumerable<AllCheckerViewModel> workers = await this.dbContext
+                .Workers
+                .Include(w => w.User)
+                .Select(u => new AllCheckerViewModel
+                {
+                    Id=u.User.Id.ToString(),
+                    FirstName = u.User.FirstName,
+                    LastName = u.User.LastName,
+                })
+                .ToArrayAsync();
+
+            return workers;
         }
     }
 }
