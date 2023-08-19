@@ -8,13 +8,13 @@
         [Required]
         public string Id { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         [Phone]
         [StringLength(PhoneNumberMaxLength, MinimumLength = PhoneNumberMinLength,ErrorMessage =PhoneErrorMessage)]
         [Display(Name = "Телефонен номер")]
         public string PhoneNumber { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         [StringLength(PositionMaxLength, MinimumLength = PositionMinLength, ErrorMessage =NameErrorMessage)]
         [Display(Name = "Позиция")]
         public string Position { get; set; } = null!;

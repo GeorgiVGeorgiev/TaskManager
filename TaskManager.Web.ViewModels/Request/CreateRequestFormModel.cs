@@ -5,18 +5,18 @@
     using static Common.ErrorMessageBulgarian;
     public class CreateRequestFormModel
     {
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         [StringLength(NameMaxLength,MinimumLength =NameMinLength,ErrorMessage = NameErrorMessage)]
         [Display(Name ="Име")]
         public string Name { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         [StringLength(PhoneNumberMaxLength, MinimumLength = PhoneNumberMinLength,ErrorMessage =PhoneErrorMessage)]
         [Phone]
         [Display(Name = "Телефонен номер")]
         public string PhoneNumber { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         [StringLength(DescriptionMaxLength, MinimumLength = DescriptionMinLength,ErrorMessage =TaskDescriptionErrorMessage)]
         [Display(Name = "Описаните на задачата")]
         public string Description { get; set; } = null!;

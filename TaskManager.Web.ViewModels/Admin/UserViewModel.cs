@@ -2,25 +2,26 @@
 {
     using System.ComponentModel.DataAnnotations;
     using static Common.EntityValidationConstants.User;
+    using static Common.ErrorMessageBulgarian;
 
     public class UserViewModel
     {
         [Required]
         public string Id { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Имейл")]
         public string Email { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         [StringLength(FirstNameMaxLength, MinimumLength = FirstNameMinLength)]
-        [Display(Name = "First Name")]
+        [Display(Name = "Име")]
         public string FirstName { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
         [StringLength(LastNameMaxLength, MinimumLength = LastNameMinLength)]
-        [Display(Name = "Last Name")]
+        [Display(Name = "Фамилия")]
         public string LastName { get; set; } = null!;
     }
 }

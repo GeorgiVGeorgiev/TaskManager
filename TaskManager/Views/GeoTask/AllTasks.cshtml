@@ -85,13 +85,36 @@
                     {
                         <tbody>
                             <tr class="gridrow">
-                                <td>@task.status</td>
-                               <td><a style="font-weight:bold; color:forestgreen; text-decoration:none;background-color:transparent" asp-controller="GeoTask" asp-action="Edit" asp-route-id="@task.Id">@($"Проект №{task.Number}")</a></td>
+                                @if(task.status == "Приключена")
+                                {
+                                    <td style="color:red"><b>@task.status</b></td>
+                                }
+                                else if(task.status == "В процес на изпълнение")
+                                {
+                                    <td style="color:forestgreen"><b>@task.status</b></td>
+                                }
+                                else
+                                {
+                                    <td style="color:grey"><b>@task.status</b></td>     
+                                }
+                                <td><a style="font-weight:bold; color:forestgreen; text-decoration:none;background-color:transparent" asp-controller="GeoTask" asp-action="Edit" asp-route-id="@task.Id">@($"Проект №{task.Number}")</a></td>
                                <td>@task.ClientName</td>
                                <td>@task.TaskType</td>
                                <td>@($"{task.quantity} бр.")</td>
                                <td>@($"{task.price:F2} лв.")</td>
-                               <td>@(task.EndDate.ToString("dd/MM/yyyy"))</td>
+                                @if (task.EndDate <= DateTime.UtcNow)
+                                {
+                                    <td style="color:red"><b>@(task.EndDate.ToString("dd/MM/yyyy"))</b></td>
+
+                                }
+                                else if (task.EndDate.AddDays(-2) <= DateTime.UtcNow)
+                                {
+                                    <td style="color:orangered"><b>@(task.EndDate.ToString("dd/MM/yyyy"))</b></td>              
+                                }
+                                else
+                                {
+                                    <td style="color:forestgreen"><b>@(task.EndDate.ToString("dd/MM/yyyy"))</b></td>                              
+                                }
                             </tr> 
                         </tbody>   
                     }
