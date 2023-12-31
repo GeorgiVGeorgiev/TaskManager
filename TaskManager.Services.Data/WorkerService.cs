@@ -35,5 +35,16 @@
 
 			return allWorkersViewModel;
 		}
-	}
+
+        public async Task<string> GetWorkerFullNameByUserId(string Id)
+        {
+
+			ApplicationUser user = await this.dbContext.Users
+				.FirstAsync(u => u.Id.ToString() == Id);
+
+			string FullName = $"{user.FirstName} {user.LastName}";
+
+			return FullName;
+        }
+    }
 }

@@ -31,6 +31,9 @@
 
             public const int PhoneNumberMaxLength = 15;
             public const int PhoneNumberMinLength = 7;
+
+            public const int SalaryMaxLength = 1000000;
+            public const int SalaryMinLength = 0;
         }
         public static class Comentar
         {

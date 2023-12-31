@@ -7,16 +7,19 @@
     using TaskManager.Web.ViewModels.Admin;
     using static Common.NotificationMessages;
     using static Common.ErrorMessageBulgarian;
+    using TaskManager.Web.ViewModels.User;
 
     [Authorize(Roles = "Administrator")]
     public class AdminController : Controller
     {
         private readonly IAdminService adminService;
         private readonly IUserService userService;
-        public AdminController(IAdminService adminService, IUserService userService)
+        private readonly IWorkerService workerService;
+        public AdminController(IAdminService adminService, IUserService userService, IWorkerService workerService)
         {
             this.adminService = adminService;
             this.userService = userService;
+            this.workerService= workerService;
         }
 
         public IActionResult AdminPanel()
@@ -145,6 +148,8 @@
             try
             {
                 WorkerFormModel workerFormModel = new WorkerFormModel();
+                workerFormModel.Roles = await this.userService.GetAllRolesAsync();
+
                 return this.View(workerFormModel);
             }
             catch (Exception)
@@ -176,6 +181,7 @@
             try
             {
                 await this.adminService.MakeWorkerAsync(workerFormModel);
+                this.TempData[SuccsessMessage] = string.Format(SuccesfullyMakeUserWorker, $"{await this.workerService.GetWorkerFullNameByUserId(workerFormModel.Id)}");
 
                 return this.RedirectToAction("AllWorkers", "Admin");
             }

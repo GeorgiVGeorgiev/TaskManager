@@ -1,5 +1,6 @@
 ﻿namespace TaskManager.Services.Data
 {
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -96,9 +97,26 @@
                 PhoneNumber = workerFormModel.PhoneNumber,
                 Position = workerFormModel.Position,
                 UserId = Guid.Parse(workerFormModel.Id)
+                
+            };
+
+            IdentityUserRole<Guid> userRole = new IdentityUserRole<Guid>()
+            {
+                RoleId = Guid.Parse(workerFormModel.RoleId),
+                UserId = Guid.Parse(workerFormModel.Id)
+            };
+
+            Salary salary = new Salary()
+            {
+                WorkerId = worker.Id,
+                NetSalary = (double)workerFormModel.Salary,
+                ChangeDate = DateTime.Now,
             };
 
             await this.dbContext.AddAsync(worker);
+            await this.dbContext.AddAsync(userRole);
+            await this.dbContext.AddAsync(salary);
+
             await this.dbContext.SaveChangesAsync();
         }
     }

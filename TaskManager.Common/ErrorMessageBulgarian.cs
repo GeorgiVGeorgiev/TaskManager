@@ -8,6 +8,7 @@
         public const string DescriptionErrorMessage = "Описанието на задачата е от {2} до {1} букви.";
         public const string TermDaysErrorMessage = "Работните дни на задачата са от {1} до {2} дни.";
         public const string PriceErrorMessage = "Цената варира от {1} до {2} дни.";
+        public const string SalaryErrorMessage = "Заплатата е от {1} до {2} лева.";
         public const string RequiredErrorMessage = "Полето е задължително";
 
         public const string ErrorIfUserIsNotAdminMessage = "Страницата е предназначена за админа.";
@@ -22,6 +23,7 @@
         public const string ErrorIfTypeDontExistMessage = "Типът не съществува в базата данни.";
         public const string ErrorIfWorkerTryToSendRequest = "Ти работиш, какви задачи искаш да даваш ?";
 
+        public const string SuccesfullyMakeUserWorker = "Успешно направите {0} работник.";
         public const string SuccessfullySendRequest = "Успешно изпратихте задачата.";
     }
 }

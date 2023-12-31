@@ -6,6 +6,7 @@
     using TaskManager.Data.Models;
     using TaskManager.Services.Data.Interfaces;
     using TaskManager.Web.ViewModels.Admin;
+    using TaskManager.Web.ViewModels.User;
     using TaskManager.Web.ViewModels.Worker;
 
     public class UserService : IUserService
@@ -95,6 +96,20 @@
                 .ToArrayAsync();
 
             return workers;
+        }
+
+        public async Task<IEnumerable<RolesViewModel>> GetAllRolesAsync()
+        {
+            IEnumerable<RolesViewModel> roles = await this.dbContext
+                .Roles
+                .Select(r => new RolesViewModel()
+                {
+                    Id = r.Id.ToString(),
+                    Name = r.Name,
+                })
+                .ToArrayAsync();
+
+            return roles;
         }
     }
 }
