@@ -9,7 +9,7 @@
     using static Common.NotificationMessages;
     using static Common.ErrorMessageBulgarian;
 
-    [Authorize]
+    [Authorize(Roles = "Administrator,Worker")]
     public class ClientController : Controller
     {
         private readonly IClientService clientService;

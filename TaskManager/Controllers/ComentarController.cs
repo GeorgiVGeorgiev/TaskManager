@@ -7,7 +7,9 @@
 
 	using static Common.NotificationMessages;
 	using static Common.ErrorMessageBulgarian;
+	using Microsoft.AspNetCore.Authorization;
 
+	[Authorize(Roles = "Worker,Administrator")]
 	public class ComentarController : Controller
 	{
 		private readonly IUserService userService;
