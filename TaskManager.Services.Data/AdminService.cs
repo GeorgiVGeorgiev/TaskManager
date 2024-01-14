@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Threading.Tasks;
     using TaskManager.Data;
     using TaskManager.Data.Models;
@@ -118,6 +119,51 @@
             await this.dbContext.AddAsync(salary);
 
             await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<PersonalFileFormModel> GetPersonalInfoByUserId(string userId)
+        {
+            Worker worker = await this.dbContext.Workers
+                .Include(x => x.User)
+                .FirstAsync(x => x.UserId.ToString() == userId);
+
+            ICollection<Salary> LastUserSalary = await this.dbContext.Salaries
+                .Where(s => s.WorkerId.ToString() == worker.Id.ToString())
+                .OrderByDescending(x => x.ChangeDate)
+                .ToListAsync();
+
+            PersonalFileFormModel personalFileFormModel = new PersonalFileFormModel()
+            {
+                userId= userId,
+                Name = $"{worker.User.FirstName} {worker.User.LastName}",
+                Salary = LastUserSalary.FirstOrDefault().NetSalary,
+                SalaryUpdates = LastUserSalary.Count() - 1,
+            };
+
+            return personalFileFormModel;
+        }
+
+        public async Task<IEnumerable<MonthlyProjectCount>> GetMontlyProjects(int months)
+        {
+            DateTime CurrentDate = DateTime.Now;
+            DateTime CurrentDateMonthsAgo = CurrentDate.AddMonths(-months);
+
+            IEnumerable<GeoTask> tasks = await this.dbContext.GeoTasks
+                .Where(x => x.CreateDate >= CurrentDateMonthsAgo && x.CreateDate <= CurrentDate)
+                .ToArrayAsync();
+
+            IEnumerable<MonthlyProjectCount> monthlyCounts = 
+                tasks.GroupBy(x => x.CreateDate.Month)
+                .Select(x => new MonthlyProjectCount
+                {
+                    MonthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(x.Key),
+                    ProjectCount = x.Count(),
+                    Date = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(x.Key)
+                })
+                .ToArray();
+
+            return monthlyCounts;
+
         }
     }
 }

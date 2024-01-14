@@ -8,6 +8,8 @@
     using static Common.NotificationMessages;
     using static Common.ErrorMessageBulgarian;
     using TaskManager.Web.ViewModels.User;
+    using TaskManager.Web.ViewModels.Worker;
+    using Microsoft.AspNetCore.Mvc.TagHelpers;
 
     [Authorize(Roles = "Administrator")]
     public class AdminController : Controller
@@ -190,6 +192,17 @@
                 return this.GeneralError();
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> PersonalFile(string userId)
+        {
+            PersonalFileFormModel formModel = await this.adminService.GetPersonalInfoByUserId(userId);
+
+            formModel.monthlyProjectCounts = await this.adminService.GetMontlyProjects(3);
+
+            return this.View(formModel);
+        }
+
         private IActionResult ErrorIfUserIsNotAdmin()
         {
             this.TempData[ErrorMessage] = ErrorIfUserIsNotAdminMessage;

@@ -1,0 +1,19 @@
+﻿.PFileHeader{
+	display: flex;
+	justify-content: center;
+	color:green;
+}
+.salaryContainer{
+	display: inline-block;
+	max-width: 20em;
+
+}
+.salaryContainer h5{
+	text-decoration: none;
+	display: flex;
+	justify-content:left;
+}
+.salaryContainer h5 p{
+text-decoration: solid;	
+margin: 0 0.5em 0 0.5em;
+}
