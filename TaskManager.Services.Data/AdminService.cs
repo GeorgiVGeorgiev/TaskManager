@@ -143,23 +143,24 @@
             return personalFileFormModel;
         }
 
-        public async Task<IEnumerable<MonthlyProjectCount>> GetMontlyProjects(int months)
+        public async Task<IEnumerable<MonthlyProjectCount>> GetMontlyProjects(int months, string workerId)
         {
             DateTime CurrentDate = DateTime.Now;
             DateTime CurrentDateMonthsAgo = CurrentDate.AddMonths(-months);
 
             IEnumerable<GeoTask> tasks = await this.dbContext.GeoTasks
-                .Where(x => x.CreateDate >= CurrentDateMonthsAgo && x.CreateDate <= CurrentDate)
+                .Where(x => x.CreateDate >= CurrentDateMonthsAgo && x.CreateDate <= CurrentDate && x.WorkerId.ToString() == workerId)
                 .ToArrayAsync();
 
-            IEnumerable<MonthlyProjectCount> monthlyCounts = 
-                tasks.GroupBy(x => x.CreateDate.Month)
+            IEnumerable<MonthlyProjectCount> monthlyCounts =
+                tasks.GroupBy(x => new { Month = x.CreateDate.Month, Year = x.CreateDate.Year } )
                 .Select(x => new MonthlyProjectCount
                 {
-                    MonthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(x.Key),
+                    MonthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(x.Key.Month),
                     ProjectCount = x.Count(),
-                    Date = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(x.Key)
+                    Date = $"{x.Key.Month} {x.Key.Year}",
                 })
+                .OrderByDescending(x => x.Date)
                 .ToArray();
 
             return monthlyCounts;

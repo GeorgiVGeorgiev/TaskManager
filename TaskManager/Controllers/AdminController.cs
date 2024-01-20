@@ -198,7 +198,9 @@
         {
             PersonalFileFormModel formModel = await this.adminService.GetPersonalInfoByUserId(userId);
 
-            formModel.monthlyProjectCounts = await this.adminService.GetMontlyProjects(3);
+            string workerId = await this.userService.GetWorkerIdByUserIdAsync(userId);
+
+            formModel.monthlyProjectCounts = await this.adminService.GetMontlyProjects(3, workerId);
 
             return this.View(formModel);
         }

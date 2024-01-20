@@ -2,6 +2,8 @@
 <head>
   <!-- Add ApexCharts library -->
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <!-- JavaScript code -->
+  <script src="~/js/PersonalFileCharts.js"></script>
 </head>
 <div class="PFileHeader">
 	<h2>Това е личното досие на @Model.Name</h2>
@@ -12,39 +14,13 @@
 	<h5>Брой повишения:<p>@Model.SalaryUpdates</p>пъти.</h5>
 	<a class="btn btn-success" asp-controller="Admin" asp-action="ChangeSalary" asp-route-userId="@Model.userId">Смени заплатата</a>
 </div>
-<div id="chartContainer"></div>
+	<div id="MonthProjectCount"></div>
 
-<!-- JavaScript code -->
 <script>
-  // Generate sample data for the chart
-  var salesData = [
-    { month: 'January', sales: 200 },
-    { month: 'February', sales: 450 },
-    { month: 'March', sales: 300 },
-    // Add more data for other months...
-  ];
+  var MonthAndProjectCountData = @Html.Raw(Json.Serialize(Model.monthlyProjectCounts));
+  var chartMonthProjectCount = CreateMonthAndProjectCountChartOptions(ExportMonthAndProjectCountData(MonthAndProjectCountData));
+  var MonthProjectCountChart = new ApexCharts(document.querySelector('#MonthProjectCount'), chartMonthProjectCount);
 
-  // Prepare data for ApexCharts
-  var chartData = {
-    series: [{
-      name: 'Sales',
-      data: salesData.map(x => x.sales)
-    }],
-    xaxis: {
-      categories: salesData.map(x => x.month)
-    }
-  };
-
-  // Render the chart using ApexCharts
-  var chartOptions = {
-    chart: {
-      type: 'bar',
-      height: 350
-    },
-    colors: ['#008FFB'],
-    series: chartData.series,
-    xaxis: chartData.xaxis
-  };
-  var chart = new ApexCharts(document.querySelector('#chartContainer'), chartOptions);
-  chart.render();
+  MonthProjectCountChart.render();
 </script>
+
