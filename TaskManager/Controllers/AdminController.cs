@@ -194,15 +194,30 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> PersonalFile(string userId)
+        public async Task<IActionResult> PersonalFile(string userId,int months)
         {
-            PersonalFileFormModel formModel = await this.adminService.GetPersonalInfoByUserId(userId);
+            try
+            {
+                if (months > 36)
+                {
+                    this.TempData[ErrorMessage] = ErrorIfPerosanlFileMonthAreBigger;
+                    months = 36;
+                }
+				this.ViewBag.Months = months;
 
-            string workerId = await this.userService.GetWorkerIdByUserIdAsync(userId);
+				PersonalFileFormModel formModel = await this.adminService.GetPersonalInfoByUserId(userId);
+				string workerId = await this.userService.GetWorkerIdByUserIdAsync(userId);
 
-            formModel.monthlyProjectCounts = await this.adminService.GetMontlyProjects(3, workerId);
+				formModel.monthlyProjectCounts = await this.adminService.GetMontlyProjects(months, workerId);
+				formModel.typeProjectCounts = await this.adminService.GetTypeProjectCounts(months, workerId);
 
-            return this.View(formModel);
+				return this.View(formModel);
+			}
+            catch (Exception)
+            {
+                return this.GeneralError();
+            }
+
         }
 
         private IActionResult ErrorIfUserIsNotAdmin()

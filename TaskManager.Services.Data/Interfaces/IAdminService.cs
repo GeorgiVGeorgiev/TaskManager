@@ -17,5 +17,7 @@
         public Task<PersonalFileFormModel> GetPersonalInfoByUserId(string userId);
 
         public Task<IEnumerable<MonthlyProjectCount>> GetMontlyProjects(int months, string workerId);
+
+        public Task<IEnumerable<TypeProjectCount>> GetTypeProjectCounts(int months, string workerId);
     }
 }

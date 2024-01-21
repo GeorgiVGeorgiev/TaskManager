@@ -152,19 +152,64 @@
                 .Where(x => x.CreateDate >= CurrentDateMonthsAgo && x.CreateDate <= CurrentDate && x.WorkerId.ToString() == workerId)
                 .ToArrayAsync();
 
-            IEnumerable<MonthlyProjectCount> monthlyCounts =
-                tasks.GroupBy(x => new { Month = x.CreateDate.Month, Year = x.CreateDate.Year } )
-                .Select(x => new MonthlyProjectCount
-                {
-                    MonthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(x.Key.Month),
-                    ProjectCount = x.Count(),
-                    Date = $"{x.Key.Month} {x.Key.Year}",
-                })
-                .OrderByDescending(x => x.Date)
-                .ToArray();
+			List<MonthlyProjectCount> monthlyCounts = new List<MonthlyProjectCount>();
 
-            return monthlyCounts;
+			for (int i = 0; i < months; i++)
+			{
+                int month = CurrentDate.AddMonths(-i).Month;
+                int year = CurrentDate.AddMonths(-i).Year;
+				IEnumerable<GeoTask> taskForMonth = tasks.Where(x => x.CreateDate.Month == month && x.CreateDate.Year == year);
+
+                int tastkCounter = taskForMonth.Count();
+                decimal tasksSumPrice = taskForMonth.Sum(x => x.Price);
+				string monthName = CurrentDate.AddMonths(-i).ToString("MMMM-yyyy");
+                
+                MonthlyProjectCount monthlyProjectCount= new MonthlyProjectCount()
+                {
+                    Price = tasksSumPrice,
+                    MonthName= monthName,
+                    ProjectCount= tastkCounter
+                };
+
+				monthlyCounts.Add(monthlyProjectCount);
+			}
+            monthlyCounts.Reverse();
+            IEnumerable<MonthlyProjectCount> projectCounts = monthlyCounts.ToArray();
+
+            return projectCounts;
 
         }
-    }
+
+		public async Task<IEnumerable<TypeProjectCount>> GetTypeProjectCounts(int months, string workerId)
+		{
+			DateTime CurrentDate = DateTime.Now;
+			DateTime CurrentDateMonthsAgo = CurrentDate.AddMonths(-months);
+
+			IEnumerable<GeoTask> tasks = await this.dbContext.GeoTasks
+                .Include(x => x.Type)
+				.Where(x => x.CreateDate >= CurrentDateMonthsAgo && x.CreateDate <= CurrentDate && x.WorkerId.ToString() == workerId)
+				.ToArrayAsync();
+
+            List<string> typeNames = await this.dbContext.Types
+                .Select(x => x.Name).ToListAsync();
+
+            List<TypeProjectCount> typeProjectCountsList = new List<TypeProjectCount>();
+
+            foreach (string typeName in typeNames)
+            {
+                int projectCount = tasks.Where(x => x.Type.Name == typeName).Count();
+
+                TypeProjectCount typeProjectCount = new TypeProjectCount()
+                {
+                    ProjectCount = projectCount,
+                    Type = typeName
+                };
+                typeProjectCountsList.Add(typeProjectCount);
+            }
+
+            IEnumerable<TypeProjectCount> typeProjectCounts = typeProjectCountsList.ToArray();
+
+            return typeProjectCounts;
+		}
+	}
 }

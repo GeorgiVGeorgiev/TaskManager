@@ -26,6 +26,7 @@ namespace TaskManager.Web.ViewModels.Admin
         public int SalaryUpdates { get; set; }
 
         public IEnumerable<MonthlyProjectCount> monthlyProjectCounts { get; set; } = new HashSet<MonthlyProjectCount>();
+        public IEnumerable<TypeProjectCount> typeProjectCounts { get; set; } = new HashSet<TypeProjectCount>();
 
-    }
+	}
 }

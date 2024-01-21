@@ -22,7 +22,7 @@
         public const string ErrorIfRequestDontExistMessage = "Задачата не съществува в базата данни.";
         public const string ErrorIfTypeDontExistMessage = "Типът не съществува в базата данни.";
         public const string ErrorIfWorkerTryToSendRequest = "Ти работиш, какви задачи искаш да даваш ?";
-
+        public const string ErrorIfPerosanlFileMonthAreBigger = "Не може да взимаш информация за повече от 36 месеца назад.";
         public const string SuccesfullyMakeUserWorker = "Успешно направите {0} работник.";
         public const string SuccessfullySendRequest = "Успешно изпратихте задачата.";
     }

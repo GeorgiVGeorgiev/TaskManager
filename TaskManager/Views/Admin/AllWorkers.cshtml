@@ -17,7 +17,7 @@
             {
                 <tbody>
                     <tr class="gridrow">
-                       <td><a style="font-weight:bold; color:forestgreen; text-decoration:none;background-color:transparent" asp-controller="Admin" asp-action="PersonalFile" asp-route-userId="@worker.UserId">@($"{worker.FirstName} {worker.LastName}")</a>
+                       <td><a style="font-weight:bold; color:forestgreen; text-decoration:none;background-color:transparent" asp-controller="Admin" asp-action="PersonalFile" asp-route-userId="@worker.UserId" asp-route-months="5">@($"{worker.FirstName} {worker.LastName}")</a>
                            <div id="myModalContainer"></div>    
                        </td>
                        <td>@worker.PhoneNumer</td>

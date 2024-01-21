@@ -1,4 +1,7 @@
 ﻿@model PersonalFileFormModel
+@{
+	int chartWidth = ViewBag.Months;
+}
 <head>
   <!-- Add ApexCharts library -->
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -9,18 +12,48 @@
 	<h2>Това е личното досие на @Model.Name</h2>
 </div>
 <hr />
-<div class="salaryContainer">
-	<h5>Текуща заплата:<p>@Model.Salary</p>лв.</h5>
-	<h5>Брой повишения:<p>@Model.SalaryUpdates</p>пъти.</h5>
-	<a class="btn btn-success" asp-controller="Admin" asp-action="ChangeSalary" asp-route-userId="@Model.userId">Смени заплатата</a>
+<div class="body">
+	<div class="salaryContainer">
+		<h5>Текуща заплата:<p>@Model.Salary</p>лв.</h5>
+		<h5>Брой повишения:<p>@Model.SalaryUpdates</p>пъти.</h5>
+		<a class="btn btn-success" asp-controller="Admin" asp-action="ChangeSalary" asp-route-userId="@Model.userId">Смени заплатата</a>
+	</div>
+	<div class="chartsContainer">
+		<article id="MonthProjectCountArticle">
+			<div class="chartDataName">Брой проекти за последните @chartWidth месеца</div>
+			<div id="MonthProjectCount"></div>
+		</article>
+		<article id="MonthProjectSumPriceArticle">
+			<div class="chartDataName">Обща стойност на проектите за последните @chartWidth месеца</div>
+			<div id="MonthProjectSumPrice"></div>
+		</article>
+		<article id="TypeProjectCountArticle">
+			<div class="chartDataName">Тип на проектите за последните @chartWidth месеца</div>
+			<div id="TypeProjectCount"></div>
+		</article>
+	</div>
 </div>
-	<div id="MonthProjectCount"></div>
 
 <script>
+	ChangeMinWidth(@chartWidth);
+
   var MonthAndProjectCountData = @Html.Raw(Json.Serialize(Model.monthlyProjectCounts));
-  var chartMonthProjectCount = CreateMonthAndProjectCountChartOptions(ExportMonthAndProjectCountData(MonthAndProjectCountData));
-  var MonthProjectCountChart = new ApexCharts(document.querySelector('#MonthProjectCount'), chartMonthProjectCount);
+  var TypeProjectCountData = @Html.Raw(Json.Serialize(Model.typeProjectCounts));
+
+  var chartMonthProjectCountOptions = CreateMonthAndProjectCountChartOptions(MonthAndProjectCountData);
+  var MonthProjectCountChart = new ApexCharts(document.querySelector('#MonthProjectCount'), chartMonthProjectCountOptions);
+
+  var chartMonthProjectSumPriceOptions = CreateMonthAndProjectPriceSumChartOptions(MonthAndProjectCountData);
+  var MonthProjectSumPriceChart = new ApexCharts(document.querySelector('#MonthProjectSumPrice'), chartMonthProjectSumPriceOptions);
+
+  var ChartPieProjectsTypeCountOptions = CreatePieChartForTaskTypes(TypeProjectCountData);
+  var TypeProjectCountPieChart = new ApexCharts(document.querySelector("#TypeProjectCount"), ChartPieProjectsTypeCountOptions); 
 
   MonthProjectCountChart.render();
+  MonthProjectSumPriceChart.render();
+  TypeProjectCountPieChart.render();
+
+
 </script>
 
+																										  
