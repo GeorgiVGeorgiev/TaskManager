@@ -25,6 +25,11 @@ namespace TaskManager.Web.ViewModels.Admin
         [Display(Name = "Повишения")]
         public int SalaryUpdates { get; set; }
 
+        [Required(ErrorMessage = RequiredErrorMessage)]
+        [Range(1, 36)]
+        [Display(Name = "Месеци")]
+        public int Months { get; set; } = 5;
+
         public IEnumerable<MonthlyProjectCount> monthlyProjectCounts { get; set; } = new HashSet<MonthlyProjectCount>();
         public IEnumerable<TypeProjectCount> typeProjectCounts { get; set; } = new HashSet<TypeProjectCount>();
 

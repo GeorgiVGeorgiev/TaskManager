@@ -121,7 +121,7 @@
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<PersonalFileFormModel> GetPersonalInfoByUserId(string userId)
+        public async Task<PersonalFileFormModel> GetPersonalInfoByUserId(string userId, int months)
         {
             Worker worker = await this.dbContext.Workers
                 .Include(x => x.User)
@@ -138,7 +138,8 @@
                 Name = $"{worker.User.FirstName} {worker.User.LastName}",
                 Salary = LastUserSalary.FirstOrDefault().NetSalary,
                 SalaryUpdates = LastUserSalary.Count() - 1,
-            };
+                Months = months
+			};
 
             return personalFileFormModel;
         }

@@ -194,22 +194,23 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> PersonalFile(string userId,int months)
+        public async Task<IActionResult> PersonalFile(string userId,PersonalFileFormModel model)
         {
+            int Months = model.Months;
             try
             {
-                if (months > 36)
+                if (Months > 36)
                 {
                     this.TempData[ErrorMessage] = ErrorIfPerosanlFileMonthAreBigger;
-                    months = 36;
+                    Months = 36;
                 }
-				this.ViewBag.Months = months;
+				this.ViewBag.Months = Months;
 
-				PersonalFileFormModel formModel = await this.adminService.GetPersonalInfoByUserId(userId);
+				PersonalFileFormModel formModel = await this.adminService.GetPersonalInfoByUserId(userId, Months);
 				string workerId = await this.userService.GetWorkerIdByUserIdAsync(userId);
 
-				formModel.monthlyProjectCounts = await this.adminService.GetMontlyProjects(months, workerId);
-				formModel.typeProjectCounts = await this.adminService.GetTypeProjectCounts(months, workerId);
+				formModel.monthlyProjectCounts = await this.adminService.GetMontlyProjects(Months, workerId);
+				formModel.typeProjectCounts = await this.adminService.GetTypeProjectCounts(Months, workerId);
 
 				return this.View(formModel);
 			}

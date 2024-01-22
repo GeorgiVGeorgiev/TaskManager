@@ -1,6 +1,7 @@
 ﻿@model PersonalFileFormModel
 @{
 	int chartWidth = ViewBag.Months;
+	string userId = Model.userId;
 }
 <head>
   <!-- Add ApexCharts library -->
@@ -13,11 +14,32 @@
 </div>
 <hr />
 <div class="body">
+<form method="get" asp-controller="Admin" asp-action="PersonalFile">
 	<div class="salaryContainer">
 		<h5>Текуща заплата:<p>@Model.Salary</p>лв.</h5>
 		<h5>Брой повишения:<p>@Model.SalaryUpdates</p>пъти.</h5>
 		<a class="btn btn-success" asp-controller="Admin" asp-action="ChangeSalary" asp-route-userId="@Model.userId">Смени заплатата</a>
 	</div>
+	<hr />
+	<h4 class="TimeDataPersonalFile">За колко време да извадя данни</h4>
+	<div class="SearchContainer">
+		 <select asp-for="Months" class="SearchSelectPersonalFile">
+			<option value="2">2 Месеца</option>
+			<option value="3">3 Месеца</option>
+			<option value="6">6 Месеца</option>
+			<option value="9">9 Месеца</option>
+			<option value="12">12 Месеца</option>
+			<option value="16">16 Месеца</option>
+			<option value="20">20 Месеца</option>
+			<option value="24">24 Месеца</option>
+			<option value="30">30 Месеца</option>
+			<option value="36">36 Месеца</option>
+		</select>
+		<input type="hidden" asp-for="userId" value="@Model.userId"/>
+		<input class="btn btn-secondary SearchButtonPersonalFile" type="submit" value="Извади" asp-route-userId=@Model.userId/>
+	</div>
+</form>
+	<hr />
 	<div class="chartsContainer">
 		<article id="MonthProjectCountArticle">
 			<div class="chartDataName">Брой проекти за последните @chartWidth месеца</div>

@@ -21,6 +21,23 @@ div.body{
 text-decoration: solid;	
 margin: 0 0.5em 0 0.5em;
 }
+.TimeDataPersonalFile{
+	color: black;
+	text-align: left;
+	font-size: 1.5em;
+
+}
+.SearchContainer{
+	display: flex;
+	flex-wrap: wrap;
+}
+.SearchContainer .SearchSelectPersonalFile{
+	display: inline-block;
+	min-width: 15em;
+	margin: 0em 1em 0em 0em;
+	border-radius: 0.5em;
+	padding: auto;
+}
 .chartsContainer {
 	display: flex;
 	max-width: 100%;

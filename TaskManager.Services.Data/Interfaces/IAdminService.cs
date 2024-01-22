@@ -14,7 +14,7 @@
 
         public Task MakeWorkerAsync(WorkerFormModel workerFormModel);
 
-        public Task<PersonalFileFormModel> GetPersonalInfoByUserId(string userId);
+        public Task<PersonalFileFormModel> GetPersonalInfoByUserId(string userId, int months);
 
         public Task<IEnumerable<MonthlyProjectCount>> GetMontlyProjects(int months, string workerId);
 
