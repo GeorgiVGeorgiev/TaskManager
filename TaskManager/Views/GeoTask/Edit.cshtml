@@ -9,52 +9,54 @@
 	string currentCheckEr = Model.CheckerId;
 	int statusTaskId = Model.StatusId;
 	ClientViewModel currentClient = await ClientService.GetClientByIdAsync(Model.ClientId);
+	
 }
-<body style="background-color:grey" class="align-content-center">
-	<div class="row" style="background-color:rgb(251,250,240); width:fit-content">
-		<div class="col-lg-12">
-			<div class="">
-				<h4 style="color:grey">@($"Проект№{Model.ProjectNumber}")</h4>
-				<b><span style="position: absolute; top: 65px; right: 10px;">Георги Георгиев, @DateTime.UtcNow.ToString("dd-MM-yyyy")</span></b>
+
+<form method="post" class="geoBody">
+<div>
+	<div class="GeoTaskStyle">
+		<div class="GeoHead">
+			<div class="GeoCreateDate">
+				<h4>@($"Проект№{Model.ProjectNumber}")</h4>
+				<p>Създаден на: @Model.CreateDate.ToString("dd-MM-yyyy")</p>
 			</div>
- 			<form method="post">
-			<div>
+			<div class="Buttons">
 				<input class="btn btn-secondary mt-3" type="submit" value="Запиши" name="Edit" asp-action="Edit" asp-route-id="@Model.Id.ToUpper()"/>
 				<input class="btn btn-secondary mt-3" type="submit" value="Запиши и затоври" name="SaveAndClose" />
 			</div>
-
-			<hr />
-				<div class="row" style="width:1500px">
-					<div class="col-4 align-content-center">
-						<fieldset>
-							<legend class="text-center">Основни данни</legend>
-							<hr />
-							<table class="edit">
-								<tbody>
+		</div>
+		<hr />
+		<div class="GeoTableBody">
+				<fieldset class="MainData">
+					<legend class="text-center">Основни данни</legend>
+				<hr />
+					<table>
+						<tbody>
+							<tr>
+								<td><span>Адрес</span><span class="requried">*</span></td>
+								<td><input asp-for="Adrress" class="form-control" placeholder="68134..."/></td>
+								<td><span asp-validation-for="Adrress" class="text-danger"></span></td>
+							</tr>
+							<tr>
+								<td><span>Статус</span> <span class="requried">*</span></td>
+								<td><select asp-for=StatusId class="form-control"> 
+										@foreach (StatusViewModel status in Model.Statuses)
+										{
+											@if (status.Id == statusTaskId)
+											{
+												<option selected="selected" value="@status.Id">@($"{status.Name}")</option>				
+											}
+											else
+											{
+												<option value="@status.Id">@($"{status.Name}")</option>
+											}
+										}			
+									</select>
+								</td>
+							</tr>
 									<tr>
-										<td><span>Адрес</span><span class="requried" style="color:red">*</span></td>
-										<td><input asp-for="Adrress" class="form-control" style="width:300px" placeholder="68134..."/></td>
-										<td><span asp-validation-for="Adrress" class="text-danger"></span></td>
-									</tr>
-									<tr>
-										<td><span>Статус</span> <span class="requried" style="color:red">*</span></td>
-										<td><select asp-for=StatusId class="form-control" style="width:300px"> 
-												@foreach (StatusViewModel status in Model.Statuses)
-												{
-													@if (status.Id == statusTaskId)
-													{
-														<option selected="selected" value="@status.Id">@($"{status.Name}")</option>				
-													}
-													else
-													{
-														<option value="@status.Id">@($"{status.Name}")</option>
-													}
-												}			
-										</select></td>
-									</tr>
-									<tr>
-										<td><span>Отговорник</span> <span class="requried" style="color:red">*</span></td>
-										<td><select asp-for=WorkerId class="form-control" style="width:300px"> 
+										<td><span>Отговорник</span> <span class="requried">*</span></td>
+										<td><select asp-for=WorkerId class="form-control"> 
 										@foreach (AllWorkersViewModel worker in Model.Workers)
 										{
 											@if(worker.Id == currentWorker.Id.ToUpper())
@@ -69,8 +71,8 @@
 										</select></td>
 									</tr>
 									<tr>
-										<td><span>Проверяващ</span> <span class="requried" style="color:red">*</span></td>
-										<td><select asp-for=CheckerId class="form-control" style="width:300px"> 
+										<td><span>Проверяващ</span> <span class="requried">*</span></td>
+										<td><select asp-for=CheckerId class="form-control"> 
 										@foreach (AllWorkersViewModel checker in Model.Checkers)
 										{
 											@if(checker.Id == currentCheckEr)
@@ -85,23 +87,23 @@
 										</select></td>
 									</tr>
 									<tr>
-										<td><span>Идентификатор</span><span class="requried" style="color:red">*</span></td>
-										<td><input asp-for="IdKKKR" class="form-control" style="width:300px" placeholder="68134..."/></td>
+										<td><span>Идентификатор</span><span class="requried">*</span></td>
+										<td><input asp-for="IdKKKR" class="form-control" placeholder="68134..."/></td>
 										<td><span asp-validation-for="IdKKKR" class="text-danger"></span></td>
 									</tr>
 									<tr>
-										<td><span>Създанена на</span><span class="requried" style="color:red">*</span></td>
-										<td><input asp-for="CreateDate" type="date" class="form-control" style="width:300px" placeholder="68134..."/></td>
+										<td><span>Създанена на</span><span class="requried">*</span></td>
+										<td><input asp-for="CreateDate" type="date" class="form-control" placeholder="68134..."/></td>
 										<td><span asp-validation-for="CreateDate" class="text-danger"></span></td>
 									</tr>
 									<tr>
-										<td><span>Крайна дата</span><span class="requried" style="color:red">*</span></td>
-										<td><input asp-for="EndDate" type="date" class="form-control" style="width:300px" placeholder="68134..."/></td>
+										<td><span>Крайна дата</span><span class="requried">*</span></td>
+										<td><input asp-for="EndDate" type="date" class="form-control" placeholder="68134..."/></td>
 										<td><span asp-validation-for="EndDate" class="text-danger"></span></td>
 									</tr>
 									<tr>
-										<td><span>Тип</span> <span class="requried" style="color:red">*</span></td>
-										<td><select asp-for=TypeId class="form-control" style="width:300px"> 
+										<td><span>Тип</span> <span class="requried">*</span></td>
+										<td><select asp-for=TypeId class="form-control"> 
 												@foreach (TypeViewModel type in Model.Types)
 												{
 													@if (type.Id == Model.TypeId)
@@ -116,118 +118,107 @@
 										</select></td>
 									</tr>
 									<tr>
-										<td><span>Цена</span><span class="requried" style="color:red">*</span></td>
-										<td><input asp-for="Price" type="text" class="form-control" style="width:300px"/></td>
+										<td><span>Цена</span><span class="requried">*</span></td>
+										<td><input asp-for="Price" type="text" class="form-control"/></td>
 										<td><span asp-validation-for="Price" class="text-danger"></span></td>
 									</tr>
 									<tr>
-										<td><span>Количество</span><span class="requried" style="color:red">*</span></td>
-										<td><input asp-for="quantity" type="number" class="form-control" style="width:300px"/></td>
+										<td><span>Количество</span><span class="requried">*</span></td>
+										<td><input asp-for="quantity" type="number" class="form-control"/></td>
 										<td><span asp-validation-for="quantity" class="text-danger"></span></td>
 									</tr>
 									<tr>
-										<td><div class="text box-shadow">@($"Крайна цена: {(Model.Price * Model.quantity):F2} лв.")</div></td>
+										<td class="GeoLastPrice"><hr />@($"Крайна цена: {(Model.Price * Model.quantity):F2} лв.")</></td>
 									</tr>
 								</tbody>
 							</table>
 						</fieldset>
-					</div>
-					<div class="col-4 align-content-center">
-						<fieldset>
-							<legend class="text-center">Данни за клиента</legend>
-							<hr />
-							<table class="edit">
-								<tbody>
-									<tr>
-										<td valign="top">
-											 <span>Клиент</span><span class="requried" style="color:red">*</span>
-										</td>
-										<td><select asp-for=ClientId class="form-control" style="width:300px"> 
-												@foreach (ClientViewModel client in Model.Clients)
-												{
-													@if (client.Id == Model.ClientId)
-													{
-														<option selected="selected" value="@client.Id">@($"{client.Name}")</option>				
-													}
-													else
-													{
-														<option value="@client.Id">@($"{client.Name}")</option>
-													}
-												}			
-										</select></td>
-
-										<tablle>
-											<tbody style="border:solid 1px">
-												<tr>
-													<td><span>Име:</span></td>
-													<td style="width:300px">@currentClient.Name"</td>	
-												</tr>
-												<tr>
-													<td><span>Представител:</span></td>
-													<td style="width:300px">@currentClient.CustomerRepresentative"</td>	
-												</tr>
-												<tr>
-													<td><span>Телефон:</span></td>
-													<td style="width:300px">@currentClient.PhoneNumber"</td>	
-												</tr>
-												<tr>
-													<td><span>Имейл:</span></td>
-													<td style="width:300px">@currentClient.Email"</td>	
-												</tr>
-											</tbody>
-										</tablle>						
-									</tr>
-									<tr>
-										<td style="vertical-align: top;">Забележка</td>
-										<td><textarea asp-for="Note" class="form-control" style="width:300px"></textarea></td>
-										<td><span asp-validation-for="Note" class="text-danger"></span></td>		
-										
-									</tr>
-								</tbody>
-							</table>
-						</fieldset>
-					</div>
-						<div class="col-4">
-							<fieldset class="overflow-scroll" style="height:600px;">
-								<legend>Коментари</legend>
-								<hr />
-									  <table>										 
-										<tbody>
-											<tr><button class="btn btn-secondary mt-3" asp-controller="Comentar" asp-action="Add" asp-route-Id="@Model.Id" type="submit" formmethod="get">Добавяне на коментар</button></tr>	
-											<tr><div style="height:5px"></div></tr>
-											@if (Model.Comentars.Any())
+				<fieldset class="ClientData">
+					<legend class="text-center">Данни за клиента</legend>
+						<hr />
+						<table>
+							<tbody>
+								<tr>
+									<td>
+										<span>Клиент</span><span class="requried">*</span>
+									</td>
+									<td><select asp-for=ClientId class="form-control"> 
+											@foreach (ClientViewModel client in Model.Clients)
 											{
-												@foreach (ComentarViewModel comentar in Model.Comentars)
+												@if (client.Id == Model.ClientId)
 												{
-													<tr>
-														<div class="card-comment-section" style="width:350px">
-															<div class="card-comment-symbol"></div>
-															<div class="card-comment-box" id="EditCommentarJs" style="border:solid 1px">
-																<div class="card-comment-user">
-																	<b>@comentar.WorkerFullName</b>
-																</div>
-																<div class="card shadow-sm ComenntarTextAreaJs" id="ComenntarTextAreaJs">
-																	   @comentar.Description
-																</div>
-																<div class="card-comment-action row" id="CommentarEditButtonId" >
-																	<button class="btn" style="width:150px;font-weight:bold; color:forestgreen; text-decoration:none;background-color:transparent" asp-controller="Comentar" asp-action="Edit" asp-route-id="@comentar.Id" type="submit" formmethod="get">Редактиране</button>	
-																	<div class="text-black fst-italic" style="font-size:1.5vh; margin:auto; width:150px;"><b>@comentar.CreateDate</b></div>
-																</div>
-															</div>
-															<div style="height:5px"></div>
-														</div>
-													</tr>								
+													<option selected="selected" value="@client.Id">@($"{client.Name}")</option>				
 												}
-											}							
-									</tbody>
-								</table>
+												else
+												{
+													<option value="@client.Id">@($"{client.Name}")</option>
+												}
+											}			
+										</select>
+									</td>
+									</tr>
+									<tr class="ClientPersonalData">
+										<td><span>Име:</span></td>
+										<td>@currentClient.Name"</td>	
+									</tr>
+									<tr class="ClientPersonalData">
+										<td><span>Представител:</span></td>
+										<td>@currentClient.CustomerRepresentative"</td>	
+									</tr>
+									<tr class="ClientPersonalData">
+										<td><span>Телефон:</span></td>
+										<td>@currentClient.PhoneNumber"</td>	
+									</tr>
+									<tr class="ClientPersonalData">
+										<td><span>Имейл:</span></td>
+										<td>@currentClient.Email"</td>	
+									</tr>					
+									<tr>
+										<td>Забележка</td>
+										<td><textarea asp-for="Note" class="form-control"></textarea></td>
+										<td><span asp-validation-for="Note" class="text-danger"></span></td>		
+									</tr>
+								</tbody>
+							</table>
 						</fieldset>
-						</div>
-				</div>
-			</form>
-		</div>
+				<fieldset class="ComentarData">
+					<legend>Коментари</legend>
+					<hr />
+					<tr><button class="btn btn-secondary AddCommentarButton" asp-controller="Comentar" asp-action="Add" asp-route-Id="@Model.Id" type="submit" formmethod="get">Добавяне на коментар</button></tr>										 
+						<div class="Commentars">
+							@if (Model.Comentars.Any())
+							{
+								@foreach (ComentarViewModel comentar in Model.Comentars)
+									{												
+									var workerInitals = comentar.WorkerFullName.Split(" ").ToArray();
+									string Intials = workerInitals[0].Substring(0, 1) + workerInitals[1].Substring(0, 1);
+									<tr>
+										<div class="CardComentarBody">
+											<div class="CardComentarWokerName">
+												<div class="box">
+													<p>@Intials</p>
+												</div>
+												<h5>@comentar.WorkerFullName</h5>
+											</div>
+											<hr >
+											<div class="ComentarText">
+												<p>@comentar.Description</p>
+											</div>
+											<hr>
+											<div class="CardRedactButtonAndDate">
+												<a class="btn" asp-controller="Comentar" asp-action="Edit" asp-route-id="@comentar.Id" type="submit">Редактиране</a>	
+												<p>@comentar.CreateDate</p>
+											</div>
+										</div>
+									</tr>								
+										}
+							}	
+							</div>
+				</fieldset>
 	</div>
-</body>
+	</div>
+</div>
+</form>
 
 @section Scripts
 	{

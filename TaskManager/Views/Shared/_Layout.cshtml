@@ -14,13 +14,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - TaskManager</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TaskManager.styles.css" asp-append-version="true" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" integrity="sha512-6S2HWzVFxruDlZxI3sXOZZ4/eJ8AcxkQH1+JjSe/ONCEqR9L4Ysq5JdT5ipqtzU7WHalNwzwBv+iE51gNHJNqQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css"/>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
 
 </head>
 <body>
@@ -45,8 +47,8 @@
                         {
                             @if (isUserWorker)
                             {
-                                    <li class="nav-item">
-                                        <a class="btn btn-success" asp-area="" asp-controller="GeoTask" asp-action="MyTasks">Моите задачи</a>
+                                    <li class="nav-item">                                             
+                                        <a class="btn btn-success fa-thin fa-house" asp-area="" asp-controller="GeoTask" asp-action="MyTasks"></a>
                                         <a class="btn btn-success" asp-area="" asp-controller="GeoTask" asp-action="AllTasks">Всички задачи</a>
                                         <a class="btn btn-success" asp-area="" asp-controller="GeoTask" asp-action="Checked">Задачи за проверка</a>
                                         <a class="btn btn-success" asp-area="" asp-controller="Client" asp-action="Clients">Клиенти</a>

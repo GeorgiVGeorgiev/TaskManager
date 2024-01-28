@@ -8,6 +8,9 @@
     using TaskManager.Web.ViewModels.Admin;
     using TaskManager.Web.ViewModels.User;
     using TaskManager.Web.ViewModels.Worker;
+    using static Common.GeneralApplicationConstants;
+    using TaskManager.Common;
+    using Microsoft.AspNetCore.Identity;
 
     public class UserService : IUserService
     {
@@ -41,9 +44,14 @@
         }
         public async Task<bool> IsUserAdminByIdAsync(string userId)
         {
+            IdentityRole<Guid> adminRole = await this.dbContext.Roles
+                .FirstAsync(r => r.Name == adminRoleName);
+
+            string adminRoleId = adminRole.Id.ToString();
+
             return await this.dbContext
                 .UserRoles
-                .AnyAsync(a => a.UserId.ToString() == userId);
+                .AnyAsync(a => a.UserId.ToString() == userId && a.RoleId.ToString() == adminRoleId);
         }
 
         public async Task<bool> IsUserExistByIdAsync(string userId)

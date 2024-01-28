@@ -1,0 +1,134 @@
+﻿body{
+    max-width: 100%;
+}
+main.pb-3{
+    max-width: 90em;
+}
+
+.GeoTaskStyle{
+background-color: #f2f2f2;
+box-shadow: 5em;
+padding: 1em;
+border-radius: 1em;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+}
+.GeoHead{
+    display: inline;
+}
+.GeoCreateDate{
+    display: flex;
+    justify-content: space-between;
+}
+.GeoCreateDate h4{
+    font-weight: bold;
+}
+.GeoCreateDate p{
+    font-weight: bold;
+    font-style: italic;
+    margin-right: 1em;
+}
+.GeoTableBody{
+display: flex;
+flex-wrap: wrap;
+justify-content: space-evenly;
+}
+
+fieldset{
+    max-width: 28em;
+}
+fieldset legend{
+    text-align: center;
+}
+fieldset table tbody tr td .form-control{
+    width: 15em;
+}
+.ClientPersonalData span{
+    font-weight: bold;
+    padding: 1em 1em 1em 0;
+}
+div.Commentars{
+    overflow: scroll;
+    overflow-x: hidden;
+    max-height: 40em;
+}
+div.Commentars::-webkit-scrollbar{
+    width: 0.4em;
+}
+div.Commentars::-webkit-scrollbar-track{
+    background: transparent;
+}
+div.Commentars::-webkit-scrollbar-thumb{
+    background:rgb(233, 160, 26);
+    border: radius 10px;;
+}
+.ComentarData{
+    max-height: 50em;
+}
+.CardComentarBody{
+    border:solid 0.1em;
+    border-radius: 1.5em;
+    padding: 0.5em;
+    margin: 1em 1em 0 0;
+}
+.CardComentarWokerName{
+    display: flex;
+    align-items: center;
+}
+.CardComentarWokerName .box{
+    border-radius: 50%;
+    border: solid 0.1em;
+    width: 2.5em;
+    height: 2.5em;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-color:gray ;
+    margin: 0 1em 0 1em;
+}
+.CardComentarWokerName .box p{
+    margin: 0;
+    text-align: center;
+    font-size: 1.2em;
+}
+.CardComentarWokerName h5{
+    margin: 0;
+    text-align: center;
+}
+.CardComentarBody .ComentarText{
+    min-height: 4em;
+}
+.CardComentarBody .ComentarText p{
+    font-size: 1.0em;
+}
+.CardComentarBody hr{
+    margin: 0;
+}
+.CardRedactButtonAndDate{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    height: 2.5em;
+    margin: 0 1em 0 1em;
+}
+.CardRedactButtonAndDate .btn{
+    color: rgb(233, 160, 26);
+    font-size: 1.1em;
+    border: solid 0.1em;
+    border-radius: 0.5em;
+    padding: 0em;
+    margin-top: 0.5em;
+}
+.AddCommentarButton{
+    margin-top: 0;
+}
+.CardRedactButtonAndDate p{
+    margin: 0;
+    text-align: center;
+    font-style: italic;
+    align-items: center;
+    display: flex;
+}
+span.requried{
+    color: red;
+}
