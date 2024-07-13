@@ -1,0 +1,104 @@
+﻿.event {
+	border: 1px solid #ccc;
+	padding: 10px;
+	margin-bottom: 10px;
+	color: black; /* Change text color to black for better visibility */
+}
+
+.event-title {
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.event-time {
+	font-style: italic;
+}
+
+.event-description {
+	margin-bottom: 10px;
+}
+
+.team-section {
+	margin-top: 10px;
+}
+
+.team-member {
+	display: flex;
+	align-items: center;
+	margin-bottom: 5px;
+}
+
+.member-initials {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 30px;
+	margin-right: 10px;
+}
+
+.member-name {
+	font-weight: bold;
+}
+
+.blue {
+	background-color: blue;
+}
+
+.fc-timegrid-event-harness {
+	inset: 0 50px 0 0; /* Adjust the values as needed */
+}
+
+.hidden {
+	display: none;
+}
+
+.team-list {
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	background-color: white;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.team-member {
+	display: flex;
+	align-items: center;
+	margin-bottom: 5px;
+}
+
+.member-initials {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 30px;
+	margin-right: 10px;
+}
+
+.member-name {
+	font-weight: bold;
+	margin-right: 5px;
+}
+
+.team-checkbox {
+	margin-right: 5px;
+}
+
+.calendar-container {
+	display: flex;
+	max-width: 95%;
+}
+
+.team-players {
+	flex: 0 0 200px; /* Set the width of the team players column as needed */
+	padding: 10px;
+	background-color: #f9f9f9;
+	border-right: 1px solid #ccc;
+}
+
+#calendar {
+	flex: 1;
+}

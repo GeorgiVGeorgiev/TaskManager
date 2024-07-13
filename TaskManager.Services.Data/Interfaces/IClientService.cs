@@ -1,7 +1,6 @@
 ﻿namespace TaskManager.Services.Data.Interfaces
 {
     using TaskManager.Web.ViewModels.Client;
-    using TaskManager.Web.ViewModels.GeoTask;
 
     public interface IClientService
     {

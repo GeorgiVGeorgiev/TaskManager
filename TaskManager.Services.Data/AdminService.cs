@@ -3,7 +3,6 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Threading.Tasks;
     using TaskManager.Data;
     using TaskManager.Data.Models;

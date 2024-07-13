@@ -60,7 +60,7 @@ div.Commentars::-webkit-scrollbar-track{
 }
 div.Commentars::-webkit-scrollbar-thumb{
     background:rgb(233, 160, 26);
-    border: radius 10px;;
+    border: radius 10px;
 }
 .ComentarData{
     max-height: 50em;

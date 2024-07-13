@@ -21,3 +21,12 @@ html {
 body {
 	margin-bottom: 60px;
 }
+
+.container {
+	max-width: 95%;
+	text-align: center;
+}
+
+div main.pb-3 {
+	max-width: 90%;
+}

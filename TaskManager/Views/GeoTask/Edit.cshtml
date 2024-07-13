@@ -119,7 +119,7 @@
 									</tr>
 									<tr>
 										<td><span>Цена</span><span class="requried">*</span></td>
-										<td><input asp-for="Price" type="text" class="form-control"/></td>
+										<td><input asp-for="Price" type="text" class="form-control" value="@Model.Price.ToString("F2")"/></td>
 										<td><span asp-validation-for="Price" class="text-danger"></span></td>
 									</tr>
 									<tr>

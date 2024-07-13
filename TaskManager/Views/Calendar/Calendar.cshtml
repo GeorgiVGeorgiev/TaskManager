@@ -1,0 +1,19 @@
+﻿<head>
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+  <script src="~/js/Calendar.js"></script>
+</head>
+<body>
+  <div class="calendar-container">
+    <div class="team-players">
+        <!-- Team players will be populated here dynamically -->
+    </div>
+    <div id="calendar"></div>
+</div>
+</body>
+
+<script>
+
+  var calendar = CalendarOptions(document.getElementById('calendar'));
+  calendar.render();
+
+</script>

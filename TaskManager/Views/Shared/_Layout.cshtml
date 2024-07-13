@@ -45,13 +45,14 @@
                         }
                         @if (User.Identity?.IsAuthenticated ?? false)
                         {
-                            @if (isUserWorker)
+                            @if (isUserWorker)                                    
                             {
                                     <li class="nav-item">                                             
-                                        <a class="btn btn-success fa-thin fa-house" asp-area="" asp-controller="GeoTask" asp-action="MyTasks"></a>
+                                        <a class="btn btn-success fa-solid fa-house" asp-area="" asp-controller="GeoTask" asp-action="MyTasks"></a>
                                         <a class="btn btn-success" asp-area="" asp-controller="GeoTask" asp-action="AllTasks">Всички задачи</a>
                                         <a class="btn btn-success" asp-area="" asp-controller="GeoTask" asp-action="Checked">Задачи за проверка</a>
                                         <a class="btn btn-success" asp-area="" asp-controller="Client" asp-action="Clients">Клиенти</a>
+                                        <a class="btn btn-success fa-solid fa-calendar-days" asp-area="" asp-controller="Calendar" asp-action="Calendar"></a>                                 
                                     </li>                            
                             }                            
                         }                
